@@ -1,0 +1,11 @@
+# Large backup videos (not in use)
+assets/montage-1-4.mp4
+assets/final_video.mp4
+assets/hero-curtain.mp4
+
+# System
+.DS_Store
+.claude/
+
+# Reference screenshots
+reference-video-screens/

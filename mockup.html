@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JioJioJoy — Mockup v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300;1,400;1,600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:   #f0ebe0;
+  --cream2:  #e8e1d4;
+  --ink:     #14100c;
+  --ink-mid: #3d3025;
+  --red:     #b8221a;
+  --gold:    #c8a46a;
+  --strip:   #090604;
+  --warm-white: #f7f3ec;
+}
+
+body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+/* ───────────────── NAV — floats over hero, not sticky ── */
+.site-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 50;
+}
+.nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 52px;
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+}
+.nav-brand { color: #fff; font-weight: 700; }
+.nav-links { display: flex; gap: 32px; color: rgba(255,255,255,.5); }
+.nav-links a { color: inherit; text-decoration: none; }
+.nav-links a:hover { color: var(--red); }
+.nav-contact { color: rgba(255,255,255,.5); }
+
+/* ───────────────── FILM STRIP DIVIDER ── */
+.divider {
+  height: 22px;
+  background: var(--strip);
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 8px,
+    var(--cream) 8px 15px,
+    transparent 15px 26px
+  );
+  background-position: center;
+}
+
+/* ───────────────── HERO ── */
+.hero {
+  position: relative; min-height: 100vh;
+  background: #0c0806; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 64px 72px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('assets/frame-hero.jpg');
+  background-size: cover; background-position: center 30%;
+  opacity: .38; filter: saturate(.55) contrast(1.1);
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(175deg, transparent 20%, rgba(8,5,3,.95) 75%);
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-layout { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 48px; }
+.hero-left {}
+.hero-num {
+  font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.28); margin-bottom: 20px;
+}
+.hero-title {
+  font-weight: 800; font-size: clamp(64px, 9.5vw, 130px);
+  line-height: .84; letter-spacing: -.055em; text-transform: uppercase;
+  color: #fff;
+}
+.hero-title em { font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -.02em; }
+.hero-right { text-align: right; max-width: 320px; padding-bottom: 8px; }
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 28px; line-height: 1.3; color: rgba(255,255,255,.65);
+  margin-bottom: 28px;
+}
+.hero-enter {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--red); border-bottom: 1px solid var(--red); padding-bottom: 5px;
+  text-decoration: none; display: inline-block;
+}
+
+/* ───────────────── BFA — full bleed ── */
+.bfa {
+  position: relative; min-height: 90vh;
+  background: #100d09; overflow: hidden;
+  display: flex; align-items: flex-end;
+  padding: 72px 64px;
+}
+.bfa-bg {
+  position: absolute; inset: 0;
+}
+.bfa-bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  filter: sepia(.5) contrast(1.05) brightness(.6) saturate(.7);
+  display: block;
+}
+.bfa-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10,7,4,.88) 0 42%, rgba(10,7,4,.3) 72%, transparent),
+    linear-gradient(180deg, transparent 30%, rgba(10,7,4,.82));
+}
+.bfa-content { position: relative; z-index: 2; max-width: 640px; }
+.bfa-eyebrow {
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 24px;
+}
+.bfa-counter {
+  font-size: clamp(110px, 18vw, 220px); font-weight: 800;
+  line-height: 1; letter-spacing: -.07em; color: rgba(255,255,255,.07);
+  position: absolute; right: 64px; bottom: 60px; z-index: 1;
+  pointer-events: none; user-select: none;
+}
+.bfa-title {
+  font-weight: 800; font-size: clamp(40px, 6vw, 82px);
+  line-height: .88; letter-spacing: -.045em; text-transform: uppercase;
+  color: #fff; margin-bottom: 28px;
+}
+.bfa-body {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 22px; line-height: 1.6; color: rgba(255,255,255,.65);
+  max-width: 460px;
+}
+.bfa-meta {
+  margin-top: 32px; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+
+/* ───────────────── FILM — dark split ── */
+.film-wrap {
+  background: #0d0a07;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+.film-image { position: relative; overflow: hidden; }
+.film-image img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center left;
+  filter: saturate(.4) contrast(1.1) brightness(.7); display: block;
+}
+.film-image::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 60%, rgba(13,10,7,.9));
+}
+.film-text {
+  padding: 72px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-left: 1px solid rgba(255,255,255,.08);
+}
+.film-eyebrow {
+  font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); margin-bottom: 32px;
+}
+.film-act-num {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 100px; line-height: 1; color: rgba(255,255,255,.06);
+  margin-bottom: -20px; letter-spacing: -.04em;
+}
+.film-title {
+  font-weight: 800; font-size: clamp(34px, 4.2vw, 60px);
+  line-height: .9; letter-spacing: -.04em; text-transform: uppercase;
+  color: #fff; margin-bottom: 28px;
+}
+.film-body {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 19px; line-height: 1.65; color: rgba(255,255,255,.55);
+  max-width: 380px; margin-bottom: 36px;
+}
+.film-row {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 8px 20px; align-items: baseline;
+  padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 12px;
+}
+.film-row-title { color: #fff; font-weight: 600; }
+.film-row-role { color: rgba(255,255,255,.38); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+.award-tag {
+  display: inline-block; margin-top: 24px;
+  border: 1px solid rgba(184,34,26,.5); padding: 10px 16px;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--red);
+}
+
+/* ───────────────── COMMERCIAL — full-screen cream ── */
+.commercial {
+  background: var(--warm-white);
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 80px 0 0;
+  overflow: hidden;
+}
+.commercial-head {
+  padding: 0 64px 48px;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 0 64px; align-items: start;
+  flex-shrink: 0;
+}
+.commercial-act {
+  font-size: clamp(80px, 12vw, 160px); font-weight: 800;
+  line-height: 1; letter-spacing: -.07em; text-transform: uppercase;
+  color: var(--cream2); -webkit-text-stroke: 1.5px rgba(20,16,12,.22);
+}
+.commercial-right { padding-top: 12px; border-top: 1px solid rgba(20,16,12,.15); }
+.commercial-title {
+  font-weight: 800; font-size: clamp(32px, 4vw, 58px);
+  line-height: .9; letter-spacing: -.04em; text-transform: uppercase;
+  color: var(--ink); margin-bottom: 20px;
+}
+.commercial-desc {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 21px; line-height: 1.55; color: var(--ink-mid); max-width: 520px;
+}
+
+/* Animated film reel track */
+.reel-wrapper {
+  position: relative; overflow: hidden;
+  background: var(--strip);
+  padding: 18px 0;
+  /* film holes top + bottom */
+}
+.reel-wrapper::before,
+.reel-wrapper::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 18px; z-index: 2;
+  background: var(--strip);
+  background-image: repeating-linear-gradient(
+    90deg, transparent 0 8px, rgba(240,235,224,.25) 8px 15px, transparent 15px 26px
+  );
+}
+.reel-wrapper::before { top: 0; }
+.reel-wrapper::after  { bottom: 0; }
+
+.reel-track {
+  display: flex; gap: 4px;
+  animation: reelScroll 28s linear infinite;
+  width: max-content;
+}
+.reel-track:hover { animation-play-state: paused; }
+
+@keyframes reelScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.reel-card {
+  width: 280px; height: 200px;
+  background: linear-gradient(160deg, #2a1c10, #180e07);
+  flex-shrink: 0; position: relative; overflow: hidden;
+  cursor: pointer;
+  transition: filter .25s;
+}
+.reel-card:hover { filter: brightness(1.25); }
+.reel-card-inner {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 14px 16px;
+  background: linear-gradient(transparent, rgba(8,4,2,.85));
+}
+.reel-card-brand {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-bottom: 4px;
+}
+.reel-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: #fff; line-height: 1.1;
+}
+.view-all-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 64px 48px;
+  border-top: 1px solid rgba(20,16,12,.1);
+  margin-top: 4px;
+}
+.view-all-label {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-mid);
+}
+.view-all-link {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--red); border-bottom: 1px solid var(--red); padding-bottom: 4px; text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<!-- ① NAV + FILM STRIP -->
+<header class="site-header">
+  <nav class="nav-bar">
+    <span class="nav-brand">JioJioJoy</span>
+    <div class="nav-links">
+      <a href="#">Origin</a>
+      <a href="#">Film</a>
+      <a href="#">Commercial</a>
+      <a href="#">AI Lab</a>
+      <a href="#">Creator</a>
+    </div>
+    <span class="nav-contact">Contact</span>
+  </nav>
+</header>
+
+<!-- ② HERO — dark -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-layout">
+      <div class="hero-left">
+        <p class="hero-num">Personal Theatre · Brand Mark</p>
+        <h1 class="hero-title">
+          Stories,<br/>
+          <em>Systems,</em><br/>
+          Signals
+        </h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-tagline">A personal brand between the set, the feed, and the lab.</p>
+        <a href="#" class="hero-enter">Enter ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ③ BFA — full bleed background -->
+<section class="bfa">
+  <div class="bfa-bg">
+    <img src="assets/frame-bfa.jpg" alt="Beijing Film Academy" />
+  </div>
+  <div class="bfa-content">
+    <p class="bfa-eyebrow">Prologue / Origin · 001</p>
+    <h2 class="bfa-title">Where stories<br/>became<br/>systems.</h2>
+    <p class="bfa-body">Before global feeds, there was film school. The first grammar was cinematic: framing, timing, crews, budgets, and release logic.</p>
+    <p class="bfa-meta">Beijing Film Academy &nbsp;·&nbsp; Film Studies & Production Marketing &nbsp;·&nbsp; 2019 – 2023</p>
+  </div>
+  <div class="bfa-counter" aria-hidden="true">01</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ④ FILM — dark split -->
+<section class="film-wrap">
+  <div class="film-image">
+    <img src="assets/frame-film.jpg" alt="Film archive" />
+  </div>
+  <div class="film-text">
+    <p class="film-eyebrow">Act I / Film</p>
+    <div class="film-act-num">I</div>
+    <h2 class="film-title">Short films,<br/>series,<br/>& awards.</h2>
+    <p class="film-body">From production managing festival shorts to executive producing a 19-episode Tencent series.</p>
+    <div>
+      <div class="film-row">
+        <span class="film-row-title">My Long Hair</span>
+        <span class="film-row-role">Production Mgr · 19 min</span>
+      </div>
+      <div class="film-row">
+        <span class="film-row-title">Dear Passenger</span>
+        <span class="film-row-role">Executive Producer · 19 ep · Tencent</span>
+      </div>
+      <div class="film-row">
+        <span class="film-row-title">Bitter Buckwheat</span>
+        <span class="film-row-role">Production Mgr · BFA</span>
+      </div>
+    </div>
+    <div class="award-tag">Athvikvaruni IFF — Best Female Short</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ⑤ COMMERCIAL — cream + animated reel -->
+<section class="commercial">
+  <div class="commercial-head">
+    <div class="commercial-act" aria-hidden="true">II</div>
+    <div class="commercial-right">
+      <h2 class="commercial-title">Commercial<br/>Reel</h2>
+      <p class="commercial-desc">Where image, talent, brand, timing, and deadline all converge on set.</p>
+    </div>
+  </div>
+
+  <div class="reel-wrapper">
+    <!-- Duplicated for seamless loop -->
+    <div class="reel-track">
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Meituan</p><p class="reel-card-name">Liu Yifei</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Alipay+</p><p class="reel-card-name">Zheng Qinwen</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Gucci × Douyin</p><p class="reel-card-name">Bamboo 1947</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">KFC</p><p class="reel-card-name">Lu Han</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Shenzhou</p><p class="reel-card-name">Zhang Songwen</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">CFM</p><p class="reel-card-name">Lin Gengxin</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">PEPSI</p><p class="reel-card-name">Apollo Go</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">League of Legends</p><p class="reel-card-name">Zhao Lusi</p></div></div>
+      <!-- duplicate for seamless -->
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Meituan</p><p class="reel-card-name">Liu Yifei</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Alipay+</p><p class="reel-card-name">Zheng Qinwen</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Gucci × Douyin</p><p class="reel-card-name">Bamboo 1947</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">KFC</p><p class="reel-card-name">Lu Han</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">Shenzhou</p><p class="reel-card-name">Zhang Songwen</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">CFM</p><p class="reel-card-name">Lin Gengxin</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">PEPSI</p><p class="reel-card-name">Apollo Go</p></div></div>
+      <div class="reel-card"><div class="reel-card-inner"><p class="reel-card-brand">League of Legends</p><p class="reel-card-name">Zhao Lusi</p></div></div>
+    </div>
+  </div>
+
+  <div class="view-all-row">
+    <span class="view-all-label">18 projects total</span>
+    <a href="#" class="view-all-link">View all commercial credits →</a>
+  </div>
+</section>
+
+</body>
+</html>

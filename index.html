@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JioJioJoy · Content maker. Data reader. AI builder.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Cormorant Garamond', 'Georgia', 'serif'],
+      },
+    },
+  },
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<style>
+:root {
+  --ink: #070101;
+  --paper: #f8efe3;
+  --paper-soft: rgba(248, 239, 227, .72);
+  --paper-dim: rgba(248, 239, 227, .46);
+  --line: rgba(248, 239, 227, .16);
+  --red: #8d0717;
+  --red-deep: #220006;
+  --gold: #d8b46d;
+  --amber: #9c5f23;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: Manrope, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+a, button { pointer-events: auto; }
+button { font: inherit; }
+
+/* ── Spotlight cursor ── */
+#spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0;
+  transition: opacity .4s ease;
+  background: radial-gradient(
+    circle 300px at 50% 50%,
+    rgba(216,180,109,.18) 0%,
+    rgba(216,180,109,.06) 45%,
+    transparent 70%
+  );
+}
+#spotlight-overlay.active { opacity: 1; }
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #050101;
+}
+.ambient video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .95;
+  filter: saturate(.95) contrast(1.05) brightness(1.3);
+}
+.ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 34% at 50% 30%, rgba(142, 7, 23, .32), transparent 68%),
+    radial-gradient(ellipse 74% 58% at 50% 64%, transparent 0 35%, rgba(0,0,0,.45) 76%),
+    linear-gradient(90deg, rgba(40,0,8,.55), transparent 24%, transparent 76%, rgba(40,0,8,.55)),
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.22) 52%, rgba(0,0,0,.72));
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: .09;
+  mix-blend-mode: screen;
+  background-image:
+    repeating-radial-gradient(circle at 17% 19%, rgba(255,255,255,.8) 0 1px, transparent 1px 3px);
+}
+.page { position: relative; z-index: 4; }
+.section { min-height: 100svh; padding: clamp(92px, 12vw, 160px) clamp(20px, 4vw, 56px); }
+.section-inner { width: min(1480px, 100%); margin: 0 auto; }
+.eyebrow {
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.rule { border-top: 1px solid var(--line); }
+.display {
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: .88;
+  letter-spacing: -.055em;
+}
+.serif {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0;
+}
+.soft-panel {
+  background: rgba(8, 1, 2, .58);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+/* Overview section */
+.overview-stmt {
+  max-width: 1000px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.overview-stmt p {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 2.8vw, 38px);
+  line-height: 1.45;
+  color: var(--paper);
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+.overview-stmt .accent {
+  color: rgba(248,239,227,.38);
+  font-style: italic;
+  margin-top: 20px;
+  white-space: normal;
+}
+.overview-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.overview-name {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  color: var(--paper);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.overview-tag {
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(248,239,227,.55);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.overview-tag::before { content: '·'; color: rgba(248,239,227,.3); }
+.dir-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.dir-row:hover { opacity: .55; }
+.dir-num {
+  font-size: 9px;
+  letter-spacing: .22em;
+  color: rgba(248,239,227,.25);
+  font-weight: 600;
+  min-width: 22px;
+}
+.dir-label {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(18px, 2vw, 26px);
+  color: var(--paper);
+  letter-spacing: -.01em;
+}
+@media (max-width: 760px) {
+  .overview-bottom { grid-template-columns: 1fr; gap: 40px; }
+}
+.hero-logo {
+  display: block;
+  width: 560px;
+  max-width: min(80vw, 560px);
+  height: auto;
+  filter: drop-shadow(0 0 28px rgba(220, 164, 90, .28));
+}
+.hero-note {
+  max-width: 560px;
+}
+.logo-card {
+  background: transparent;
+}
+.cinema-screen {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.75), transparent 12%, transparent 88%, rgba(0,0,0,.75)),
+    radial-gradient(ellipse at center, rgba(240,227,203,.86), rgba(88,88,82,.28) 58%, rgba(0,0,0,.55) 100%);
+  box-shadow: 0 0 80px rgba(219, 154, 77, .12);
+}
+.cinema-screen::before,
+.cinema-screen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background:
+    linear-gradient(90deg, transparent 0 2%, rgba(0,0,0,.85) 2% 4%, transparent 4% 6%),
+    rgba(12, 12, 12, .9);
+  background-size: 54px 100%;
+}
+.cinema-screen::before { top: 0; }
+.cinema-screen::after { bottom: 0; }
+.screen-dust {
+  background-image:
+    radial-gradient(circle at 18% 35%, rgba(255,255,255,.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 68% 54%, rgba(255,255,255,.12) 0 1px, transparent 2px),
+    radial-gradient(circle at 44% 22%, rgba(255,255,255,.12) 0 1px, transparent 2px);
+  background-size: 140px 110px;
+}
+.film-frame {
+  position: relative;
+  min-width: min(76vw, 360px);
+  height: 250px;
+  background: linear-gradient(180deg, #9b0617, #50000b);
+  border: 1px solid rgba(255, 224, 188, .24);
+  overflow: hidden;
+}
+.film-frame::before,
+.film-frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22px;
+  background: repeating-linear-gradient(90deg, #070101 0 18px, transparent 18px 33px);
+  opacity: .88;
+}
+.film-frame::before { top: 0; }
+.film-frame::after { bottom: 0; }
+/* Vertical film strip for Film section */
+.film-strip-v {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: clamp(260px, 26vw, 400px);
+  flex-shrink: 0;
+  background: #0a0505;
+  border: 1px solid rgba(255,224,188,.14);
+}
+.film-strip-v::before,
+.film-strip-v::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 24px;
+  background: repeating-linear-gradient(
+    180deg, #070101 0 16px, rgba(255,224,188,.18) 16px 24px, #070101 24px 40px
+  );
+  z-index: 2;
+}
+.film-strip-v::before { left: 0; }
+.film-strip-v::after  { right: 0; }
+.film-cell {
+  flex: 1;
+  min-height: 240px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid #070101;
+}
+.film-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(.5) contrast(1.1) brightness(.75);
+}
+.film-cell-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #2a1010, #0d0505);
+}
+/* Film credits list */
+.film-credit-entry {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(248,239,227,.1);
+}
+.film-credit-entry:first-child { padding-top: 0; }
+.film-credit-title {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+.film-credit-role {
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(248,239,227,.38);
+  margin-bottom: 14px;
+}
+.film-credit-awards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.film-award {
+  font-size: 12px;
+  color: rgba(248,239,227,.6);
+  line-height: 1.5;
+}
+.film-award-title {
+  color: var(--gold);
+  font-weight: 600;
+}
+/* ── Film poster carousel ── */
+.film-carousel-wrap { position: relative; user-select: none; }
+.film-carousel {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.poster-card {
+  position: absolute;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94),
+              filter .55s ease,
+              width .55s cubic-bezier(.25,.46,.45,.94),
+              height .55s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .55s ease,
+              opacity .4s ease;
+  filter: saturate(0.08) brightness(0.32);
+}
+.poster-card img { width:100%; height:100%; object-fit:cover; display:block; }
+.poster-card .fp-overlay {
+  position: absolute; bottom:0; left:0; right:0;
+  padding: 40px 18px 18px;
+  background: linear-gradient(transparent, rgba(7,1,1,.92));
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.poster-card.pos-center .fp-overlay { opacity: 1; }
+.fp-overlay .fp-role {
+  font-size: 10px; letter-spacing:.22em; text-transform:uppercase;
+  color: rgba(248,239,227,.5); margin-bottom: 6px;
+}
+.fp-overlay .fp-title {
+  font-size: clamp(13px,1.3vw,17px); font-weight:700;
+  letter-spacing:-.02em; line-height:1.25; color:var(--paper); margin:0;
+}
+/* Position classes */
+.poster-card.pos-center {
+  width:260px; height:390px; z-index:10;
+  transform: translateX(0) rotate(0deg);
+  filter: saturate(1) brightness(1);
+  box-shadow: 0 32px 80px rgba(0,0,0,.75);
+}
+.poster-card.pos-left-1 {
+  width:198px; height:297px; z-index:8;
+  transform: translateX(-295px) rotate(-4deg);
+}
+.poster-card.pos-right-1 {
+  width:198px; height:297px; z-index:8;
+  transform: translateX(295px) rotate(4deg);
+}
+.poster-card.pos-left-2 {
+  width:150px; height:225px; z-index:6;
+  transform: translateX(-490px) rotate(-8deg);
+  filter: saturate(0.06) brightness(0.25);
+}
+.poster-card.pos-right-2 {
+  width:150px; height:225px; z-index:6;
+  transform: translateX(490px) rotate(8deg);
+  filter: saturate(0.06) brightness(0.25);
+}
+.poster-card.pos-hidden-left {
+  width:110px; height:165px; z-index:2;
+  transform: translateX(-640px) rotate(-12deg);
+  opacity: 0; pointer-events: none;
+}
+.poster-card.pos-hidden-right {
+  width:110px; height:165px; z-index:2;
+  transform: translateX(640px) rotate(12deg);
+  opacity: 0; pointer-events: none;
+}
+.poster-card:not(.pos-center):hover {
+  filter: saturate(.85) brightness(.75) !important;
+}
+/* Info panel */
+.film-carousel-info {
+  text-align: center;
+  padding: 32px 0 20px;
+  min-height: 90px;
+  transition: opacity .3s ease;
+}
+.fci-role {
+  font-size: 11px; letter-spacing:.22em; text-transform:uppercase;
+  color: rgba(248,239,227,.4); margin-bottom: 8px;
+}
+.fci-title {
+  font-size: clamp(18px,2vw,26px); font-weight:700;
+  letter-spacing:-.02em; color: var(--paper); margin-bottom: 12px;
+}
+.fci-awards { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+/* Nav */
+.film-carousel-nav { display:flex; justify-content:center; gap:14px; padding-top:4px; }
+.carousel-btn {
+  width:42px; height:42px; border-radius:50%;
+  border: 1px solid rgba(248,239,227,.22);
+  background: transparent; color: var(--paper);
+  font-size:15px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition: border-color .2s, color .2s;
+}
+.carousel-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Commercial Reel TVC marquee ── */
+.tvc-reel-container {
+  background: #080202;
+  border: 1px solid rgba(255,224,188,.14);
+  overflow: hidden;
+}
+/* Sprocket bar — inside each item, scrolls with content */
+/* WHITE wider than black: 8px dark | 14px white | 8px dark per 30px cycle */
+.tvc-sprocket-bar {
+  height: 20px;
+  width: 100%;
+  flex-shrink: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    #0a0303 0 8px,
+    rgba(248,239,227,.82) 8px 22px,
+    #0a0303 22px 30px
+  );
+}
+
+.tvc-marquee-wrap { overflow: hidden; }
+.tvc-marquee {
+  display: flex;
+  will-change: transform;
+}
+.tvc-photo-set { display: flex; flex-shrink: 0; gap: 10px; padding: 0 5px; }
+.tvc-item { flex-shrink: 0; width: 250px; }
+.tvc-photo {
+  aspect-ratio: 2/3;
+  position: relative;
+  overflow: hidden;
+  border-right: 2px solid #070101;
+  background: #100505;
+  margin: 20px 0;
+}
+.tvc-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+.tvc-credit {
+  text-align: center;
+  padding: 18px 6px 20px;
+  border-right: 1px solid rgba(248,239,227,.07);
+}
+.tvc-brand {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(248,239,227,.45);
+  margin-bottom: 5px;
+}
+.tvc-x {
+  font-size: 12px;
+  color: var(--gold);
+  margin: 5px 0;
+}
+.tvc-artist {
+  font-size: clamp(11px,.95vw,14px);
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.4;
+}
+
+
+
+/* TVC photo: LIGHT frame border (the 镂空 window) */
+.tvc-photo {
+  aspect-ratio: 2/3;
+  position: relative;
+  overflow: hidden;
+  background: #0a0303;
+  border: 3px solid rgba(248,239,227,.65);
+  box-sizing: border-box;
+}
+
+/* ── TVC detail modal ── */
+#tvc-detail-overlay {
+  position: fixed; inset: 0;
+  background: rgba(7,1,1,.88);
+  z-index: 9980;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s ease, visibility .35s;
+  padding: 24px;
+}
+#tvc-detail-overlay.open { opacity: 1; visibility: visible; }
+.tvc-detail-panel {
+  background: #0e0404;
+  border: 1px solid rgba(255,224,188,.18);
+  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform .35s ease;
+}
+#tvc-detail-overlay.open .tvc-detail-panel { transform: translateY(0); }
+.tvc-detail-poster { overflow: hidden; }
+.tvc-detail-poster img { width:100%; height:100%; object-fit:cover; display:block; }
+.tvc-detail-info {
+  padding: 36px 32px;
+  display: flex; flex-direction: column;
+  border-left: 1px solid rgba(255,224,188,.1);
+}
+.tvc-detail-brand-label {
+  font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+}
+.tvc-detail-artist-name {
+  font-size: clamp(20px,2.8vw,34px); font-weight:800; letter-spacing:-.04em;
+  color:var(--paper); margin-bottom: 28px; line-height:1.1;
+}
+.tvc-meta-table { display:flex; flex-direction:column; gap:0; flex:1; }
+.tvc-meta-row { display:grid; grid-template-columns:80px 1fr; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,224,188,.08); align-items:baseline; }
+.tvc-meta-row:last-child { border-bottom:none; }
+.tvc-meta-label { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.35); }
+.tvc-meta-val { font-size:14px; color:var(--paper); }
+.tvc-detail-link {
+  display:inline-flex; align-items:center; gap:8px; margin-top:24px;
+  border-bottom:1px solid var(--gold); padding-bottom:6px;
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold);
+  text-decoration:none; transition:opacity .2s; width:fit-content;
+}
+.tvc-detail-link:hover { opacity:.7; }
+.tvc-detail-link.disabled { opacity:.3; pointer-events:none; }
+.tvc-detail-close {
+  position:absolute; top:14px; right:16px;
+  background:none; border:none; color:rgba(248,239,227,.4);
+  font-size:20px; cursor:pointer; line-height:1; padding:4px;
+  transition:color .2s;
+}
+.tvc-detail-close:hover { color:var(--paper); }
+
+/* TVC photos: dark by default, hover restore */
+.tvc-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.08) brightness(0.32);
+  transition: filter .45s ease;
+}
+.tvc-item:hover .tvc-photo img {
+  filter: saturate(1) brightness(1);
+}
+
+/* ── Commercial Reel film strip wrapper ── */
+.commercial-strip-wrap {
+  position: relative;
+  background: #080202;
+  border: 1px solid rgba(255,224,188,.14);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.commercial-strip-wrap::before,
+.commercial-strip-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 22px;
+  background: repeating-linear-gradient(
+    90deg, #070101 0 16px, rgba(255,224,188,.2) 16px 24px, #070101 24px 40px
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+.commercial-strip-wrap::before { top: 0; }
+.commercial-strip-wrap::after  { bottom: 0; }
+
+.signal-card {
+  background: linear-gradient(180deg, rgba(248,239,227,.08), rgba(248,239,227,.025));
+  border: 1px solid rgba(248,239,227,.13);
+}
+.node {
+  border: 1px solid rgba(248,239,227,.16);
+  background: rgba(5,0,2,.58);
+}
+.node-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216,180,109,.7), transparent);
+}
+#all-credits[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#all-credits[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+  transition-delay: calc(var(--d, 0) * 1s);
+}
+[data-reveal="visible"] { opacity: 1; transform: translateY(0); }
+@media (max-width: 760px) {
+  html, body { width: 100%; overflow-x: hidden; }
+  .section { padding-top: 92px; padding-bottom: 92px; }
+  .section-inner { overflow: hidden; }
+  #top .section-inner > .grid { display: flex; flex-direction: column; align-items: flex-start !important; gap: 48px; }
+  #top .justify-self-end { justify-self: stretch; width: 100%; max-width: 320px; }
+  .hero-logo { width: min(330px, calc(100vw - 48px)); max-width: min(330px, calc(100vw - 48px)); }
+  .hero-note { max-width: 320px; font-size: 14px; line-height: 1.65; }
+  #top .serif { max-width: 320px; font-size: 28px; }
+  #top p { overflow-wrap: anywhere; }
+  .film-frame { height: 220px; }
+}
+@media (min-width: 761px) and (max-width: 980px) {
+  .hero-logo { width: 420px; max-width: 52vw; }
+}
+/* Phone mockups for Global section */
+/* ── AI Lab ticket cards ── */
+.ticket-stack { display:flex; flex-direction:column; gap:0; }
+.ai-ticket {
+  position: relative;
+  background: rgba(14,4,4,.88);
+  border: 1px solid rgba(255,224,188,.16);
+  border-radius: 10px;
+  overflow: visible;
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+/* Circular notches on left and right */
+.ai-ticket::before,
+.ai-ticket::after {
+  content: '';
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 1px solid rgba(255,224,188,.14);
+  z-index: 2;
+}
+.ai-ticket::before { left: -13px; }
+.ai-ticket::after  { right: -13px; }
+
+/* Second ticket: offset */
+.ai-ticket:nth-child(2) { margin-left: clamp(16px,3vw,48px); }
+
+.ticket-left {
+  padding: clamp(24px,3vw,40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: clamp(220px,28vw,360px);
+  flex-shrink: 0;
+}
+.ticket-date {
+  font-size: 11px; letter-spacing:.18em; color:rgba(248,239,227,.35); margin-bottom: 6px;
+}
+.ticket-category {
+  font-size: 10px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom: 20px;
+}
+.ticket-title {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic; font-weight:600;
+  font-size:clamp(28px,3.5vw,48px);
+  letter-spacing:-.02em; line-height:1.1;
+  color:var(--paper);
+  margin-bottom:14px;
+  border-bottom: 1px solid rgba(248,239,227,.25);
+  padding-bottom: 14px;
+}
+.ticket-desc {
+  font-size:14px; line-height:1.7; color:rgba(248,239,227,.5); flex:1; margin-bottom:20px;
+}
+.ticket-by {
+  font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:rgba(248,239,227,.25);
+}
+/* Dashed divider */
+.ticket-dash {
+  width: 0;
+  border-left: 2px dashed rgba(255,224,188,.12);
+  align-self: stretch;
+  flex-shrink: 0;
+  margin: 20px 0;
+}
+/* Preview area */
+.ticket-preview {
+  flex: 1;
+  padding: clamp(16px,2vw,28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+}
+.ticket-preview-inner {
+  width: 100%; max-width: 420px;
+  aspect-ratio: 16/10;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0e2e, #080310);
+  border: 1px solid rgba(248,239,227,.1);
+  transform: rotate(-1.5deg) scale(1.04);
+  box-shadow: 0 16px 48px rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: center;
+}
+/* Vertical label */
+.ticket-side-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 9px; letter-spacing:.28em; text-transform:uppercase;
+  color:rgba(248,239,227,.2);
+  padding: 20px 12px;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255,224,188,.08);
+}
+
+/* ── Phone fan layout (Global section) ── */
+.phone-fan-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 48px 0 16px;
+  overflow: visible;
+}
+.pf {
+  flex-shrink: 0;
+  margin: 0 -16px;
+  transform: rotate(var(--rot,0deg)) translateY(var(--ty,0px)) scale(var(--sc,1));
+  z-index: var(--z,1);
+  transition: transform .4s ease;
+}
+.pf:hover { transform: rotate(var(--rot,0deg)) translateY(calc(var(--ty,0px) - 12px)) scale(calc(var(--sc,1) * 1.03)); }
+.phone-v2 {
+  width: clamp(140px, 13vw, 190px);
+  background: rgba(6,1,2,.88);
+  border: 1px solid rgba(248,239,227,.22);
+  border-radius: 30px;
+  padding: 14px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6);
+}
+.phone-screen-v2 {
+  width: 100%;
+  aspect-ratio: 9/19;
+  background: linear-gradient(160deg, #110820, #080308);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.phone-screen-v2 img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(.7) brightness(.8);
+}
+
+/* legacy (unused but kept) */
+.phone-mock { display: none; }
+.phone-screen { display: none; }
+.phone-label { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true">
+  <video id="hero-video" muted playsinline autoplay preload="auto">
+    <source src="assets/grand_budapest_theater_bulle.mp4" type="video/mp4" />
+  </video>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="fixed inset-x-0 top-0 z-30 px-5 py-4 md:px-8">
+  <nav class="mx-auto grid max-w-[1480px] grid-cols-[1fr_auto] items-center gap-4 text-[10px] uppercase tracking-[.22em] text-white/70 md:grid-cols-[1fr_auto_1fr]">
+    <a href="#top" class="font-semibold">JioJioJoy</a>
+    <div class="hidden items-center gap-7 md:flex">
+      <a href="#overview" class="hover:text-[var(--gold)]">Overview</a>
+      <a href="#film" class="hover:text-[var(--gold)]">Film</a>
+      <a href="#commercial" class="hover:text-[var(--gold)]">Commercial Reel</a>
+      <a href="#lab" class="hover:text-[var(--gold)]">AI Lab</a>
+      <a href="#influencer" class="hover:text-[var(--gold)]">Influencer</a>
+    </div>
+    <a href="mailto:joyjiangyi852@gmail.com" class="hidden justify-self-end border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex">Contact</a>
+  </nav>
+</header>
+
+<main class="page">
+  <section id="top" class="section flex items-end">
+    <div class="section-inner">
+      <div style="display:grid; grid-template-columns:1.1fr .9fr; min-height:76svh; gap:40px;">
+        <!-- Left: title + tagline, bottom aligned -->
+        <div style="display:flex; flex-direction:column; justify-content:flex-end;">
+          <h1 class="display max-w-[720px] text-[clamp(38px,6.2vw,88px)]" data-reveal style="--d:.08">Content maker.<br />Data reader.<br />AI builder.</h1>
+          <p style="margin-top:24px; font-size:clamp(13px,1.4vw,18px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.5);" data-reveal style="--d:.14">Here for global markets.</p>
+        </div>
+        <!-- Right: logo at top-third, enter at bottom -->
+        <div style="display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; padding-top:8vh;">
+          <img src="assets/jiojoy-logo-white.png?v=1" alt="JioJoy logo"
+            style="width:min(260px,36vw);"
+            data-reveal style="--d:.05" />
+          <a href="#overview" class="inline-flex border-b border-[var(--gold)] pb-2 text-[10px] uppercase tracking-[.24em] text-[var(--gold)]" data-reveal style="--d:.18">Enter ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview" class="section">
+    <div class="section-inner">
+      <div class="overview-stmt" data-reveal>
+        <p>Trained in cinema. Tested in global operations.</p>
+        <p>Now building content systems for markets that don't slow down.</p>
+        <p class="accent">Film school instinct, platform signals, AI as the accelerant.</p>
+      </div>
+      <div class="overview-bottom" data-reveal style="--d:.1">
+        <div><!-- empty left column --></div>
+        <div>
+          <a href="#film" class="dir-row"><span class="dir-num">01</span><span class="dir-label">Film</span></a>
+          <a href="#commercial" class="dir-row"><span class="dir-num">02</span><span class="dir-label">Commercial Reel</span></a>
+          <a href="#feeds" class="dir-row"><span class="dir-num">03</span><span class="dir-label">Global</span></a>
+          <a href="#lab" class="dir-row"><span class="dir-num">04</span><span class="dir-label">AI Lab</span></a>
+          <a href="#influencer" class="dir-row"><span class="dir-num">05</span><span class="dir-label">Influencer</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="origin" class="section" style="min-height:100svh; padding: clamp(80px,10vw,128px) clamp(24px,5vw,72px);">
+    <div style="display:grid; grid-template-columns:1fr 1fr; min-height:calc(100svh - clamp(160px,20vw,256px));">
+      <!-- Left column: chapter label top, sentence bottom -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <p style="font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:rgba(248,239,227,.4); line-height:1.8;" data-reveal>Background</p>
+        <div data-reveal style="--d:.15">
+          <p style="font-size:clamp(18px,2vw,26px); font-weight:600; color:var(--paper); white-space:nowrap; line-height:1.4;">Where I learned to build content, end to end.</p>
+        </div>
+      </div>
+      <!-- Right column: 3 elements centered with gap -->
+      <div style="display:flex; flex-direction:column; justify-content:center; gap:clamp(32px,5vh,60px); align-items:flex-end; text-align:right;">
+        <p style="font-size:clamp(28px,4vw,62px); font-weight:800; letter-spacing:-.04em; line-height:1;" data-reveal>2019 — 2023</p>
+        <h2 style="font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-weight:600; font-size:clamp(56px,8.5vw,118px); letter-spacing:-.02em; line-height:.9; color:var(--paper);" data-reveal style="--d:.08">Beijing Film<br/>Academy</h2>
+        <p style="font-size:clamp(15px,1.4vw,21px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.55);" data-reveal style="--d:.12">北京电影学院 · Beijing, China</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="film" class="section">
+    <div class="section-inner">
+      <div class="rule mb-12 pt-5" data-reveal>
+        <p class="eyebrow">Film</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Short films, series, and festival credits — production from set to screen.</p>
+      </div>
+
+      <div class="film-carousel-wrap" data-reveal>
+        <!-- Carousel -->
+        <div class="film-carousel" id="film-carousel">
+
+          <div class="poster-card"
+            data-role="Short Film · Production Manager"
+            data-title="My Long Hair《我的长发》"
+            data-awards='["<span class=&quot;film-award-title&quot;>Best Female Short Film</span> · Athvikvaruni IFF","<span class=&quot;film-award-title&quot;>Jury Award</span> · Uruvatti IFF","<span class=&quot;film-award-title&quot;>Official Selection</span> · Cyprus IFF"]'>
+            <img src="assets/posters/poster-1.png" alt="My Long Hair" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Web Series · Executive Producer"
+            data-title="Dear Passenger《亲爱的乘客》"
+            data-awards='["Tencent Video · 19 episodes"]'>
+            <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Short Film · Production Manager"
+            data-title="Bitter Buckwheat《苦荞麦》"
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Documentary · Production Manager"
+            data-title="Xu Ziran Biography《徐自然传》"
+            data-awards='["<span class=&quot;film-award-title&quot;>Official Selection</span> · Zhejiang Golden Roc Film Festival"]'>
+            <img src="assets/posters/poster-4.png" alt="Xu Ziran Biography" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Short Film · Production Crew"
+            data-title="Cinema by the Sea《海边电影》"
+            data-awards='["Beijing Film Academy · 2021"]'>
+            <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
+          </div>
+
+        </div>
+
+        <!-- Info panel -->
+        <div class="film-carousel-info" id="film-carousel-info">
+          <p class="fci-role" id="fci-role"></p>
+          <h3 class="fci-title" id="fci-title"></h3>
+          <div class="fci-awards" id="fci-awards"></div>
+        </div>
+
+        <!-- Nav -->
+        <div class="film-carousel-nav">
+          <button class="carousel-btn" id="carousel-prev">←</button>
+          <button class="carousel-btn" id="carousel-next">→</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="commercial" class="section overflow-hidden">
+    <div class="section-inner">
+
+      <!-- Header: same format as Film page -->
+      <div class="rule mb-12 pt-5" data-reveal>
+        <p class="eyebrow">Commercial Reel</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">A selection of commercial TVC productions with top brands and artists.</p>
+      </div>
+
+      <!-- Film machine: canister at TOP, strip below -->
+      <div data-reveal>
+        <div class="tvc-reel-container" style="overflow:hidden;">
+          <div class="tvc-marquee-wrap">
+            <div class="tvc-marquee">
+              <!-- Set A -->
+              <div class="tvc-photo-set">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="Meituan × Liu Yifei" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲 · 火锅季" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="Meituan Hotpot" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲 · 火锅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="#" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="Alipay+ × Zheng Qinwen" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="#" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="COGI" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="KFC × Lu Han" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="#" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="优酸乳 × 吴镇宇" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
+                </div>
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="#" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="神州租车 × 张颂文" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
+                </div>
+              </div>
+              <!-- Set B: duplicate for seamless loop -->
+              <div class="tvc-photo-set" aria-hidden="true">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲 · 火锅季" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲 · 火锅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="#" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="#" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="#" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
+                </div>
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="#" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <button id="open-credits" class="mt-10 border border-white/25 px-5 py-4 text-[10px] uppercase tracking-[.24em] text-white/72 transition hover:border-[var(--gold)] hover:text-[var(--gold)]" type="button" data-reveal>View all commercial credits</button>
+    </div>
+  </section>
+
+  <section id="feeds" class="section">
+    <div class="section-inner">
+      <div class="rule mb-12 pt-5" data-reveal>
+        <p class="eyebrow">Global</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Selected works from overseas content operations.</p>
+      </div>
+      <!-- Phone row — 5 phones side by side -->
+      <div style="display:flex; gap:clamp(12px,2vw,28px); align-items:stretch;" data-reveal>
+        <div class="phone-v2" style="flex:1;"><div class="phone-screen-v2"></div></div>
+        <div class="phone-v2" style="flex:1;"><div class="phone-screen-v2"></div></div>
+        <div class="phone-v2" style="flex:1;"><div class="phone-screen-v2"></div></div>
+        <div class="phone-v2" style="flex:1;"><div class="phone-screen-v2"></div></div>
+        <div class="phone-v2" style="flex:1;"><div class="phone-screen-v2"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lab" class="section">
+    <div class="section-inner">
+      <div class="rule mb-12 pt-5" data-reveal>
+        <p class="eyebrow">AI Lab</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Self-built AI projects and open-source skills.</p>
+      </div>
+      <!-- Ticket cards -->
+      <div class="ticket-stack" data-reveal>
+
+        <div class="ai-ticket">
+          <div class="ticket-left">
+            <div>
+              <p class="ticket-date">2025.10</p>
+              <p class="ticket-category">AI Project</p>
+              <h3 class="ticket-title">AI Sharing</h3>
+              <p class="ticket-desc">A curated web app for discovering and sharing AI tools.</p>
+            </div>
+            <p class="ticket-by">Built by JioJioJoy</p>
+          </div>
+          <div class="ticket-dash"></div>
+          <div class="ticket-preview">
+            <div class="ticket-preview-inner">
+              <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,239,227,.2);">Preview</p>
+            </div>
+          </div>
+          <div class="ticket-side-label">AI LAB</div>
+        </div>
+
+        <div class="ai-ticket">
+          <div class="ticket-left">
+            <div>
+              <p class="ticket-date">2025.10</p>
+              <p class="ticket-category">Vibe Coded</p>
+              <h3 class="ticket-title">Joyce Ware</h3>
+              <p class="ticket-desc">A smart wardrobe web app, vibe-coded from scratch.</p>
+            </div>
+            <p class="ticket-by">Built by JioJioJoy</p>
+          </div>
+          <div class="ticket-dash"></div>
+          <div class="ticket-preview">
+            <div class="ticket-preview-inner" style="background:linear-gradient(135deg,#0e1f2e,#060e1a);">
+              <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,239,227,.2);">Preview</p>
+            </div>
+          </div>
+          <div class="ticket-side-label">AI LAB</div>
+        </div>
+
+      </div>
+      <!-- Links -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;" data-reveal>
+        <a href="#" style="padding:10px 22px;border:1px solid rgba(248,239,227,.2);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,239,227,.6);text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;" class="hover:border-[var(--gold)] hover:text-[var(--gold)]">Claude Skills</a>
+        <span style="color:rgba(248,239,227,.2);line-height:38px;">/</span>
+        <a href="#" style="padding:10px 22px;border:1px solid rgba(248,239,227,.2);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,239,227,.6);text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;" class="hover:border-[var(--gold)] hover:text-[var(--gold)]">GitHub</a>
+        <span style="color:rgba(248,239,227,.2);line-height:38px;">/</span>
+        <a href="#" style="padding:10px 22px;border:1px solid rgba(248,239,227,.2);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,239,227,.6);text-decoration:none;border-radius:2px;transition:border-color .2s,color .2s;" class="hover:border-[var(--gold)] hover:text-[var(--gold)]">Open Source Tools</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="influencer" class="section">
+    <div class="section-inner">
+      <div class="rule mb-10 pt-5" data-reveal>
+        <p class="eyebrow">Influencer</p>
+        <p style="margin-top:14px;font-size:clamp(13px,1.15vw,16px);color:rgba(248,239,227,.45);line-height:1.7;white-space:nowrap;">Sharing what I build and learn, in public.</p>
+      </div>
+
+      <!-- 2-column: polaroid left | open screenplay right -->
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:clamp(32px,5vw,72px);align-items:start;" data-reveal>
+
+        <!-- ── LEFT: Polaroid portrait + bio + platform logos ── -->
+        <div style="display:flex;flex-direction:column;gap:24px;padding-top:8px;">
+
+          <!-- Polaroid — portrait -->
+          <div style="position:relative;width:fit-content;transform:rotate(-3deg);filter:drop-shadow(0 20px 44px rgba(0,0,0,.65));">
+            <div style="background:#f5ede0;padding:10px 10px 44px 10px;">
+              <div style="width:220px;aspect-ratio:3/4;overflow:hidden;">
+                <img src="assets/joy-portrait.jpg" alt="Joy Jiang" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:sepia(.08) contrast(1.05);">
+              </div>
+              <p style="margin-top:10px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#3a2a1a;letter-spacing:.04em;">Joy Jiang ✦ Shanghai</p>
+            </div>
+            <!-- binder clip -->
+            <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:32px;height:20px;border:3.5px solid #7a6a5a;border-bottom:none;border-radius:5px 5px 0 0;"></div>
+          </div>
+
+          <!-- Bio -->
+          <p style="font-size:13px;line-height:1.9;color:rgba(248,239,227,.52);padding-left:2px;">
+            Film school instinct<br>meets platform ops.<br><br>
+            Building content systems<br>for global markets —<br>
+            one post, one dataset,<br>one vibe-coded tool at a time.
+          </p>
+
+          <!-- Platform logos -->
+          <div style="display:flex;flex-direction:column;gap:16px;padding-left:2px;padding-top:4px;">
+            <a href="#" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:rgba(248,239,227,.65);transition:color .2s;" class="hover:text-[var(--gold)]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.5 6h-1v-.5h-1V8H10v1h.5v1H10v1h.5v.5c0 .276.224.5.5.5h1v1.5h1V13h.5c.276 0 .5-.224.5-.5V9h.5V8h-.5V7.5h-1V8zm-2 3.5V9h2v2.5h-2z"/></svg>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">小红书</span>
+              <span style="font-size:10px;color:rgba(248,239,227,.3);">@JioJioJoy</span>
+            </a>
+            <a href="#" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:rgba(248,239,227,.65);transition:color .2s;" class="hover:text-[var(--gold)]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1 1.73-1.757l2.278 2.164c.036.03.072.076.113.109h4.285c.039-.033.075-.073.113-.109l2.282-2.164a1.234 1.234 0 0 1 1.73 1.757L17.813 4.653zM5.333 7.62c-.69.022-1.306.295-1.849.822-.543.527-.816 1.138-.822 1.858v7.233c.006.72.28 1.33.822 1.857.543.527 1.159.8 1.849.822h13.334c.69-.022 1.306-.295 1.849-.822.543-.527.816-1.137.822-1.857V10.3c-.006-.72-.28-1.331-.822-1.858-.543-.527-1.159-.8-1.849-.822H5.333zm4.92 3.603c.82 0 1.484.666 1.484 1.487s-.664 1.487-1.484 1.487-1.484-.666-1.484-1.487.664-1.487 1.484-1.487zm4.494 0c.82 0 1.484.666 1.484 1.487s-.664 1.487-1.484 1.487-1.484-.666-1.484-1.487.664-1.487 1.484-1.487z"/></svg>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">哔哩哔哩</span>
+              <span style="font-size:10px;color:rgba(248,239,227,.3);">@JioJioJoy</span>
+            </a>
+            <a href="#" style="display:flex;align-items:center;gap:11px;text-decoration:none;color:rgba(248,239,227,.65);transition:color .2s;" class="hover:text-[var(--gold)]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.02-8.56a8.17 8.17 0 0 0 4.79 1.53V4.83a4.85 4.85 0 0 1-1-.14z"/></svg>
+              <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">抖音</span>
+              <span style="font-size:10px;color:rgba(248,239,227,.3);">@JioJioJoy</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Open Production Diary with scattered polaroids ── -->
+        <div style="position:relative;display:flex;align-items:flex-start;justify-content:center;padding-top:16px;">
+          <div style="position:relative;width:100%;max-width:600px;">
+
+            <!-- Open book — two pages -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;position:relative;filter:drop-shadow(0 28px 64px rgba(0,0,0,.72));transform:perspective(900px) rotateY(-4deg) rotateX(2deg);">
+
+              <!-- Left page -->
+              <div style="background:linear-gradient(108deg,#e8dece,#ddd0bc);padding:24px 16px 32px 28px;border-radius:6px 0 0 6px;position:relative;min-height:360px;">
+                <!-- Spine shadow -->
+                <div style="position:absolute;right:0;top:0;bottom:0;width:18px;background:linear-gradient(90deg,rgba(0,0,0,.0),rgba(0,0,0,.18));pointer-events:none;"></div>
+                <!-- Ruled lines -->
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent,transparent 24px,rgba(100,80,60,.12) 24px,rgba(100,80,60,.12) 25px);border-radius:6px 0 0 6px;pointer-events:none;"></div>
+                <!-- Page header -->
+                <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:rgba(60,40,20,.45);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;position:relative;">Production Diary</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:rgba(40,25,10,.7);line-height:1.2;position:relative;">JioJioJoy<br><span style="font-size:14px;font-weight:400;font-style:italic;opacity:.6;">2019 — 2026</span></p>
+                <!-- Binder clip left page -->
+                <div style="position:absolute;top:-14px;left:36px;width:28px;height:20px;border:3px solid #7a6a50;border-bottom:none;border-radius:4px 4px 0 0;"></div>
+              </div>
+
+              <!-- Right page -->
+              <div style="background:linear-gradient(108deg,#ddd0bc,#d4c4aa);padding:24px 28px 32px 16px;border-radius:0 6px 6px 0;position:relative;min-height:360px;">
+                <!-- Ruled lines -->
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent,transparent 24px,rgba(100,80,60,.1) 24px,rgba(100,80,60,.1) 25px);border-radius:0 6px 6px 0;pointer-events:none;"></div>
+                <!-- Binder clip right page -->
+                <div style="position:absolute;top:-14px;right:36px;width:28px;height:20px;border:3px solid #7a6a50;border-bottom:none;border-radius:4px 4px 0 0;"></div>
+              </div>
+            </div>
+
+            <!-- Scattered polaroids ON TOP of the book -->
+
+            <!-- Polaroid A — frame-hero (top-left, tilted left) -->
+            <div style="position:absolute;top:-20px;left:4%;transform:rotate(-9deg);filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:4;">
+              <div style="background:#f4eadc;padding:7px 7px 30px 7px;">
+                <div style="width:130px;aspect-ratio:4/3;overflow:hidden;"><img src="assets/frame-hero.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.05);"></div>
+                <p style="margin-top:6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;color:#3a2a1a;">On Stage</p>
+              </div>
+            </div>
+
+            <!-- Polaroid B — frame-film (top-center, tilted right) -->
+            <div style="position:absolute;top:-8px;left:32%;transform:rotate(6deg);filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:5;">
+              <div style="background:#f4eadc;padding:7px 7px 30px 7px;">
+                <div style="width:138px;aspect-ratio:4/3;overflow:hidden;"><img src="assets/frame-film.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.05);"></div>
+                <p style="margin-top:6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;color:#3a2a1a;">On Set</p>
+              </div>
+            </div>
+
+            <!-- Polaroid C — frame-bfa (top-right, slight tilt) -->
+            <div style="position:absolute;top:0px;right:3%;transform:rotate(-4deg);filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:4;">
+              <div style="background:#f4eadc;padding:7px 7px 30px 7px;">
+                <div style="width:122px;aspect-ratio:4/3;overflow:hidden;"><img src="assets/frame-bfa.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.05);"></div>
+                <p style="margin-top:6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;color:#3a2a1a;">北京电影学院</p>
+              </div>
+            </div>
+
+            <!-- Polaroid D — video placeholder (bottom-left, tilted) -->
+            <div style="position:absolute;bottom:-10px;left:8%;transform:rotate(7deg);filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:3;">
+              <div style="background:#f4eadc;padding:7px 7px 30px 7px;">
+                <div style="width:120px;aspect-ratio:4/3;background:linear-gradient(135deg,#1a0e2e,#080210);display:flex;align-items:center;justify-content:center;">
+                  <div style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(245,237,224,.45);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;margin-left:2px;color:rgba(245,237,224,.7);">▶</span></div>
+                </div>
+                <p style="margin-top:6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;color:#3a2a1a;">小红书</p>
+              </div>
+            </div>
+
+            <!-- Polaroid E — video placeholder (bottom-right, tilted) -->
+            <div style="position:absolute;bottom:-18px;right:5%;transform:rotate(-6deg);filter:drop-shadow(0 10px 24px rgba(0,0,0,.5));z-index:3;">
+              <div style="background:#f4eadc;padding:7px 7px 30px 7px;">
+                <div style="width:116px;aspect-ratio:4/3;background:linear-gradient(135deg,#0e1a10,#030806);display:flex;align-items:center;justify-content:center;">
+                  <div style="width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(245,237,224,.45);display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;margin-left:2px;color:rgba(245,237,224,.7);">▶</span></div>
+                </div>
+                <p style="margin-top:6px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;color:#3a2a1a;">哔哩哔哩</p>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- end right col -->
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section flex items-end">
+    <div class="section-inner">
+      <div class="grid min-h-[72svh] items-end gap-10 md:grid-cols-[1.1fr_.9fr]">
+        <div data-reveal>
+          <h2 class="font-display text-[clamp(64px,12vw,180px)] font-bold italic leading-[.86]">That's the<br/>full picture.</h2>
+        </div>
+        <div class="max-w-[480px] justify-self-end" data-reveal style="--d:.1">
+          <a href="mailto:joyjiangyi852@gmail.com" class="inline-flex border-b border-[var(--gold)] pb-2 text-[11px] uppercase tracking-[.22em] text-[var(--gold)]">joyjiangyi852@gmail.com</a>
+          <div class="mt-12 pt-8 border-t border-white/15">
+            <p class="eyebrow text-white/30 mb-5">Index</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(248,239,227,.4);">
+              <a href="#film" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Film</a>
+              <a href="#commercial" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Commercial Reel</a>
+              <a href="#feeds" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Global</a>
+              <a href="#lab" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">AI Lab</a>
+              <a href="#influencer" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Influencer</a>
+            </div>
+            <p class="mt-8 text-[10px] uppercase tracking-[.18em] text-white/20">© 2026 JioJioJoy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="all-credits" class="fixed inset-0 z-50 bg-black/90 p-5 opacity-0 backdrop-blur-xl transition duration-300 md:p-8" aria-hidden="true">
+  <div class="mx-auto flex h-full max-w-[1280px] flex-col">
+    <div class="mb-8 flex items-center justify-between border-b border-white/20 pb-5">
+      <p class="eyebrow">Commercial credits / selected archive</p>
+      <button id="close-credits" class="border border-white/25 px-4 py-3 text-[10px] uppercase tracking-[.22em] text-white/70" type="button">Close</button>
+    </div>
+    <div id="credit-list" class="overflow-y-auto pr-2 text-[12px] uppercase tracking-[.13em] text-white/70"></div>
+  </div>
+</div>
+
+<script>
+// Video scrub — driven by scroll, not autoplay
+// Covers sections #top → #film (first 4 sections)
+const video = document.getElementById('hero-video');
+if (video) {
+  video.pause();
+  video.muted = true;
+  video.currentTime = 0;
+}
+
+const credits = [
+  ['Meituan', 'New Year Goods', 'Liu Yifei / 15s'],
+  ['Meituan', 'Hotpot', 'Liu Yifei / 15s'],
+  ['Shenzhou', 'Old New Driver', 'Zhang Songwen / 1m54s'],
+  ['Alipay+', 'Wave to the World', 'Zheng Qinwen / 50s'],
+  ['Yili YouSuanRu', 'Wu Zhenyu Restaurant', 'Wu Zhenyu / 1m04s'],
+  ['Yili YouSuanRu', 'Wu Zhenyu Mentor', 'Wu Zhenyu / 51s'],
+  ['Douyin x GUCCI', 'Bamboo 1947', 'Song Jia / He Sui / Chen Sa / Gao Yanjinzi'],
+  ['KFC', 'Christmas Special', 'Lu Han / 30s'],
+  ['COGI', 'Brand Announcement', 'Cheng Yi / 53s'],
+  ['League of Legends Wild Rift', 'CNY', 'Zhao Lusi / 1m43s'],
+  ['Yili', 'Era', 'Teens in Times / 38s'],
+  ['Wusu Beer', '2024 Barbecue', '15s'],
+  ['CFM', 'Mystery City Horror', 'Lin Gengxin / Louis Koo / 10min'],
+  ['Nutrilite', 'I Come From You', 'Jike Junyi / 4m24s'],
+  ['JD Fashion', '3.0', '42s'],
+  ['PEPSI x Apollo Go', 'Commercial', '49s'],
+  ['Master Kong', 'Golden Beef Noodles Yummy', '50s'],
+  ['Fotile', 'A Clean Mother', '2m37s'],
+];
+const modal = document.getElementById('all-credits');
+const list = document.getElementById('credit-list');
+list.innerHTML = credits.map(([brand, title, meta]) => `
+  <div class="grid gap-3 border-t border-white/15 py-5 md:grid-cols-[.8fr_1.2fr_1fr]">
+    <span class="text-white">${brand}</span>
+    <span>${title}</span>
+    <span class="text-white/42">${meta}</span>
+  </div>
+`).join('');
+document.getElementById('open-credits').addEventListener('click', () => modal.setAttribute('aria-hidden', 'false'));
+document.getElementById('close-credits').addEventListener('click', () => modal.setAttribute('aria-hidden', 'true'));
+window.addEventListener('keydown', event => {
+  if (event.key === 'Escape') modal.setAttribute('aria-hidden', 'true');
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.dataset.reveal = 'visible';
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { rootMargin: '-50px' });
+document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Subtle scale — only while video is active (sections 1–3)
+  gsap.to('.ambient video', {
+    scale: 1.06,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#top',
+      start: 'top top',
+      endTrigger: '#film',
+      end: 'bottom bottom',
+      scrub: true
+    }
+  });
+
+
+  // Scroll-driven video scrub with non-linear keyframe mapping
+  const initVideoScrub = () => {
+    const dur = video ? (video.duration || 8.06) : 8.06;
+    if (!video) return;
+    const keyframes = [
+      [0,    0],
+      [0.50, dur * 0.50],
+      [0.75, dur * 0.75],
+      [1,    dur]
+    ];
+    const lerp = p => {
+      for (let i = 0; i < keyframes.length - 1; i++) {
+        const [p0, t0] = keyframes[i], [p1, t1] = keyframes[i + 1];
+        if (p <= p1) return t0 + (p - p0) / (p1 - p0) * (t1 - t0);
+      }
+      return dur;
+    };
+    ScrollTrigger.create({
+      trigger: '#top',
+      start: 'top top',
+      endTrigger: '#film',
+      end: 'bottom bottom',
+      scrub: 0.4,
+      onUpdate(self) { video.currentTime = lerp(self.progress); }
+    });
+  };
+  if (video) {
+    if (video.readyState >= 1) initVideoScrub();
+    else video.addEventListener('loadedmetadata', initVideoScrub);
+  }
+
+  // Film strip horizontal scroll in Commercial section
+  gsap.to('#film-strip', {
+    xPercent: -12,
+    ease: 'none',
+    scrollTrigger: { trigger: '#commercial', start: 'top bottom', end: 'bottom top', scrub: true }
+  });
+
+}
+</script>
+
+<!-- TVC detail modal -->
+<div id="tvc-detail-overlay" aria-hidden="true">
+  <div class="tvc-detail-panel">
+    <button class="tvc-detail-close" id="tvc-detail-close" aria-label="Close">×</button>
+    <div class="tvc-detail-poster">
+      <img id="tvc-modal-img" src="" alt="" />
+    </div>
+    <div class="tvc-detail-info">
+      <p class="tvc-detail-brand-label" id="tvc-modal-brand"></p>
+      <h2 class="tvc-detail-artist-name" id="tvc-modal-artist"></h2>
+      <div class="tvc-meta-table">
+        <div class="tvc-meta-row">
+          <span class="tvc-meta-label">合作艺人</span>
+          <span class="tvc-meta-val" id="tvc-modal-artist-val"></span>
+        </div>
+        <div class="tvc-meta-row">
+          <span class="tvc-meta-label">合作导演</span>
+          <span class="tvc-meta-val" id="tvc-modal-director"></span>
+        </div>
+        <div class="tvc-meta-row">
+          <span class="tvc-meta-label">影片时长</span>
+          <span class="tvc-meta-val" id="tvc-modal-duration"></span>
+        </div>
+      </div>
+      <a class="tvc-detail-link" id="tvc-modal-link" href="#" target="_blank" rel="noopener">
+        观看视频 ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const overlay  = document.getElementById('tvc-detail-overlay');
+  const closeBtn = document.getElementById('tvc-detail-close');
+
+  function openModal(item) {
+    const img      = item.dataset.img;
+    const brand    = item.dataset.brand;
+    const artist   = item.dataset.artist;
+    const director = item.dataset.director || '—';
+    const duration = item.dataset.duration || '—';
+    const link     = item.dataset.link || '#';
+
+    document.getElementById('tvc-modal-img').src         = img;
+    document.getElementById('tvc-modal-brand').textContent    = brand;
+    document.getElementById('tvc-modal-artist').textContent   = artist;
+    document.getElementById('tvc-modal-artist-val').textContent = artist;
+    document.getElementById('tvc-modal-director').textContent = director;
+    document.getElementById('tvc-modal-duration').textContent = duration;
+
+    const linkEl = document.getElementById('tvc-modal-link');
+    linkEl.href = link;
+    linkEl.classList.toggle('disabled', link === '#');
+
+    overlay.setAttribute('aria-hidden', 'false');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Click on any tvc-item with data-brand
+  document.querySelector('.tvc-reel-container').addEventListener('click', function (e) {
+    const item = e.target.closest('.tvc-item[data-brand]');
+    if (item) openModal(item);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
+
+<!-- TVC marquee: seamless JS loop, no jump-back -->
+<script>
+(function () {
+  const marquee = document.querySelector('.tvc-marquee');
+  if (!marquee) return;
+  const setA = marquee.querySelector('.tvc-photo-set');
+  let pos = 0;
+  let paused = false;
+  const SPEED = 0.6; // px per frame
+
+  marquee.addEventListener('mouseenter', () => { paused = true; });
+  marquee.addEventListener('mouseleave', () => { paused = false; });
+
+  function tick() {
+    if (!paused) {
+      pos -= SPEED;
+      const setWidth = setA.offsetWidth;
+      // When we've scrolled exactly one set, reset silently (no jump)
+      if (pos <= -setWidth) pos += setWidth;
+      marquee.style.transform = 'translateX(' + pos + 'px)';
+    }
+    requestAnimationFrame(tick);
+  }
+  // Start after layout settles
+  requestAnimationFrame(tick);
+})();
+</script>
+
+<!-- Film poster carousel logic -->
+<script>
+(function () {
+  const cards = Array.from(document.querySelectorAll('#film-carousel .poster-card'));
+  const n = cards.length;
+  if (!n) return;
+  let current = 0;
+
+  // Cyclic offset → position class
+  // offset 0=center, 1=right-1, 2=right-2, n-1=left-1, n-2=left-2
+  function offsetToClass(offset) {
+    if (offset === 0)     return 'pos-center';
+    if (offset === 1)     return 'pos-right-1';
+    if (offset === 2)     return 'pos-right-2';
+    if (offset === n - 1) return 'pos-left-1';
+    if (offset === n - 2) return 'pos-left-2';
+    return 'pos-hidden-right'; // fallback (won't occur with n=5)
+  }
+
+  function updateCarousel() {
+    cards.forEach((card, i) => {
+      const offset = (i - current + n) % n;
+      card.className = 'poster-card ' + offsetToClass(offset);
+    });
+    updateInfo();
+  }
+
+  function updateInfo() {
+    const active = cards[current];
+    document.getElementById('fci-role').textContent  = active.dataset.role  || '';
+    document.getElementById('fci-title').textContent = active.dataset.title || '';
+    const awards = JSON.parse(active.dataset.awards || '[]');
+    document.getElementById('fci-awards').innerHTML  = awards.map(a => `<p class="film-award">${a}</p>`).join('');
+  }
+
+  document.getElementById('carousel-prev').addEventListener('click', () => {
+    current = (current - 1 + n) % n;
+    updateCarousel();
+  });
+  document.getElementById('carousel-next').addEventListener('click', () => {
+    current = (current + 1) % n;
+    updateCarousel();
+  });
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => { current = i; updateCarousel(); });
+  });
+
+  updateCarousel();
+})();
+</script>
+
+<!-- Spotlight cursor overlay -->
+<div id="spotlight-overlay"></div>
+<script>
+(function () {
+  const overlay = document.getElementById('spotlight-overlay');
+  let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+  let cx = tx, cy = ty;
+
+  document.addEventListener('mousemove', function (e) {
+    tx = e.clientX;
+    ty = e.clientY;
+    if (!overlay.classList.contains('active')) {
+      overlay.classList.add('active');
+    }
+  });
+
+  (function tick() {
+    cx += (tx - cx) * 0.10;
+    cy += (ty - cy) * 0.10;
+    overlay.style.background =
+      'radial-gradient(circle 300px at ' + cx + 'px ' + cy + 'px,' +
+      'rgba(216,180,109,.18) 0%,' +
+      'rgba(216,180,109,.06) 45%,' +
+      'transparent 70%)';
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// Scroll snap: after scrolling stops, snap to nearest section boundary
+(() => {
+  const sections = Array.from(document.querySelectorAll('.section'));
+  let snapTimer = null;
+  let isSnapping = false;
+
+  function getNearestSection() {
+    const mid = window.scrollY + window.innerHeight / 2;
+    let best = sections[0];
+    let bestDist = Infinity;
+    for (const s of sections) {
+      const top = s.offsetTop;
+      const bottom = top + s.offsetHeight;
+      // Use section top as snap target; prefer section we're most inside
+      const dist = Math.abs(top - window.scrollY);
+      if (dist < bestDist) { bestDist = dist; best = s; }
+    }
+    return best;
+  }
+
+  function snapToSection() {
+    if (isSnapping) return;
+    const target = getNearestSection();
+    const targetY = target.offsetTop;
+    if (Math.abs(window.scrollY - targetY) < 4) return; // already snapped
+    isSnapping = true;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+    setTimeout(() => { isSnapping = false; }, 600);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (isSnapping) return;
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(snapToSection, 150);
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

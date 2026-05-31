@@ -894,24 +894,10 @@ button { font: inherit; }
         <div class="film-carousel" id="film-carousel">
 
           <div class="poster-card"
-            data-role="Short Film · Production Manager"
-            data-title="My Long Hair《我的长发》"
-            data-awards='["<span class=&quot;film-award-title&quot;>Best Female Short Film</span> · Athvikvaruni IFF","<span class=&quot;film-award-title&quot;>Jury Award</span> · Uruvatti IFF","<span class=&quot;film-award-title&quot;>Official Selection</span> · Cyprus IFF"]'>
-            <img src="assets/posters/poster-1.png" alt="My Long Hair" />
-          </div>
-
-          <div class="poster-card"
-            data-role="Web Series · Executive Producer"
-            data-title="Dear Passenger《亲爱的乘客》"
-            data-awards='["Tencent Video · 19 episodes"]'>
-            <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
-          </div>
-
-          <div class="poster-card"
-            data-role="Short Film · Production Manager"
-            data-title="Bitter Buckwheat《苦荞麦》"
+            data-role="Short Film · 制片助理"
+            data-title="Cinema by the Sea《海边电影》"
             data-awards='["Beijing Film Academy"]'>
-            <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
+            <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
           </div>
 
           <div class="poster-card"
@@ -922,10 +908,24 @@ button { font: inherit; }
           </div>
 
           <div class="poster-card"
-            data-role="Short Film · Production Crew"
-            data-title="Cinema by the Sea《海边电影》"
-            data-awards='["Beijing Film Academy · 2021"]'>
-            <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
+            data-role="Short Film · Production Manager"
+            data-title="My Long Hair《我的长发》"
+            data-awards='["<span class=&quot;film-award-title&quot;>Best Female Short Film</span> · Athvikvaruni IFF","<span class=&quot;film-award-title&quot;>Jury Award</span> · Uruvatti IFF","<span class=&quot;film-award-title&quot;>Official Selection</span> · Cyprus IFF"]'>
+            <img src="assets/posters/poster-1.png" alt="My Long Hair" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Short Film · Production Manager"
+            data-title="Bitter Buckwheat《苦荞麦》"
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
+          </div>
+
+          <div class="poster-card"
+            data-role="Web Series · Executive Producer"
+            data-title="Dear Passenger《亲爱的乘客》"
+            data-awards='["Tencent Video · 19 episodes"]'>
+            <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
           </div>
 
         </div>
@@ -1523,7 +1523,7 @@ if (window.gsap && window.ScrollTrigger) {
   const cards = Array.from(document.querySelectorAll('#film-carousel .poster-card'));
   const n = cards.length;
   if (!n) return;
-  let current = 0;
+  let current = 2;
 
   // Cyclic offset → position class
   // offset 0=center, 1=right-1, 2=right-2, n-1=left-1, n-2=left-2

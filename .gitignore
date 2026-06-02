@@ -1,0 +1,11 @@
+# Large video files (>25MB)
+assets/BR-TTShop-Netjoy-Animation-25Q4-3.mov
+assets/EN-Netjoy-UGC-Education-26Q2-40.mp4
+assets/Form_leads-4k最终版.mov
+assets/KR.mp4
+assets/en-GB.mp4
+
+# System
+.DS_Store
+docs/
+mockup.html

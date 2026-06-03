@@ -653,7 +653,28 @@ button { font: inherit; }
   .hero-logo { width: 420px; max-width: 52vw; }
 }
 /* Phone mockups for Global section */
-/* ── AI Lab ticket cards ── */
+
+
+    
+    /* Influencer portrait: dark by default, original on hover */
+    .influencer-photo {
+      filter: grayscale(30%) brightness(0.45);
+      transition: filter 0.4s ease;
+    }
+    .influencer-photo:hover {
+      filter: grayscale(0%) brightness(1);
+    }
+
+    /* XHS Ticket: dark by default, original on hover */
+    .xhs-ticket-card {
+      filter: grayscale(40%) brightness(0.65) drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+      transition: filter 0.4s ease, transform 0.25s ease;
+    }
+    .xhs-ticket-card:hover {
+      filter: grayscale(0%) brightness(1) drop-shadow(0 20px 35px rgba(0,0,0,0.4));
+    }
+
+    /* ── AI Lab ticket cards ── */
 .ticket-stack { display:flex; flex-direction:column; gap:0; }
 .ai-ticket {
   position: relative;
@@ -880,12 +901,12 @@ button { font: inherit; }
   position: relative;
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease;
   z-index: 1;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+  filter: grayscale(30%) brightness(0.45) drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 }
 .flow-card:hover {
   transform: translateY(-30px) scale(1.08) rotate(0deg) !important;
   z-index: 20 !important;
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9));
+  filter: grayscale(0%) brightness(1) drop-shadow(0 30px 60px rgba(0,0,0,0.9)) !important;
 }
 .flow-card:nth-child(1) { transform: translateY(-20px) rotate(-8deg); z-index: 2; }
 .flow-card:nth-child(2) { transform: translateY(60px) rotate(4deg); z-index: 3; }
@@ -967,8 +988,8 @@ button { font: inherit; }
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)) brightness(0.7);
 }
 .creative-flow.has-playing .flow-card.active {
-  transform: translateY(-8px) rotate(0deg) scale(1.12) !important;
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9)) brightness(1.1) !important;
+  transform: translateY(-8px) rotate(0deg) scale(1) !important;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9)) brightness(1) !important;
   z-index: 20 !important;
 }
 .flow-label {
@@ -1019,9 +1040,9 @@ button { font: inherit; }
       <a href="#commercial" class="hover:text-[var(--gold)]">Commercial Reel</a>
       <a href="#feeds" class="hover:text-[var(--gold)]">Global</a>
       <a href="#lab" class="hover:text-[var(--gold)]">AI Lab</a>
-      <a href="#influencer" class="hover:text-[var(--gold)]" style="display:none">Influencer</a>
+      <a href="#influencer" class="hover:text-[var(--gold)]">Influencer</a>
     </div>
-    <button id="contact-btn" class="hidden justify-self-end border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex uppercase tracking-[.22em] text-[10px]" style="display:none !important;background:transparent;color:rgba(248,239,227,.7);cursor:pointer;">Contact</button>
+    <button id="contact-btn" class="hidden justify-self-end border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex uppercase tracking-[.22em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;">Contact</button>
   </nav>
 
   <!-- ── Contact Drop Popup ── -->
@@ -1042,13 +1063,13 @@ button { font: inherit; }
     <img src="assets/telephone.png" alt="telephone" style="width:80px;height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));margin-bottom:-4px;">
     <!-- Ticket image + clickable overlay -->
     <div style="position:relative;width:320px;">
-      <img src="assets/contact-ticket.png" alt="contact ticket" style="width:100%;display:block;border-radius:10px;box-shadow:0 16px 48px rgba(0,0,0,0.7);">
+      <img src="assets/contact-id.png" alt="contact ID" style="width:100%;display:block;border-radius:10px;">
       <!-- Invisible click target for email -->
       <a href="mailto:joyjiangyi852@gmail.com" style="position:absolute;left:6%;top:54%;width:55%;height:16%;display:block;" title="joyjiangyi852@gmail.com"></a>
     </div>
   </div>
   <!-- Backdrop to close -->
-  <div id="contact-backdrop" style="display:none;position:fixed;inset:0;z-index:199;" onclick="closeContact()"></div>
+  <div id="contact-backdrop" style="display:none;position:fixed;inset:0;z-index:199;cursor:default;" onclick="closeContact()"></div>
 
   <script>
     function openContact() {
@@ -1344,7 +1365,7 @@ button { font: inherit; }
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/hzBnMHjZ7Kg?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label"><a href="https://www.tiktok.com/@tiktok_promote_official?_t=ZN-8zvd2DG31aI&_r=1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);">@tiktok_promote_official</a><br><span>Language: EN</span></div>
+          <div class="flow-label" style="position:relative;z-index:10;"><a href="https://www.tiktok.com/@tiktok_promote_official?_t=ZN-8zvd2DG31aI&_r=1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);">@tiktok_promote_official</a><br><span>Language: EN</span></div>
         </div>
         <div class="flow-card">
           <div class="phone-v2"><div class="phone-screen-v2 phone-player">
@@ -1485,6 +1506,7 @@ button { font: inherit; }
         background: #1a1a1e;
         border-radius: 38px;
         padding: 9px;
+        overflow: hidden;
         position: relative;
         box-shadow: 0 0 0 1.5px #3a3a3c, 0 0 0 3px #1a1a1e, 0 0 0 4px #2c2c2e,
                     0 20px 60px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.06);
@@ -1503,7 +1525,7 @@ button { font: inherit; }
       }
       .lab-iphone-screen {
         width: 100%; aspect-ratio: 9/19.5;
-        background: #000; border-radius: 30px; overflow: hidden; position: relative;
+        background: #F7F6F2; border-radius: 0; overflow: hidden; position: relative;
       }
       .lab-dynamic-island {
         position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
@@ -1519,11 +1541,15 @@ button { font: inherit; }
         z-index: 2;
       }
       .device-wrapper.is-desktop {
-        width: 100%; max-width: 756px;
+        width: 100%; max-width: 600px;
         border-radius: 10px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-        background: #1e1e1e;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.4);
+        background: #111;
+        border: 4px solid #222;
+        border-bottom-width: 12px;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
       .device-wrapper.is-mobile .browser-bar {
         display: none !important;
@@ -1690,7 +1716,6 @@ button { font: inherit; }
                 deviceWrapper.style.display = 'none';
                 if (wearjoyPhone) {
                   wearjoyPhone.style.display = 'flex';
-                  // scale iframe to fit phone screen
                   var screen = wearjoyPhone.querySelector('.lab-iphone-screen');
                   if (screen && wearjoyIframe) {
                     var sw = screen.offsetWidth;
@@ -1715,160 +1740,440 @@ button { font: inherit; }
     </script>
   </section>
 
-  <section id="influencer" class="section" style="display:none">
+
+  <section id="influencer" class="section">
     <div class="section-inner">
-      <div class="rule mb-10 pt-5" data-reveal>
+
+      <!-- Header -->
+      <div class="rule mb-12 pt-5" data-reveal>
         <p class="eyebrow">Influencer</p>
-        <p style="margin-top:14px;font-size:clamp(13px,1.15vw,16px);color:rgba(248,239,227,.45);line-height:1.7;">Sharing what I build and learn, in public.</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7;">Personal content creation — knowledge management, AI workflows &amp; second brain.</p>
       </div>
 
-      <!-- NEW LAYOUT: film contact sheet -->
-      <div style="display:grid;grid-template-columns:300px 1fr;gap:clamp(40px,5vw,80px);align-items:start;" data-reveal>
+      <!-- 2-Column Grid -->
+      <div style="display:grid; grid-template-columns: 240px 1fr; gap: 64px; align-items: start; margin-top: 48px; margin-left: auto; margin-right: auto; max-width: 960px;" data-reveal class="max-lg:grid-cols-1">
 
-        <!-- ── LEFT: Film strip hero image ── -->
-        <div style="display:flex;flex-direction:column;gap:0;">
-          <!-- Film strip PNG (transparent background) -->
-          <div style="position:relative;display:flex;justify-content:center;">
-            <img src="assets/joy-filmstrip.png" alt="Joy Jiang on film strip" style="width:100%;max-width:280px;height:auto;display:block;filter:drop-shadow(0 20px 48px rgba(0,0,0,0.8));">
+        <!-- ── LEFT: Photo & Links ── -->
+        <div style="display:flex; flex-direction:column; gap:28px; align-items:center;">
+
+          <!-- Portrait Photo -->
+          <div style="width:100%; border-radius:6px;">
+            <img src="assets/cover.png" alt="Joy" class="influencer-photo" style="width:100%; display:block; border-radius:6px;">
           </div>
 
-          <!-- Name + Bio -->
-          <div style="margin-top:24px;padding-left:2px;">
-            <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:rgba(248,239,227,.9);letter-spacing:.02em;line-height:1.2;">Joy Jiang</p>
-            <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:4px;margin-bottom:16px;">Shanghai · 2019—Present</p>
-            <p style="font-size:13px;line-height:1.9;color:rgba(248,239,227,.48);">Film school instinct meets platform ops. Building content systems for global markets — one post, one dataset, one vibe-coded tool at a time.</p>
-          </div>
-
-          <!-- Platforms -->
-          <div style="margin-top:24px;border-top:1px solid rgba(248,239,227,.1);padding-top:20px;display:flex;flex-direction:column;gap:14px;">
-            <a href="#" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:rgba(248,239,227,.6);transition:color .2s;padding:10px 12px;border:1px solid rgba(248,239,227,.08);border-radius:2px;" class="hover:text-[var(--gold)]">
-              <div style="display:flex;align-items:center;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.5 6h-1v-.5h-1V8H10v1h.5v1H10v1h.5v.5c0 .276.224.5.5.5h1v1.5h1V13h.5c.276 0 .5-.224.5-.5V9h.5V8h-.5V7.5h-1V8zm-2 3.5V9h2v2.5h-2z"/></svg>
-                <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">小红书</span>
-              </div>
-              <span style="font-size:10px;color:rgba(248,239,227,.28);letter-spacing:.08em;">@JioJioJoy</span>
-            </a>
-            <a href="#" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:rgba(248,239,227,.6);transition:color .2s;padding:10px 12px;border:1px solid rgba(248,239,227,.08);border-radius:2px;" class="hover:text-[var(--gold)]">
-              <div style="display:flex;align-items:center;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1 1.73-1.757l2.278 2.164c.036.03.072.076.113.109h4.285c.039-.033.075-.073.113-.109l2.282-2.164a1.234 1.234 0 0 1 1.73 1.757L17.813 4.653zM5.333 7.62c-.69.022-1.306.295-1.849.822-.543.527-.816 1.138-.822 1.858v7.233c.006.72.28 1.33.822 1.857.543.527 1.159.8 1.849.822h13.334c.69-.022 1.306-.295 1.849-.822.543-.527.816-1.137.822-1.857V10.3c-.006-.72-.28-1.331-.822-1.858-.543-.527-1.159-.8-1.849-.822H5.333zm4.92 3.603c.82 0 1.484.666 1.484 1.487s-.664 1.487-1.484 1.487-1.484-.666-1.484-1.487.664-1.487 1.484-1.487zm4.494 0c.82 0 1.484.666 1.484 1.487s-.664 1.487-1.484 1.487-1.484-.666-1.484-1.487.664-1.487 1.484-1.487z"/></svg>
-                <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">哔哩哔哩</span>
-              </div>
-              <span style="font-size:10px;color:rgba(248,239,227,.28);letter-spacing:.08em;">@JioJioJoy</span>
-            </a>
-            <a href="#" style="display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:rgba(248,239,227,.6);transition:color .2s;padding:10px 12px;border:1px solid rgba(248,239,227,.08);border-radius:2px;" class="hover:text-[var(--gold)]">
-              <div style="display:flex;align-items:center;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.02-8.56a8.17 8.17 0 0 0 4.79 1.53V4.83a4.85 4.85 0 0 1-1-.14z"/></svg>
-                <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;">抖音</span>
-              </div>
-              <span style="font-size:10px;color:rgba(248,239,227,.28);letter-spacing:.08em;">@JioJioJoy</span>
-            </a>
+          <!-- Platform Links — 一排 + @handle -->
+          <div style="width:90%; font-family:var(--font-sans); text-align:center;">
+            <div style="font-size:13px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.75);">
+              Xiaohongshu&nbsp;/&nbsp;Bilibili&nbsp;/&nbsp;Douyin
+            </div>
+            <div style="margin-top:8px; font-size:16px; font-weight:600; color:rgba(255,255,255,0.6); letter-spacing:0.06em;">
+              @JioJioJoy
+            </div>
           </div>
         </div>
 
-        <!-- ── RIGHT: Content stats + film contact sheet ── -->
-        <div style="display:flex;flex-direction:column;gap:32px;">
+        <!-- ── RIGHT: 3 Vertical Tickets ── -->
+        <div style="display:flex; flex-wrap:nowrap; gap:48px; overflow-x:visible; padding: 12px 0 24px 0;">
 
-          <!-- Stats row — film slate style -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(248,239,227,.08);border:1px solid rgba(248,239,227,.08);border-radius:2px;overflow:hidden;">
-            <div style="background:#0a0101;padding:20px 24px;">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:600;color:rgba(248,239,227,.9);line-height:1;">100+</p>
-              <p style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,239,227,.3);margin-top:6px;">Posts Published</p>
+          <!-- Ticket 1 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.xiaohongshu.com/discovery/item/69cb8ccf000000001a031ac5','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
+            
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-1">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-1" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-1)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-1)" />
+            </svg>
+
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
+                
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+                  
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202601</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    01
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">当知识遇上 AI，知识管理进入自动化时代 ⚡</h3>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-1.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-1.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        SCAN TO VIEW<br>ON XIAOHONGSHU
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="background:#0a0101;padding:20px 24px;border-left:1px solid rgba(248,239,227,.08);">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:600;color:var(--gold);line-height:1;">96%</p>
-              <p style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,239,227,.3);margin-top:6px;">Approval Rate</p>
+
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+               
+               
+               
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
             </div>
-            <div style="background:#0a0101;padding:20px 24px;border-left:1px solid rgba(248,239,227,.08);">
-              <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:600;color:rgba(248,239,227,.9);line-height:1;">3</p>
-              <p style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,239,227,.3);margin-top:6px;">Platforms Active</p>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+                 
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">01</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
+              </div>
             </div>
+
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-1">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-1" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-1)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-1)" />
+            </svg>
           </div>
+  
 
-          <!-- Film contact sheet — 4 frames -->
-          <div style="position:relative;">
-            <!-- Top perforations strip -->
-            <div style="height:20px;background:#111;border-radius:3px 3px 0 0;position:relative;background-image:repeating-linear-gradient(90deg,#111 0px,#111 6px,rgba(255,255,255,0.13) 6px,rgba(255,255,255,0.13) 22px,#111 22px,#111 28px);">
-              <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-family:'Courier New',monospace;font-size:8px;color:rgba(255,200,80,0.45);letter-spacing:.1em;background:#111;padding:0 4px;">KODAK 400TX</span>
-              <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:'Courier New',monospace;font-size:8px;color:rgba(255,200,80,0.45);letter-spacing:.1em;background:#111;padding:0 4px;">EI 400</span>
+          <!-- Ticket 2 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.xiaohongshu.com/discovery/item/69d9ad0f000000001a024a6c','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
+            
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-2">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-2" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-2)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-2)" />
+            </svg>
+
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
+                
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+                  
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202602</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    02
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">我如何用 Obsidian+AI<br>复刻 Karpathy 笔记法</h3>
+                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-2.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-2.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        SCAN TO VIEW<br>ON XIAOHONGSHU
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Film frames grid -->
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#111;padding:6px 8px;">
-              <!-- Frame 1 -->
-              <div style="padding:3px;position:relative;">
-                <div style="aspect-ratio:2/3;overflow:hidden;background:#1a1410;position:relative;">
-                  <img src="assets/frame-hero.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.3) contrast(1.1) brightness(.85);">
-                  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.6));"></div>
-                  <span style="position:absolute;bottom:5px;left:6px;font-family:'Courier New',monospace;font-size:7px;color:rgba(255,200,80,.6);letter-spacing:.08em;">01A</span>
-                </div>
-                <p style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,239,227,.3);text-align:center;margin-top:4px;">On Stage</p>
-              </div>
-              <!-- Frame 2 -->
-              <div style="padding:3px;position:relative;">
-                <div style="aspect-ratio:2/3;overflow:hidden;background:#1a1410;position:relative;">
-                  <img src="assets/frame-film.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.3) contrast(1.1) brightness(.85);">
-                  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.6));"></div>
-                  <span style="position:absolute;bottom:5px;left:6px;font-family:'Courier New',monospace;font-size:7px;color:rgba(255,200,80,.6);letter-spacing:.08em;">02A</span>
-                </div>
-                <p style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,239,227,.3);text-align:center;margin-top:4px;">On Set</p>
-              </div>
-              <!-- Frame 3 -->
-              <div style="padding:3px;position:relative;">
-                <div style="aspect-ratio:2/3;overflow:hidden;background:#1a1410;position:relative;">
-                  <img src="assets/frame-bfa.jpg" alt="" style="width:100%;height:100%;object-fit:cover;filter:sepia(.3) contrast(1.1) brightness(.85);">
-                  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.6));"></div>
-                  <span style="position:absolute;bottom:5px;left:6px;font-family:'Courier New',monospace;font-size:7px;color:rgba(255,200,80,.6);letter-spacing:.08em;">03A</span>
-                </div>
-                <p style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,239,227,.3);text-align:center;margin-top:4px;">北京电影学院</p>
-              </div>
-              <!-- Frame 4 — content placeholder -->
-              <div style="padding:3px;position:relative;">
-                <div style="aspect-ratio:2/3;background:linear-gradient(135deg,#1a0e0a,#080202);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;">
-                  <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(248,239,227,.2);display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;margin-left:2px;color:rgba(248,239,227,.4);">▶</span></div>
-                  <span style="position:absolute;bottom:5px;left:6px;font-family:'Courier New',monospace;font-size:7px;color:rgba(255,200,80,.6);letter-spacing:.08em;">04A</span>
-                </div>
-                <p style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,239,227,.3);text-align:center;margin-top:4px;">小红书</p>
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+               
+               
+               
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
+            </div>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+                 
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">02</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
               </div>
             </div>
 
-            <!-- Bottom perforations strip -->
-            <div style="height:20px;background:#111;border-radius:0 0 3px 3px;position:relative;background-image:repeating-linear-gradient(90deg,#111 0px,#111 6px,rgba(255,255,255,0.13) 6px,rgba(255,255,255,0.13) 22px,#111 22px,#111 28px);">
-              <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:'Courier New',monospace;font-size:8px;color:rgba(255,200,80,0.45);letter-spacing:.1em;background:#111;padding:0 4px;">♦ DX</span>
-            </div>
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-2">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-2" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-2)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-2)" />
+            </svg>
           </div>
+  
 
-          <!-- Content direction -->
-          <div style="border-top:1px solid rgba(248,239,227,.08);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-            <div>
-              <p style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,239,227,.25);margin-bottom:10px;">Content Direction</p>
-              <div style="display:flex;flex-direction:column;gap:7px;">
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0;"></span>AI 工具实战教学</p>
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0;"></span>Vibe Coding 系列</p>
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0;"></span>出海运营方法论</p>
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0;"></span>Obsidian 第二大脑</p>
+          <!-- Ticket 3 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.xiaohongshu.com/discovery/item/693516e5000000001e005d8c','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
+            
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-3">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-3" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-3)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-3)" />
+            </svg>
+
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
+                
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+                  
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202603</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    03
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">AI 主题研究<br>自动化工作流<br>【省 Token 版】</h3>
+                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-3.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-3.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        SCAN TO VIEW<br>ON XIAOHONGSHU
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div>
-              <p style="font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,239,227,.25);margin-bottom:10px;">Format</p>
-              <div style="display:flex;flex-direction:column;gap:7px;">
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:rgba(248,239,227,.3);display:inline-block;flex-shrink:0;"></span>短视频 / 图文教程</p>
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:rgba(248,239,227,.3);display:inline-block;flex-shrink:0;"></span>私域社群 100人+</p>
-                <p style="font-size:11px;color:rgba(248,239,227,.55);display:flex;align-items:center;gap:8px;"><span style="width:3px;height:3px;border-radius:50%;background:rgba(248,239,227,.3);display:inline-block;flex-shrink:0;"></span>Notion 模板 IP</p>
+
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+               
+               
+               
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
+            </div>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+                 
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">03</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
               </div>
             </div>
+
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-3">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-3" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-3)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-3)" />
+            </svg>
           </div>
-
-        </div><!-- end right col -->
+  
+        </div></div>
 
       </div>
+
     </div>
   </section>
+
+  </div>
 
   <section id="contact" class="section flex items-end">
     <div class="section-inner">
       <div class="grid min-h-[72svh] items-end gap-10 md:grid-cols-[1.1fr_.9fr]">
         <div data-reveal>
-          <h2 class="font-display text-[clamp(64px,12vw,180px)] font-bold italic leading-[.86]">That's the<br/>full picture.</h2>
+          <h2 class="font-display text-[clamp(64px,12vw,180px)] font-bold italic leading-[.86]">To be<br/>continued.</h2>
         </div>
         <div class="max-w-[480px] justify-self-end" data-reveal style="--d:.1">
           <a href="mailto:joyjiangyi852@gmail.com" class="inline-flex border-b border-[var(--gold)] pb-2 text-[11px] uppercase tracking-[.22em] text-[var(--gold)]">joyjiangyi852@gmail.com</a>
@@ -2298,6 +2603,24 @@ document.querySelectorAll('.phone-player').forEach(function(player) {
   });
 });
 
+// ── Global section: iframe flow-card click → 至暗效果 ──
+document.querySelectorAll('.creative-flow .flow-card').forEach(function(card) {
+  if (card.querySelector('iframe')) {
+    card.addEventListener('click', function() {
+      const flow = card.closest('.creative-flow');
+      // toggle: click same card again to deactivate
+      if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        flow.classList.remove('has-playing');
+      } else {
+        flow.querySelectorAll('.flow-card').forEach(function(c) { c.classList.remove('active'); });
+        card.classList.add('active');
+        flow.classList.add('has-playing');
+      }
+    }, true); // capture phase so it fires before iframe swallows the click
+  }
+});
+
 // 第2个视频默认停在第1s，第5个停在第4s
 var players = document.querySelectorAll('.phone-player');
 [{ idx: 1, t: 1 }, { idx: 4, t: 4 }].forEach(function(item) {
@@ -2310,3 +2633,4 @@ var players = document.querySelectorAll('.phone-player');
 </script>
 </body>
 </html>
+

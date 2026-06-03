@@ -35,7 +35,11 @@ tailwind.config = {
   --amber: #9c5f23;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--ink); }
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  background: var(--ink);
+}
 body {
   margin: 0;
   overflow-x: hidden;
@@ -49,6 +53,8 @@ button { font: inherit; }
 
 /* ── Spotlight cursor ── */
 #spotlight-overlay {
+  --spot-x: 50%;
+  --spot-y: 50%;
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -56,7 +62,7 @@ button { font: inherit; }
   opacity: 0;
   transition: opacity .4s ease;
   background: radial-gradient(
-    circle 300px at 50% 50%,
+    circle 300px at var(--spot-x) var(--spot-y),
     rgba(216,180,109,.18) 0%,
     rgba(216,180,109,.06) 45%,
     transparent 70%
@@ -78,7 +84,7 @@ button { font: inherit; }
   height: 100%;
   object-fit: cover;
   opacity: .95;
-  filter: saturate(.95) contrast(1.05) brightness(1.3);
+  transform: translateZ(0);
 }
 .ambient::after {
   content: "";
@@ -102,7 +108,12 @@ button { font: inherit; }
     repeating-radial-gradient(circle at 17% 19%, rgba(255,255,255,.8) 0 1px, transparent 1px 3px);
 }
 .page { position: relative; z-index: 4; }
-.section { min-height: 100svh; padding: clamp(60px, 8vh, 120px) clamp(20px, 4vw, 56px); }
+.section {
+  min-height: 100svh;
+  padding: clamp(60px, 8vh, 120px) clamp(20px, 4vw, 56px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
 .section-inner { width: min(1480px, 100%); margin: 0 auto; }
 .eyebrow {
   font-size: 10px;
@@ -422,15 +433,131 @@ button { font: inherit; }
   min-height: 80px;
   transition: opacity .3s ease;
 }
+.fci-year {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(20px,2.2vw,30px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
 .fci-role {
   font-size: 11px; letter-spacing:.22em; text-transform:uppercase;
   color: rgba(248,239,227,.4); margin-bottom: 8px;
 }
 .fci-title {
   font-size: clamp(18px,2vw,26px); font-weight:700;
-  letter-spacing:-.02em; color: var(--paper); margin-bottom: 12px;
+  letter-spacing:-.02em; color: var(--paper); margin-bottom: 10px;
+}
+.fci-meta-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 18px;
 }
 .fci-awards { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.fci-link {
+  display: none;
+  width: fit-content;
+  margin: 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--gold);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+.fci-link:hover { opacity: .7; }
+.film-awards-panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 32vw);
+  padding-left: 20px;
+  border-left: 1px solid rgba(248,239,227,.14);
+  text-align: right;
+}
+.film-awards-kicker {
+  margin-bottom: 12px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.film-awards-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(248,239,227,.12);
+}
+.film-awards-list p {
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(248,239,227,.08);
+  font-size: 9px;
+  line-height: 1.2;
+  letter-spacing: .04em;
+  color: rgba(248,239,227,.5);
+  white-space: nowrap;
+}
+@media (max-width: 1100px) {
+  .film-awards-panel {
+    position: static;
+    width: min(620px, 100%);
+    margin: 28px auto 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .film-awards-list p { white-space: normal; }
+}
+@media (min-width: 1101px) {
+  #film .film-carousel-info {
+    transform: translateY(-64px);
+  }
+  #film .film-carousel-nav {
+    transform: translateY(-64px);
+  }
+  #film .film-awards-panel {
+    bottom: 64px;
+  }
+}
+@media (min-width: 1101px) and (max-height: 820px) {
+  #film {
+    padding-top: 38px;
+    padding-bottom: 30px;
+  }
+  #film .rule {
+    margin-bottom: 22px !important;
+  }
+  #film .film-carousel {
+    height: clamp(280px, 40vh, 340px);
+  }
+  #film .film-carousel-info {
+    padding-top: 10px;
+    padding-bottom: 6px;
+    min-height: 0;
+    transform: translateY(-48px);
+  }
+  #film .fci-year {
+    margin-bottom: 5px;
+  }
+  #film .fci-role {
+    margin-bottom: 5px;
+  }
+  #film .fci-title {
+    margin-bottom: 7px;
+  }
+  #film .film-awards-panel {
+    bottom: 92px;
+  }
+  #film .film-awards-list p {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  #film .film-carousel-nav {
+    transform: translateY(-48px);
+  }
+}
 /* Nav */
 .film-carousel-nav { display:flex; justify-content:center; gap:14px; padding-top:4px; }
 .carousel-btn {
@@ -497,6 +624,19 @@ button { font: inherit; }
   margin: 5px 0;
 }
 .tvc-artist {
+  font-size: clamp(11px,.95vw,14px);
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.4;
+}
+.tvc-credit.brand-only {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tvc-credit.brand-only .tvc-brand {
+  margin-bottom: 0;
   font-size: clamp(11px,.95vw,14px);
   font-weight: 600;
   color: var(--paper);
@@ -1010,6 +1150,17 @@ button { font: inherit; }
   display: block;
   margin-top: 4px;
 }
+.flow-watch-link {
+  display: inline-block;
+  margin-top: 8px;
+  border-bottom: 1px solid rgba(216,180,109,.55);
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.flow-watch-link:hover { opacity: .72; }
 @media (max-width: 1024px) {
   .creative-flow { flex-wrap: wrap; gap: 20px; margin-top: 40px; background-image: none; }
   .flow-title { font-size: 64px; margin-bottom: 20px; }
@@ -1026,7 +1177,7 @@ button { font: inherit; }
 <body>
 <div class="ambient" aria-hidden="true">
   <video id="hero-video" muted playsinline preload="auto">
-    <source src="assets/grand_budapest_theater_bulle.mp4" type="video/mp4" />
+    <source src="assets/bg-15s.mp4" type="video/mp4" />
   </video>
 </div>
 <div class="grain" aria-hidden="true"></div>
@@ -1159,7 +1310,7 @@ button { font: inherit; }
   </section>
 
   <section id="film" class="section">
-    <div class="section-inner">
+    <div class="section-inner" style="position:relative;">
       <div class="rule mb-12 pt-5" data-reveal>
         <p class="eyebrow">Film</p>
         <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Short films, series, and festival credits — production from set to screen.</p>
@@ -1170,36 +1321,49 @@ button { font: inherit; }
         <div class="film-carousel" id="film-carousel">
 
           <div class="poster-card"
+            data-year="2021"
             data-role="Short Film · 制片助理"
             data-title="Cinema by the Sea《海边电影》"
+            data-recognition='[]'
             data-awards='["Beijing Film Academy"]'>
             <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
           </div>
 
           <div class="poster-card"
+            data-year="2021"
             data-role="Documentary · Production Manager"
             data-title="Xu Ziran Biography《徐自然传》"
-            data-awards='["<span class=&quot;film-award-title&quot;>Official Selection</span> · Zhejiang Golden Roc Film Festival"]'>
+            data-link="https://www.xinpianchang.com/a12646082?searchKw=%E5%BE%90%E8%87%AA%E7%84%B6%E4%BC%A0&amp;from=search_post"
+            data-recognition='["Official Selection · Zhejiang Golden Roc Film Festival"]'
+            data-awards='["Beijing Film Academy"]'>
             <img src="assets/posters/poster-4.png" alt="Xu Ziran Biography" />
           </div>
 
           <div class="poster-card"
+            data-year="2022"
             data-role="Short Film · Production Manager"
             data-title="My Long Hair《我的长发》"
-            data-awards='["<span class=&quot;film-award-title&quot;>Best Female Short Film</span> · Athvikvaruni IFF","<span class=&quot;film-award-title&quot;>Jury Award</span> · Uruvatti IFF","<span class=&quot;film-award-title&quot;>Official Selection</span> · Cyprus IFF"]'>
+            data-link="https://cathayplay.com/films/a-haircut/"
+            data-recognition='["30th Beijing College Student Film Festival · International Student Original Film Selection","17th Cyprus International Film Festival “Golden Aphrodite” · Official Selection","2nd Youality International Short Film Festival · World Peace Award","3rd Uruvatti International Film Festival · Best International Short Film","2022 Shanghai International Short Film Week · SHISW Short Awards Official Selection"]'
+            data-awards='["Beijing Film Academy"]'>
             <img src="assets/posters/poster-1.png" alt="My Long Hair" />
           </div>
 
           <div class="poster-card"
+            data-year="2023"
             data-role="Short Film · Production Manager"
             data-title="Bitter Buckwheat《苦荞麦》"
+            data-recognition='[]'
             data-awards='["Beijing Film Academy"]'>
             <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
           </div>
 
           <div class="poster-card"
+            data-year="2023"
             data-role="Web Series · Executive Producer"
             data-title="Dear Passenger《亲爱的乘客》"
+            data-link="https://v.qq.com/x/cover/mzc00200kai0xqf/i0045yubg8r.html"
+            data-recognition='[]'
             data-awards='["Tencent Video · 19 episodes"]'>
             <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
           </div>
@@ -1208,9 +1372,13 @@ button { font: inherit; }
 
         <!-- Info panel -->
         <div class="film-carousel-info" id="film-carousel-info">
+          <p class="fci-year" id="fci-year"></p>
           <p class="fci-role" id="fci-role"></p>
           <h3 class="fci-title" id="fci-title"></h3>
-          <div class="fci-awards" id="fci-awards"></div>
+          <div class="fci-meta-line">
+            <div class="fci-awards" id="fci-awards"></div>
+            <a class="fci-link" id="fci-link" href="#" target="_blank" rel="noopener">观看视频 ↗</a>
+          </div>
         </div>
 
         <!-- Nav -->
@@ -1219,6 +1387,11 @@ button { font: inherit; }
           <button class="carousel-btn" id="carousel-next">→</button>
         </div>
       </div>
+
+      <aside class="film-awards-panel" aria-label="Awards for selected film" data-reveal style="--d:.16">
+        <p class="film-awards-kicker">Award</p>
+        <div class="film-awards-list" id="film-awards-list"></div>
+      </aside>
 
     </div>
   </section>
@@ -1239,25 +1412,25 @@ button { font: inherit; }
             <div class="tvc-marquee">
               <!-- Set A -->
               <div class="tvc-photo-set">
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="Meituan × Liu Yifei" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
                 </div>
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲 · 火锅季" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="Meituan Hotpot" /></div>
                   <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲 · 火锅</p></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
                 </div>
-                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="#" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="Alipay+ × Zheng Qinwen" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
                 </div>
-                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="#" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="COGI" /></div>
                   <div class="tvc-sprocket-bar"></div>
@@ -1269,40 +1442,88 @@ button { font: inherit; }
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
                 </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="#" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="优酸乳 × 吴镇宇" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
                 </div>
-                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="#" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="神州租车 × 张颂文" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
                 </div>
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="—" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="BYD Yangwang U7" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
+                </div>
+                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="JD Fashion" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
+                </div>
+                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="League of Legends Wild Rift × Zhao Lusi" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
+                </div>
+                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="Nutrilite × Jike Junyi" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="Yili YouSuanRu × Teens in Times" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
+                </div>
+                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="CF Mobile × Louis Koo and Lin Gengxin" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="GUCCI × He Sui" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="GUCCI × Song Jia" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
+                </div>
               </div>
               <!-- Set B: duplicate for seamless loop -->
               <div class="tvc-photo-set" aria-hidden="true">
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
                 </div>
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲 · 火锅季" data-director="林哲乐" data-duration="15s" data-link="#" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲 · 火锅</p></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
                 </div>
-                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="#" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
                 </div>
-                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="#" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
@@ -1314,17 +1535,65 @@ button { font: inherit; }
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
                 </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="#" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
                 </div>
-                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="#" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="—" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
+                </div>
+                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
+                </div>
+                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
+                </div>
+                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
+                </div>
+                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
                 </div>
               </div>
             </div>
@@ -1334,7 +1603,9 @@ button { font: inherit; }
 
       </div>
 
-      <button id="open-credits" class="mt-10 border border-white/25 px-5 py-4 text-[10px] uppercase tracking-[.24em] text-white/72 transition hover:border-[var(--gold)] hover:text-[var(--gold)]" type="button" data-reveal>View all commercial credits</button>
+      <div class="mt-10 flex justify-center" data-reveal>
+        <button id="open-credits" class="border border-white/25 px-5 py-4 text-[10px] uppercase tracking-[.24em] text-white/72 transition hover:border-[var(--gold)] hover:text-[var(--gold)]" type="button">View all commercial credits</button>
+      </div>
     </div>
   </section>
 
@@ -1351,35 +1622,35 @@ button { font: inherit; }
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/i1BdPs9yRIw?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label">Wish Queue Mode<br><span>Language: EN</span></div>
+          <div class="flow-label">Wish Queue Mode<br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=i1BdPs9yRIw" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
         </div>
         <div class="flow-card">
           <div class="phone-v2"><div class="phone-screen-v2 phone-player">
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/uu6jF_wKwFE?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label">League Match<br><span>Language: KR</span></div>
+          <div class="flow-label">League Match<br><span>Language: KR</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=uu6jF_wKwFE" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
         </div>
         <div class="flow-card">
           <div class="phone-v2"><div class="phone-screen-v2 phone-player">
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/hzBnMHjZ7Kg?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label" style="position:relative;z-index:10;"><a href="https://www.tiktok.com/@tiktok_promote_official?_t=ZN-8zvd2DG31aI&_r=1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);">@tiktok_promote_official</a><br><span>Language: EN</span></div>
+          <div class="flow-label" style="position:relative;z-index:10;"><a href="https://www.tiktok.com/@tiktok_promote_official?_t=ZN-8zvd2DG31aI&amp;_r=1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);">@tiktok_promote_official</a><br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=hzBnMHjZ7Kg" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
         </div>
         <div class="flow-card">
           <div class="phone-v2"><div class="phone-screen-v2 phone-player">
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/mrJ3VB9u0II?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label">TikTok AIGC<br><span>Language: BR</span></div>
+          <div class="flow-label">TikTok AIGC<br><span>Language: BR</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=mrJ3VB9u0II" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
         </div>
         <div class="flow-card">
           <div class="phone-v2"><div class="phone-screen-v2 phone-player">
             <div class="dynamic-island"></div>
             <iframe src="https://www.youtube.com/embed/BJGieLTN9SU?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;top:-13%;left:-2%;width:104%;height:126%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div></div>
-          <div class="flow-label">Promote Social Channel<br><span>Language: EN</span></div>
+          <div class="flow-label">Promote Social Channel<br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=BJGieLTN9SU" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
         </div>
       </div>
 
@@ -1412,11 +1683,10 @@ button { font: inherit; }
               </div>
             </div>
 
-            <!-- Mobile: iPhone frame (Wear Joy) -->
+            <!-- Mobile: Wear Joy already renders its own phone shell -->
             <div id="wearvjoy-phone" style="display:none; flex-direction:column; align-items:center; gap:16px;">
-              <div class="lab-iphone-frame">
+              <div class="wearjoy-preview">
                 <div class="lab-iphone-screen">
-                  <div class="lab-dynamic-island"></div>
                   <iframe id="wearvjoy-iframe" src="http://localhost:4173" style="width:375px;height:812px;border:none;transform-origin:top left;display:block;"></iframe>
                 </div>
               </div>
@@ -1500,36 +1770,18 @@ button { font: inherit; }
     <style>
       .cinema-paradise { border-radius: 12px; padding-bottom: 40px; }
 
-      /* iPhone frame for Wear Joy */
-      .lab-iphone-frame {
+      /* Wear Joy includes its own phone shell, so this only crops and supports the preview. */
+      .wearjoy-preview {
         width: 240px;
-        background: #1a1a1e;
-        border-radius: 38px;
-        padding: 9px;
+        border-radius: 31px;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 0 0 1.5px #3a3a3c, 0 0 0 3px #1a1a1e, 0 0 0 4px #2c2c2e,
-                    0 20px 60px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.06);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.72);
         transition: opacity 0.4s ease, transform 0.4s ease;
       }
-      .lab-iphone-frame::before {
-        content: ''; position: absolute; left: -4px; top: 28%;
-        width: 3px; height: 12%; background: #2c2c2e;
-        border-radius: 2px 0 0 2px;
-        box-shadow: 0 18px 0 #2c2c2e, 0 34px 0 #2c2c2e;
-      }
-      .lab-iphone-frame::after {
-        content: ''; position: absolute; right: -4px; top: 32%;
-        width: 3px; height: 18%; background: #2c2c2e;
-        border-radius: 0 2px 2px 0;
-      }
       .lab-iphone-screen {
-        width: 100%; aspect-ratio: 9/19.5;
-        background: #F7F6F2; border-radius: 0; overflow: hidden; position: relative;
-      }
-      .lab-dynamic-island {
-        position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-        width: 35%; height: 9px; background: #000; border-radius: 20px; z-index: 10;
+        width: 100%;
+        background: transparent; border-radius: inherit; overflow: hidden; position: relative;
       }
       .lab-iphone-screen iframe {
         position: absolute; top: 0; left: 0;
@@ -1719,10 +1971,18 @@ button { font: inherit; }
                   var screen = wearjoyPhone.querySelector('.lab-iphone-screen');
                   if (screen && wearjoyIframe) {
                     var sw = screen.offsetWidth;
-                    var sh = screen.offsetHeight;
-                    var scale = sw / 375;
-                    wearjoyIframe.style.width = '375px';
-                    wearjoyIframe.style.height = (sh / scale) + 'px';
+                    var sourceCanvasWidth = 480;
+                    var sourceCanvasHeight = 1000;
+                    var phoneX = 25;
+                    var phoneY = 34;
+                    var phoneWidth = 430;
+                    var phoneHeight = 932;
+                    var scale = sw / phoneWidth;
+                    screen.style.height = (phoneHeight * scale) + 'px';
+                    wearjoyIframe.style.width = sourceCanvasWidth + 'px';
+                    wearjoyIframe.style.height = sourceCanvasHeight + 'px';
+                    wearjoyIframe.style.left = (-phoneX * scale) + 'px';
+                    wearjoyIframe.style.top = (-phoneY * scale) + 'px';
                     wearjoyIframe.style.transform = 'scale(' + scale + ')';
                   }
                   setTimeout(function() { wearjoyPhone.style.opacity = '1'; }, 50);
@@ -1764,7 +2024,7 @@ button { font: inherit; }
           <!-- Platform Links — 一排 + @handle -->
           <div style="width:90%; font-family:var(--font-sans); text-align:center;">
             <div style="font-size:13px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.75);">
-              Xiaohongshu&nbsp;/&nbsp;Bilibili&nbsp;/&nbsp;Douyin
+              <a href="https://www.xiaohongshu.com/user/profile/5e54a7480000000001009d28" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Xiaohongshu</a>&nbsp;/&nbsp;<a href="https://space.bilibili.com/179368823?spm_id_from=333.1007.0.0" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Bilibili</a>&nbsp;/&nbsp;<a href="https://www.douyin.com/user/self?from_tab_name=main&amp;showTab=like" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Douyin</a>
             </div>
             <div style="margin-top:8px; font-size:16px; font-weight:600; color:rgba(255,255,255,0.6); letter-spacing:0.06em;">
               @JioJioJoy
@@ -2205,19 +2465,62 @@ button { font: inherit; }
 </div>
 
 <script>
-// Video scrub — driven by scroll, not autoplay
-// Covers sections #top → #film (first 4 sections)
+// Scroll-linked ambient background video with eased seeking.
 const video = document.getElementById('hero-video');
 if (video) {
-  video.pause();
   video.muted = true;
+  video.pause();
   video.currentTime = 0;
+
+  let videoDuration = 15.09;
+  let maxScroll = 1;
+  let targetTime = 0;
+  let rafId = null;
+
+  function updateScrollBounds() {
+    const endEl = document.getElementById('contact') || document.body;
+    const endY = endEl.offsetTop + endEl.offsetHeight - window.innerHeight;
+    maxScroll = Math.max(1, endY);
+  }
+
+  function updateTargetTime() {
+    const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    targetTime = progress * videoDuration;
+    if (!rafId) rafId = requestAnimationFrame(seekTowardTarget);
+  }
+
+  function seekTowardTarget() {
+    const diff = targetTime - video.currentTime;
+    if (Math.abs(diff) > 0.025) {
+      video.currentTime += diff * 0.18;
+      rafId = requestAnimationFrame(seekTowardTarget);
+    } else {
+      video.currentTime = targetTime;
+      rafId = null;
+    }
+  }
+
+  function initScrollVideo() {
+    videoDuration = video.duration || videoDuration;
+    updateScrollBounds();
+    updateTargetTime();
+  }
+
+  if (video.readyState >= 1) initScrollVideo();
+  else video.addEventListener('loadedmetadata', initScrollVideo, { once: true });
+
+  window.addEventListener('scroll', updateTargetTime, { passive: true });
+  window.addEventListener('resize', function () {
+    updateScrollBounds();
+    updateTargetTime();
+  }, { passive: true });
 }
 
 const credits = [
   ['Meituan', 'New Year Goods', 'Liu Yifei / 15s'],
   ['Meituan', 'Hotpot', 'Liu Yifei / 15s'],
   ['Shenzhou', 'Old New Driver', 'Zhang Songwen / 1m54s'],
+  ['BYD Yangwang', 'U7 Launch', '2m48s'],
   ['Alipay+', 'Wave to the World', 'Zheng Qinwen / 50s'],
   ['Yili YouSuanRu', 'Wu Zhenyu Restaurant', 'Wu Zhenyu / 1m04s'],
   ['Yili YouSuanRu', 'Wu Zhenyu Mentor', 'Wu Zhenyu / 51s'],
@@ -2259,42 +2562,8 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { rootMargin: '-50px' });
 document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
 
-if (window.gsap && window.ScrollTrigger) {
+if (window.gsap && window.ScrollTrigger && document.querySelector('#film-strip')) {
   gsap.registerPlugin(ScrollTrigger);
-
-  // Subtle scale — spans all 6 visible sections
-  gsap.to('.ambient video', {
-    scale: 1.06,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#top',
-      start: 'top top',
-      endTrigger: '#contact',
-      end: 'bottom bottom',
-      scrub: true
-    }
-  });
-
-
-  // Scroll-driven video scrub — spans all 6 visible sections (top → contact)
-  const initVideoScrub = () => {
-    const dur = video ? (video.duration || 8.06) : 8.06;
-    if (!video) return;
-    ScrollTrigger.create({
-      trigger: '#top',
-      start: 'top top',
-      endTrigger: '#contact',
-      end: 'bottom bottom',
-      scrub: 0.4,
-      onUpdate(self) { video.currentTime = self.progress * dur; }
-    });
-  };
-  if (video) {
-    if (video.readyState >= 1) initVideoScrub();
-    else video.addEventListener('loadedmetadata', initVideoScrub);
-  }
-
-  // Film strip horizontal scroll in Commercial section
   gsap.to('#film-strip', {
     xPercent: -12,
     ease: 'none',
@@ -2315,7 +2584,7 @@ if (window.gsap && window.ScrollTrigger) {
       <p class="tvc-detail-brand-label" id="tvc-modal-brand"></p>
       <h2 class="tvc-detail-artist-name" id="tvc-modal-artist"></h2>
       <div class="tvc-meta-table">
-        <div class="tvc-meta-row">
+        <div class="tvc-meta-row" id="tvc-modal-artist-row">
           <span class="tvc-meta-label">合作艺人</span>
           <span class="tvc-meta-val" id="tvc-modal-artist-val"></span>
         </div>
@@ -2354,10 +2623,13 @@ if (window.gsap && window.ScrollTrigger) {
     document.getElementById('tvc-modal-artist-val').textContent = artist;
     document.getElementById('tvc-modal-director').textContent = director;
     document.getElementById('tvc-modal-duration').textContent = duration;
+    document.getElementById('tvc-modal-artist').style.display = artist ? '' : 'none';
+    document.getElementById('tvc-modal-artist-row').style.display = artist ? '' : 'none';
 
     const linkEl = document.getElementById('tvc-modal-link');
     linkEl.href = link;
     linkEl.classList.toggle('disabled', link === '#');
+    linkEl.style.display = link === '#' ? 'none' : '';
 
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('open');
@@ -2394,16 +2666,21 @@ if (window.gsap && window.ScrollTrigger) {
   const setA = marquee.querySelector('.tvc-photo-set');
   let pos = 0;
   let paused = false;
+  let isVisible = false;
+  let setWidth = setA.offsetWidth;
   const SPEED = 0.6; // px per frame
 
   marquee.addEventListener('mouseenter', () => { paused = true; });
   marquee.addEventListener('mouseleave', () => { paused = false; });
+  window.addEventListener('resize', () => { setWidth = setA.offsetWidth; }, { passive: true });
+  const marqueeObserver = new IntersectionObserver(entries => {
+    isVisible = entries.some(entry => entry.isIntersecting);
+  }, { rootMargin: '180px' });
+  marqueeObserver.observe(marquee);
 
   function tick() {
-    if (!paused) {
+    if (!paused && isVisible && setWidth) {
       pos -= SPEED;
-      const setWidth = setA.offsetWidth;
-      // When we've scrolled exactly one set, reset silently (no jump)
       if (pos <= -setWidth) pos += setWidth;
       marquee.style.transform = 'translateX(' + pos + 'px)';
     }
@@ -2443,10 +2720,18 @@ if (window.gsap && window.ScrollTrigger) {
 
   function updateInfo() {
     const active = cards[current];
+    const link = active.dataset.link || '';
+    const linkEl = document.getElementById('fci-link');
+    document.getElementById('fci-year').textContent  = active.dataset.year  || '';
     document.getElementById('fci-role').textContent  = active.dataset.role  || '';
     document.getElementById('fci-title').textContent = active.dataset.title || '';
     const awards = JSON.parse(active.dataset.awards || '[]');
+    const recognition = JSON.parse(active.dataset.recognition || '[]');
     document.getElementById('fci-awards').innerHTML  = awards.map(a => `<p class="film-award">${a}</p>`).join('');
+    document.getElementById('film-awards-list').innerHTML = recognition.map(a => `<p>${a}</p>`).join('');
+    document.querySelector('.film-awards-panel').style.display = recognition.length ? '' : 'none';
+    linkEl.href = link || '#';
+    linkEl.style.display = link ? 'block' : 'none';
   }
 
   document.getElementById('carousel-prev').addEventListener('click', () => {
@@ -2470,65 +2755,25 @@ if (window.gsap && window.ScrollTrigger) {
 <script>
 (function () {
   const overlay = document.getElementById('spotlight-overlay');
-  let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
-  let cx = tx, cy = ty;
+  let raf = null;
+  let nextX = window.innerWidth / 2;
+  let nextY = window.innerHeight / 2;
 
   document.addEventListener('mousemove', function (e) {
-    tx = e.clientX;
-    ty = e.clientY;
+    nextX = e.clientX;
+    nextY = e.clientY;
     if (!overlay.classList.contains('active')) {
       overlay.classList.add('active');
     }
-  });
-
-  (function tick() {
-    cx += (tx - cx) * 0.10;
-    cy += (ty - cy) * 0.10;
-    overlay.style.background =
-      'radial-gradient(circle 300px at ' + cx + 'px ' + cy + 'px,' +
-      'rgba(216,180,109,.18) 0%,' +
-      'rgba(216,180,109,.06) 45%,' +
-      'transparent 70%)';
-    requestAnimationFrame(tick);
-  })();
-})();
-
-// Scroll snap: after scrolling stops, snap to nearest section boundary
-(() => {
-  const sections = Array.from(document.querySelectorAll('.section'));
-  let snapTimer = null;
-  let isSnapping = false;
-
-  function getNearestSection() {
-    const mid = window.scrollY + window.innerHeight / 2;
-    let best = sections[0];
-    let bestDist = Infinity;
-    for (const s of sections) {
-      const top = s.offsetTop;
-      const bottom = top + s.offsetHeight;
-      // Use section top as snap target; prefer section we're most inside
-      const dist = Math.abs(top - window.scrollY);
-      if (dist < bestDist) { bestDist = dist; best = s; }
-    }
-    return best;
-  }
-
-  function snapToSection() {
-    if (isSnapping) return;
-    const target = getNearestSection();
-    const targetY = target.offsetTop;
-    if (Math.abs(window.scrollY - targetY) < 4) return; // already snapped
-    isSnapping = true;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
-    setTimeout(() => { isSnapping = false; }, 600);
-  }
-
-  window.addEventListener('scroll', () => {
-    if (isSnapping) return;
-    clearTimeout(snapTimer);
-    snapTimer = setTimeout(snapToSection, 150);
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      overlay.style.setProperty('--spot-x', nextX + 'px');
+      overlay.style.setProperty('--spot-y', nextY + 'px');
+      raf = null;
+    });
   }, { passive: true });
 })();
+
 </script>
 <script>
 document.querySelectorAll('.phone-player').forEach(function(player) {
@@ -2539,6 +2784,7 @@ document.querySelectorAll('.phone-player').forEach(function(player) {
   const progressFill = player.querySelector('.phone-progress-fill');
   const flow = player.closest('.creative-flow');
   const card = player.closest('.flow-card');
+  if (!video || !playBtn || !pauseBtn || !progressBar || !progressFill || !flow || !card) return;
 
   function setPlaying(on) {
     if (on) {
@@ -2633,4 +2879,3 @@ var players = document.querySelectorAll('.phone-player');
 </script>
 </body>
 </html>
-

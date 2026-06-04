@@ -1194,7 +1194,10 @@ button { font: inherit; }
       <a href="#lab" class="hover:text-[var(--gold)]">AI Lab</a>
       <a href="#influencer" class="hover:text-[var(--gold)]">Influencer</a>
     </div>
-    <button id="contact-btn" class="hidden justify-self-end border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex uppercase tracking-[.22em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;">Contact</button>
+    <div class="justify-self-end flex items-center gap-2">
+      <button id="language-toggle" class="border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] uppercase tracking-[.18em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;" type="button" aria-label="切换语言">中文</button>
+      <button id="contact-btn" class="hidden border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex uppercase tracking-[.22em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;">Contact</button>
+    </div>
   </nav>
 
   <!-- ── Contact Drop Popup ── -->
@@ -2728,11 +2731,13 @@ if (window.gsap && window.ScrollTrigger && document.querySelector('#film-strip')
     document.getElementById('fci-title').textContent = active.dataset.title || '';
     const awards = JSON.parse(active.dataset.awards || '[]');
     const recognition = JSON.parse(active.dataset.recognition || '[]');
-    document.getElementById('fci-awards').innerHTML  = awards.map(a => `<p class="film-award">${a}</p>`).join('');
-    document.getElementById('film-awards-list').innerHTML = recognition.map(a => `<p>${a}</p>`).join('');
+    const translate = window.translateSiteText || (text => text);
+    document.getElementById('fci-awards').innerHTML  = awards.map(a => `<p class="film-award">${translate(a)}</p>`).join('');
+    document.getElementById('film-awards-list').innerHTML = recognition.map(a => `<p>${translate(a)}</p>`).join('');
     document.querySelector('.film-awards-panel').style.display = recognition.length ? '' : 'none';
     linkEl.href = link || '#';
     linkEl.style.display = link ? 'block' : 'none';
+    if (window.refreshSiteLanguage) window.refreshSiteLanguage();
   }
 
   document.getElementById('carousel-prev').addEventListener('click', () => {
@@ -2877,6 +2882,138 @@ var players = document.querySelectorAll('.phone-player');
   if (v.readyState >= 1) seek();
   else v.addEventListener('loadedmetadata', seek);
 });
+</script>
+<script>
+(function () {
+  const translations = {
+    'Overview': '概览',
+    'Film': '影视作品',
+    'Commercial Reel': '商业广告',
+    'Global': '全球内容',
+    'AI Lab': 'AI 实验室',
+    'Influencer': '内容创作',
+    'Contact': '联系我',
+    'Content maker.': '内容创作者。',
+    'Data reader.': '数据洞察者。',
+    'AI builder.': 'AI 构建者。',
+    'Here for global markets.': '面向全球市场。',
+    'Enter ↓': '进入 ↓',
+    'Trained in cinema. Tested in global operations.': '接受电影训练，在全球内容运营中实践。',
+    "Now building content systems for markets that don't slow down.": '正在为快速变化的市场构建内容系统。',
+    'Film school instinct, platform signals, AI as the accelerant.': '以电影直觉为底，以平台信号为尺，以 AI 加速创作。',
+    'Background': '背景',
+    'Where I learned to build content, end to end.': '我在这里学习如何从头到尾完成内容创作。',
+    'Beijing Film': '北京电影',
+    'Academy': '学院',
+    'Beijing, China': '中国，北京',
+    'Short films, series, and festival credits — production from set to screen.': '短片、剧集与电影节履历，从片场到银幕的完整制作经验。',
+    'Award': '奖项',
+    'A selection of commercial TVC productions with top brands and artists.': '精选商业广告作品，与头部品牌及艺人合作。',
+    'View all commercial credits': '查看全部商业项目',
+    'Selected works from overseas content operations.': '精选海外内容运营作品。',
+    'Wish Queue Mode': '愿望队列模式',
+    'League Match': '联赛对战',
+    'TikTok AIGC': 'TikTok AI 内容',
+    'Promote Social Channel': 'Promote 社交频道',
+    'Language: EN': '语言：英语',
+    'Language: KR': '语言：韩语',
+    'Language: BR': '语言：葡萄牙语',
+    'Watch on YouTube ↗': '在 YouTube 观看 ↗',
+    'Creative experiments and vibe-coded projects.': '创意实验与氛围编程项目。',
+    'SHOWCASE': '项目展示',
+    'Projects': '项目',
+    'Developing': '开发中',
+    'Enter Lab': '进入实验室',
+    'Personal content creation — knowledge management, AI workflows & second brain.': '个人内容创作：知识管理、AI 工作流与第二大脑。',
+    'To be': '未完',
+    'continued.': '待续。',
+    'Index': '导航',
+    'Commercial credits / selected archive': '商业项目 / 精选档案',
+    'Close': '关闭',
+    'Short Film · 制片助理': '短片 · 制片助理',
+    'Documentary · Production Manager': '纪录片 · 制片主任',
+    'Short Film · Production Manager': '短片 · 制片主任',
+    'Web Series · Executive Producer': '网络剧 · 执行制片人',
+    'Beijing Film Academy': '北京电影学院',
+    'Tencent Video · 19 episodes': '腾讯视频 · 19 集',
+    'Official Selection · Zhejiang Golden Roc Film Festival': '浙江青年电影周金鹏奖 · 入选作品',
+    '30th Beijing College Student Film Festival · International Student Original Film Selection': '第30届北京大学生电影节 · 国际大学生原创影片推选入选作品',
+    '17th Cyprus International Film Festival “Golden Aphrodite” · Official Selection': '第17届塞浦路斯国际电影节“金色阿芙洛狄忒” · 入围',
+    '2nd Youality International Short Film Festival · World Peace Award': '第2届 Youality 国际短片电影节 · 世界和平奖',
+    '3rd Uruvatti International Film Festival · Best International Short Film': '第3届乌鲁瓦蒂国际电影节 · 最佳国际短片',
+    '2022 Shanghai International Short Film Week · SHISW Short Awards Official Selection': '2022 上海国际短片周 · SHISW 短片奖入围',
+    'New Year Goods': '年货节',
+    'Hotpot': '火锅篇',
+    'Old New Driver': '新老司机',
+    'U7 Launch': '仰望 U7 发布',
+    'Wave to the World': '挥手见世界',
+    'Brand Announcement': '品牌官宣',
+    'Christmas Special': '圣诞特别篇',
+    'CNY': '春节项目',
+    'Mystery City Horror': '迷城惊变',
+    'I Come From You': '我来自于你',
+    'Commercial': '商业广告',
+    'A Clean Mother': '一个干净的妈妈'
+  };
+
+  const originalText = new WeakMap();
+  const reverseTranslations = Object.fromEntries(
+    Object.entries(translations).map(([english, chinese]) => [chinese, english])
+  );
+  const skipTags = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'IFRAME', 'SVG']);
+  const toggle = document.getElementById('language-toggle');
+  let currentLanguage = localStorage.getItem('site-language') ||
+    (navigator.language && navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en');
+
+  function translateNode(node, language) {
+    if (!originalText.has(node)) {
+      const trimmed = node.nodeValue.trim();
+      const english = reverseTranslations[trimmed];
+      originalText.set(node, english ? node.nodeValue.replace(trimmed, english) : node.nodeValue);
+    }
+    const original = originalText.get(node);
+    const trimmed = original.trim();
+    if (!trimmed) return;
+    const translated = language === 'zh' ? translations[trimmed] : null;
+    node.nodeValue = translated ? original.replace(trimmed, translated) : original;
+  }
+
+  function applyLanguage(language) {
+    currentLanguage = language;
+    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+    document.title = language === 'zh'
+      ? 'JioJioJoy · 内容创作者、数据洞察者、AI 构建者'
+      : 'JioJioJoy · Content maker. Data reader. AI builder.';
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        if (!parent || skipTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let node;
+    while ((node = walker.nextNode())) translateNode(node, language);
+
+    toggle.textContent = language === 'zh' ? 'EN' : '中文';
+    toggle.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
+    localStorage.setItem('site-language', language);
+  }
+
+  window.translateSiteText = function (text) {
+    return currentLanguage === 'zh' ? (translations[text] || text) : text;
+  };
+
+  toggle.addEventListener('click', function () {
+    applyLanguage(currentLanguage === 'zh' ? 'en' : 'zh');
+  });
+
+  window.refreshSiteLanguage = function () {
+    applyLanguage(currentLanguage);
+  };
+
+  applyLanguage(currentLanguage);
+})();
 </script>
 </body>
 </html>

@@ -687,6 +687,7 @@ button { font: inherit; }
 }
 .tvc-detail-brand-label {
   font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+  display: none;
 }
 .tvc-detail-artist-name {
   font-size: clamp(20px,2.8vw,34px); font-weight:800; letter-spacing:-.04em;
@@ -1454,7 +1455,7 @@ button { font: inherit; }
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
                 </div>
-                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="—" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="BYD Yangwang U7" /></div>
                   <div class="tvc-sprocket-bar"></div>
@@ -1547,7 +1548,7 @@ button { font: inherit; }
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
                 </div>
-                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="—" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
                   <div class="tvc-sprocket-bar"></div>
                   <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="" /></div>
                   <div class="tvc-sprocket-bar"></div>
@@ -2619,11 +2620,11 @@ if (window.gsap && window.ScrollTrigger && document.querySelector('#film-strip')
 
     document.getElementById('tvc-modal-img').src         = img;
     document.getElementById('tvc-modal-brand').textContent    = brand;
-    document.getElementById('tvc-modal-artist').textContent   = artist;
+    document.getElementById('tvc-modal-artist').textContent   = brand;
     document.getElementById('tvc-modal-artist-val').textContent = artist;
     document.getElementById('tvc-modal-director').textContent = director;
     document.getElementById('tvc-modal-duration').textContent = duration;
-    document.getElementById('tvc-modal-artist').style.display = artist ? '' : 'none';
+    document.getElementById('tvc-modal-artist').style.display = '';
     document.getElementById('tvc-modal-artist-row').style.display = artist ? '' : 'none';
 
     const linkEl = document.getElementById('tvc-modal-link');

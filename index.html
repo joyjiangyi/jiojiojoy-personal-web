@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JioJioJoy · Content maker. Data reader. AI builder.</title>
+<title>JioJioJoy</title>
+<link rel="icon" type="image/png" href="assets/icons/web-logo.png" />
+<link rel="alternate icon" type="image/png" href="assets/icons/favicon-512.png" />
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -1177,7 +1180,7 @@ button { font: inherit; }
 </head>
 <body>
 <div class="ambient" aria-hidden="true">
-  <video id="hero-video" muted playsinline preload="auto">
+  <video id="hero-video" muted playsinline webkit-playsinline preload="auto" poster="assets/bg-mobile-poster.jpg">
     <source src="assets/bg-15s.mp4" type="video/mp4" />
   </video>
 </div>
@@ -1381,7 +1384,7 @@ button { font: inherit; }
           <h3 class="fci-title" id="fci-title"></h3>
           <div class="fci-meta-line">
             <div class="fci-awards" id="fci-awards"></div>
-            <a class="fci-link" id="fci-link" href="#" target="_blank" rel="noopener">观看视频 ↗</a>
+            <a class="fci-link" id="fci-link" href="#" target="_blank" rel="noopener">Watch Video ↗</a>
           </div>
         </div>
 
@@ -1669,13 +1672,22 @@ button { font: inherit; }
       </div>
 
       <div class="cinema-paradise" data-reveal>
-        <div class="cinema-content flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
+        <div class="lab-project-brief">
+          <div class="lab-project-kicker">
+            <span>SHOWCASE</span>
+            <span id="current-project-name">AI Playground</span>
+          </div>
+          <p id="current-project-desc">
+            A curated hub for AI resources, tools, and learning notes.<br />Built to share useful references, workflows, and discoveries for anyone exploring AI.
+          </p>
+        </div>
+        <div class="cinema-content flex flex-col lg:flex-row items-center justify-center gap-8 max-w-6xl mx-auto">
 
           <!-- LEFT: Stage / Screen -->
           <div class="cinema-stage-wrapper w-full max-w-[756px] relative" style="flex: 0 0 55%; display:flex; align-items:center; justify-content:center;">
             <div class="cinema-screenglow" id="cinema-glow"></div>
 
-            <!-- Desktop: browser frame (AI Sharing) -->
+            <!-- Desktop: browser frame (AI Playground) -->
             <div class="device-wrapper is-desktop" id="device-wrapper" style="width:100%;">
               <div class="browser-bar">
                 <div class="browser-dots"><span></span><span></span><span></span></div>
@@ -1698,21 +1710,19 @@ button { font: inherit; }
           </div>
 
           <!-- RIGHT: Seats -->
-          <div class="cinema-seats-wrapper w-full max-w-[500px]" style="padding-top: clamp(80px, 14vh, 160px); padding-bottom: clamp(40px, 7vh, 80px); flex: 0 0 40%;">
+          <div class="cinema-seats-wrapper w-full max-w-[500px]" style="padding-top: clamp(20px, 4vh, 48px); padding-bottom: clamp(24px, 4vh, 44px); flex: 0 0 40%;">
             <div class="cinema-seats-container" style="max-width:640px; margin:0 auto; display:flex; gap:20px;">
               <div class="row-markers">
                 <div>A</div><div>B</div><div>C</div><div>D</div><div>E</div><div>F</div>
               </div>
               <div class="seats-layout flex-1 flex flex-col items-center gap-4">
-                <!-- Row A: JOY'S AI SHARING -->
+                <!-- Row A: AI PLAYGROUND -->
                 <div class="seat-row" style="width:100%; display:flex; justify-content:center; gap:20px; height:22px; align-items:center;">
                   <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
                   <div class="seat-group project-group ai-sharing cursor-pointer" data-type="desktop" data-img="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=2874&auto=format&fit=crop">
-                    <div class="seat has-letter">J</div><div class="seat has-letter">O</div><div class="seat has-letter">Y</div><div class="seat has-letter">'</div><div class="seat has-letter">S</div>
-                    <div class="seat empty-space"></div>
                     <div class="seat has-letter">A</div><div class="seat has-letter">I</div>
                     <div class="seat empty-space"></div>
-                    <div class="seat has-letter">S</div><div class="seat has-letter">H</div><div class="seat has-letter">A</div><div class="seat has-letter">R</div><div class="seat has-letter">I</div><div class="seat has-letter">N</div><div class="seat has-letter">G</div>
+                    <div class="seat has-letter">P</div><div class="seat has-letter">L</div><div class="seat has-letter">A</div><div class="seat has-letter">Y</div><div class="seat has-letter">G</div><div class="seat has-letter">R</div><div class="seat has-letter">O</div><div class="seat has-letter">U</div><div class="seat has-letter">N</div><div class="seat has-letter">D</div>
                   </div>
                 </div>
                 <!-- Row B -->
@@ -1751,11 +1761,7 @@ button { font: inherit; }
               </div>
             </div>
             <!-- Footer Legend -->
-            <div class="cinema-footer flex justify-between items-center text-[10px] uppercase tracking-widest text-white/50 mt-10 pt-8 border-t border-white/10 mx-6">
-              <div>
-                <span class="inline-block border border-white/30 px-2 py-1 font-bold">SHOWCASE</span>
-                <span class="ml-2" id="current-project-name">Joy's AI Sharing</span>
-              </div>
+            <div class="cinema-footer flex justify-end items-center text-[10px] uppercase tracking-widest text-white/50 mt-8 pt-6 border-t border-white/10 mx-6">
               <div class="flex items-center gap-4">
                 <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 bg-white border border-gray-300 rounded-sm"></span><span>Projects</span></div>
                 <div class="flex items-center gap-1"><span class="inline-block w-3 h-3 bg-[#5d5d5d] border border-[rgba(255,255,255,0.2)] rounded-sm"></span><span>Developing</span></div>
@@ -1773,10 +1779,38 @@ button { font: inherit; }
 
     <style>
       .cinema-paradise { border-radius: 12px; padding-bottom: 40px; }
+      .lab-project-brief {
+        width: min(960px, 92%);
+        margin: 0 auto clamp(18px, 2.5vw, 32px);
+        text-align: center;
+      }
+      .lab-project-kicker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        font-size: 10px;
+        line-height: 1;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: rgba(248,239,227,.54);
+      }
+      #current-project-name {
+        color: var(--gold);
+        font-weight: 800;
+      }
+      #current-project-desc {
+        margin: 9px 0 0;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(16px, 1.45vw, 22px);
+        line-height: 1.28;
+        letter-spacing: -.008em;
+        color: rgba(248,239,227,.7);
+      }
 
       /* Wear Joy includes its own phone shell, so this only crops and supports the preview. */
       .wearjoy-preview {
-        width: 240px;
+        width: clamp(176px, 13.5vw, 220px);
         border-radius: 31px;
         overflow: hidden;
         position: relative;
@@ -1873,6 +1907,20 @@ button { font: inherit; }
         transition: opacity 0.35s ease;
         background: transparent;
       }
+      .cinema-paradise.is-wear-joy .cinema-content {
+        gap: clamp(28px, 4vw, 64px);
+      }
+      .cinema-paradise.is-wear-joy .cinema-stage-wrapper {
+        flex: 0 0 38% !important;
+        max-width: 360px !important;
+      }
+      .cinema-paradise.is-wear-joy .cinema-seats-wrapper {
+        flex: 0 0 48% !important;
+      }
+      .cinema-paradise.is-wear-joy .cinema-footer {
+        margin-top: 22px;
+        padding-top: 18px;
+      }
       .device-wrapper.is-mobile {
         width: 230px; aspect-ratio: 9/19.5; border-radius: 32px;
         box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 6px #111, inset 0 0 0 8px #444;
@@ -1905,8 +1953,44 @@ button { font: inherit; }
       .seat.empty-space { background:transparent !important; box-shadow:none !important; width:8px; }
       .seat.has-letter { background-color:#fff; box-shadow:inset 0 2px 0 rgba(255,255,255,1), 0 2px 6px rgba(255,255,255,0.3); cursor:pointer; }
       .project-group:hover .has-letter { transform:translateY(-2px); box-shadow:inset 0 2px 0 rgba(255,255,255,1), 0 4px 10px rgba(255,255,255,0.4); }
-      @media (max-width:1024px) { .cinema-seats-container { transform:scale(0.85); transform-origin:top center; } }
-      @media (max-width:768px) { .cinema-seats-container { transform:scale(0.65); margin-left:-20px; } .cinema-actions { flex-direction:column; } }
+      @media (max-width:1024px) {
+        .cinema-seats-container { transform:scale(0.85); transform-origin:top center; }
+        .lab-project-brief { margin-bottom: 18px; }
+      }
+      @media (max-height:820px) and (min-width:1024px) {
+        #lab {
+          padding-top: 48px;
+          padding-bottom: 34px;
+        }
+        #lab .rule {
+          margin-bottom: 30px !important;
+        }
+        #current-project-desc {
+          font-size: clamp(15px, 1.2vw, 19px);
+          line-height: 1.22;
+        }
+        .lab-project-brief {
+          margin-bottom: 18px;
+        }
+        .cinema-paradise {
+          padding-bottom: 18px;
+        }
+        .cinema-paradise.is-wear-joy .wearjoy-preview {
+          width: clamp(150px, 10.5vw, 178px);
+        }
+        .cinema-paradise.is-wear-joy .cinema-seats-wrapper {
+          padding-top: 14px !important;
+          padding-bottom: 18px !important;
+        }
+        #lab #enter-lab-btn {
+          padding-top: 14px !important;
+          padding-bottom: 14px !important;
+        }
+      }
+      @media (max-width:768px) {
+        .cinema-seats-container { transform:scale(0.65); margin-left:-20px; }
+        .cinema-actions { flex-direction:column; }
+      }
     </style>
 
     <script>
@@ -1926,9 +2010,17 @@ button { font: inherit; }
         const screenImg = document.getElementById('cinema-screen-img');
         const screenGlow = document.getElementById('cinema-glow');
         const deviceWrapper = document.getElementById('device-wrapper');
+        const labScene = document.querySelector('.cinema-paradise');
         const projectName = document.getElementById('current-project-name');
+        const projectDesc = document.getElementById('current-project-desc');
+        const projectDescriptions = {
+          'ai-sharing': 'A curated hub for AI resources, tools, and learning notes.<br />Built to share useful references, workflows, and discoveries for anyone exploring AI.',
+          'wear-joy': 'An AI-powered wardrobe assistant for outfit planning and digital closet management.<br />Exploring daily styling recommendations through AI-assisted product design.'
+        };
         let activeProject = 'ai-sharing';
-        projectName.textContent = "Joy's AI Sharing";
+        if (labScene) labScene.classList.add('is-ai-sharing');
+        projectName.textContent = "AI Playground";
+        projectDesc.innerHTML = projectDescriptions[activeProject];
         screenGlow.style.background = 'radial-gradient(ellipse at top, rgba(216,180,109,0.3) 0%, transparent 60%)';
 
         document.querySelectorAll('.ai-sharing .has-letter').forEach(function(seat) {
@@ -1945,6 +2037,10 @@ button { font: inherit; }
               seat.style.backgroundColor = ''; seat.style.boxShadow = ''; seat.style.transform = '';
             });
             activeProject = projectClass;
+            if (labScene) {
+              labScene.classList.toggle('is-ai-sharing', projectClass === 'ai-sharing');
+              labScene.classList.toggle('is-wear-joy', projectClass === 'wear-joy');
+            }
             document.querySelectorAll('.' + activeProject + ' .has-letter').forEach(function(seat) {
               seat.style.backgroundColor = 'var(--gold)';
               seat.style.boxShadow = 'inset 0 2px 0 rgba(255,255,255,0.8), 0 4px 10px rgba(216,180,109,0.4)';
@@ -1952,7 +2048,9 @@ button { font: inherit; }
             });
             const img = group.getAttribute('data-img');
             const type = group.getAttribute('data-type');
-            projectName.textContent = projectClass === 'ai-sharing' ? "Joy's AI Sharing" : "Wear Joy";
+            projectName.textContent = projectClass === 'ai-sharing' ? "AI Playground" : "Wear Joy";
+            projectDesc.innerHTML = projectDescriptions[projectClass];
+            if (window.refreshSiteLanguage) window.refreshSiteLanguage();
             const enterLabBtn = document.getElementById('enter-lab-btn');
             enterLabBtn.href = projectClass === 'ai-sharing' ? 'https://jiojiojoy.info' : 'http://localhost:4173';
             const browserUrl = document.querySelector('.browser-url');
@@ -2469,55 +2567,69 @@ button { font: inherit; }
 </div>
 
 <script>
-// Scroll-linked ambient background video with eased seeking.
+// Mobile browsers handle paused-video seeking inconsistently, so touch devices
+// use an inline loop while desktop keeps the scroll-linked film effect.
 const video = document.getElementById('hero-video');
 if (video) {
   video.muted = true;
-  video.pause();
-  video.currentTime = 0;
+  const mobileBackground = matchMedia('(pointer: coarse)').matches || innerWidth <= 768;
 
-  let videoDuration = 15.09;
-  let maxScroll = 1;
-  let targetTime = 0;
-  let rafId = null;
+  if (mobileBackground) {
+    video.loop = true;
+    video.autoplay = true;
+    const playMobileBackground = () => {
+      const promise = video.play();
+      if (promise) promise.catch(() => {});
+    };
+    playMobileBackground();
+    document.addEventListener('touchstart', playMobileBackground, { once: true, passive: true });
+  } else {
+    video.pause();
+    video.currentTime = 0;
 
-  function updateScrollBounds() {
-    const endEl = document.getElementById('contact') || document.body;
-    const endY = endEl.offsetTop + endEl.offsetHeight - window.innerHeight;
-    maxScroll = Math.max(1, endY);
-  }
+    let videoDuration = 15.09;
+    let maxScroll = 1;
+    let targetTime = 0;
+    let rafId = null;
 
-  function updateTargetTime() {
-    const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-    targetTime = progress * videoDuration;
-    if (!rafId) rafId = requestAnimationFrame(seekTowardTarget);
-  }
-
-  function seekTowardTarget() {
-    const diff = targetTime - video.currentTime;
-    if (Math.abs(diff) > 0.025) {
-      video.currentTime += diff * 0.18;
-      rafId = requestAnimationFrame(seekTowardTarget);
-    } else {
-      video.currentTime = targetTime;
-      rafId = null;
+    function updateScrollBounds() {
+      const endEl = document.getElementById('contact') || document.body;
+      const endY = endEl.offsetTop + endEl.offsetHeight - window.innerHeight;
+      maxScroll = Math.max(1, endY);
     }
+
+    function updateTargetTime() {
+      const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+      targetTime = progress * videoDuration;
+      if (!rafId) rafId = requestAnimationFrame(seekTowardTarget);
+    }
+
+    function seekTowardTarget() {
+      const diff = targetTime - video.currentTime;
+      if (Math.abs(diff) > 0.025) {
+        video.currentTime += diff * 0.18;
+        rafId = requestAnimationFrame(seekTowardTarget);
+      } else {
+        video.currentTime = targetTime;
+        rafId = null;
+      }
+    }
+
+    function initScrollVideo() {
+      videoDuration = video.duration || videoDuration;
+      updateScrollBounds();
+      updateTargetTime();
+    }
+
+    if (video.readyState >= 1) initScrollVideo();
+    else video.addEventListener('loadedmetadata', initScrollVideo, { once: true });
+
+    window.addEventListener('scroll', updateTargetTime, { passive: true });
+    window.addEventListener('resize', function () {
+      updateScrollBounds();
+      updateTargetTime();
+    }, { passive: true });
   }
-
-  function initScrollVideo() {
-    videoDuration = video.duration || videoDuration;
-    updateScrollBounds();
-    updateTargetTime();
-  }
-
-  if (video.readyState >= 1) initScrollVideo();
-  else video.addEventListener('loadedmetadata', initScrollVideo, { once: true });
-
-  window.addEventListener('scroll', updateTargetTime, { passive: true });
-  window.addEventListener('resize', function () {
-    updateScrollBounds();
-    updateTargetTime();
-  }, { passive: true });
 }
 
 const credits = [
@@ -2602,7 +2714,7 @@ if (window.gsap && window.ScrollTrigger && document.querySelector('#film-strip')
         </div>
       </div>
       <a class="tvc-detail-link" id="tvc-modal-link" href="#" target="_blank" rel="noopener">
-        观看视频 ↗
+        Watch Video ↗
       </a>
     </div>
   </div>
@@ -2919,8 +3031,13 @@ var players = document.querySelectorAll('.phone-player');
     'Language: KR': '语言：韩语',
     'Language: BR': '语言：葡萄牙语',
     'Watch on YouTube ↗': '在 YouTube 观看 ↗',
+    'Watch Video ↗': '观看视频 ↗',
     'Creative experiments and vibe-coded projects.': '创意实验与氛围编程项目。',
     'SHOWCASE': '项目展示',
+    'A curated hub for AI resources, tools, and learning notes.': '一个整理 AI 资源、工具与学习笔记的分享空间。',
+    'Built to share useful references, workflows, and discoveries for anyone exploring AI.': '分享实用参考、工作流，以及我在探索 AI 过程中的发现。',
+    'An AI-powered wardrobe assistant for outfit planning and digital closet management.': '一个用于穿搭规划与数字衣橱管理的 AI 衣橱助手。',
+    'Exploring daily styling recommendations through AI-assisted product design.': '通过 AI 辅助产品设计，探索每日个性化搭配建议。',
     'Projects': '项目',
     'Developing': '开发中',
     'Enter Lab': '进入实验室',
@@ -2962,8 +3079,7 @@ var players = document.querySelectorAll('.phone-player');
   );
   const skipTags = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'IFRAME', 'SVG']);
   const toggle = document.getElementById('language-toggle');
-  let currentLanguage = localStorage.getItem('site-language') ||
-    (navigator.language && navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en');
+  let currentLanguage = 'en';
 
   function translateNode(node, language) {
     if (!originalText.has(node)) {
@@ -2981,9 +3097,7 @@ var players = document.querySelectorAll('.phone-player');
   function applyLanguage(language) {
     currentLanguage = language;
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-    document.title = language === 'zh'
-      ? 'JioJioJoy · 内容创作者、数据洞察者、AI 构建者'
-      : 'JioJioJoy · Content maker. Data reader. AI builder.';
+    document.title = 'JioJioJoy';
 
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
@@ -2997,7 +3111,6 @@ var players = document.querySelectorAll('.phone-player');
 
     toggle.textContent = language === 'zh' ? 'EN' : '中文';
     toggle.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
-    localStorage.setItem('site-language', language);
   }
 
   window.translateSiteText = function (text) {

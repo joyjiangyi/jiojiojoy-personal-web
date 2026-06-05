@@ -1699,45 +1699,11 @@ button { font: inherit; }
               </div>
             </div>
 
-            <!-- Mobile: Wear Joy already renders its own phone shell -->
+            <!-- Mobile: Wear Joy project preview -->
             <div id="wearvjoy-phone" style="display:none; flex-direction:column; align-items:center; gap:16px;">
               <div class="wearjoy-preview">
                 <div class="lab-iphone-screen">
-                  <div class="wearjoy-static-screen" aria-label="Wear Joy app preview">
-                    <div class="wearjoy-static-top">
-                      <span>☰</span>
-                      <strong>WEAR JOY</strong>
-                      <span>☺</span>
-                    </div>
-                    <div class="wearjoy-static-weather">
-                      <div><span>Shanghai</span><strong>24°C</strong></div>
-                      <p>Clear and breezy<br />ideal for light layers.</p>
-                    </div>
-                    <div class="wearjoy-static-schedule">
-                      <span>10:00 Outdoor brunch</span>
-                      <span>14:30 Creative meeting</span>
-                    </div>
-                    <div class="wearjoy-static-title">
-                      <span>Today’s Outfit</span>
-                      <small>OOTD_0924</small>
-                    </div>
-                    <div class="wearjoy-outfit-card">
-                      <div class="wearjoy-paper paper-a"></div>
-                      <div class="wearjoy-paper paper-b"></div>
-                      <div class="wearjoy-cloth top"></div>
-                      <div class="wearjoy-cloth coat"></div>
-                      <div class="wearjoy-cloth pants"></div>
-                      <div class="wearjoy-shoe"></div>
-                      <button type="button">Details</button>
-                    </div>
-                    <div class="wearjoy-static-title wardrobe">
-                      <span>Digital Wardrobe</span>
-                      <small>Style analysis</small>
-                    </div>
-                    <div class="wearjoy-closet-grid">
-                      <span></span><span></span><span></span><span></span>
-                    </div>
-                  </div>
+                  <iframe id="wearvjoy-iframe" src="https://joyjiangyi.github.io/WearJoy/?embed=1" title="Wear Joy app preview" style="width:430px;height:932px;border:none;transform-origin:top left;display:block;"></iframe>
                 </div>
               </div>
             </div>
@@ -1854,7 +1820,7 @@ button { font: inherit; }
       .lab-iphone-screen {
         width: 100%;
         aspect-ratio: 430 / 932;
-        background: #f8f5ef; border-radius: inherit; overflow: hidden; position: relative;
+        background: transparent; border-radius: 31px; overflow: hidden; position: relative;
       }
       .lab-iphone-screen iframe {
         position: absolute; top: 0; left: 0;
@@ -2258,12 +2224,13 @@ button { font: inherit; }
             projectName.textContent = projectClass === 'ai-sharing' ? "AI Playground" : "Wear Joy";
             projectDesc.innerHTML = projectDescriptions[projectClass];
             const enterLabBtn = document.getElementById('enter-lab-btn');
-            enterLabBtn.href = projectClass === 'ai-sharing' ? 'https://jiojiojoy.info' : '#lab';
-            enterLabBtn.textContent = projectClass === 'ai-sharing' ? 'Enter Lab' : 'Preview Only';
+            enterLabBtn.href = projectClass === 'ai-sharing' ? 'https://jiojiojoy.info' : 'https://joyjiangyi.github.io/WearJoy/?embed=1';
+            enterLabBtn.textContent = 'Enter Lab';
             if (window.refreshSiteLanguage) window.refreshSiteLanguage();
             const browserUrl = document.querySelector('.browser-url');
             const cinemaIframe = document.getElementById('cinema-iframe');
             const wearjoyPhone = document.getElementById('wearvjoy-phone');
+            const wearjoyIframe = document.getElementById('wearvjoy-iframe');
             // fade out
             deviceWrapper.style.opacity = '0';
             if (wearjoyPhone) wearjoyPhone.style.opacity = '0';
@@ -2277,6 +2244,23 @@ button { font: inherit; }
                 deviceWrapper.style.display = 'none';
                 if (wearjoyPhone) {
                   wearjoyPhone.style.display = 'flex';
+                  var screen = wearjoyPhone.querySelector('.lab-iphone-screen');
+                  if (screen && wearjoyIframe) {
+                    var sw = screen.offsetWidth;
+                    var sourceCanvasWidth = 430;
+                    var sourceCanvasHeight = 932;
+                    var phoneX = 0;
+                    var phoneY = 0;
+                    var phoneWidth = 430;
+                    var phoneHeight = 932;
+                    var scale = sw / phoneWidth;
+                    screen.style.height = (phoneHeight * scale) + 'px';
+                    wearjoyIframe.style.width = sourceCanvasWidth + 'px';
+                    wearjoyIframe.style.height = sourceCanvasHeight + 'px';
+                    wearjoyIframe.style.left = (-phoneX * scale) + 'px';
+                    wearjoyIframe.style.top = (-phoneY * scale) + 'px';
+                    wearjoyIframe.style.transform = 'scale(' + scale + ')';
+                  }
                   setTimeout(function() { wearjoyPhone.style.opacity = '1'; }, 50);
                 }
               }

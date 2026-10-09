@@ -1,7 +1,7 @@
 # JioJioJoy Personal Website — Project Handoff
 
-Last updated: 2026-05-31 CST  
-Project path: `/Users/netjoy/Library/Mobile Documents/iCloud~md~obsidian/Documents/JioJio's Obsidian/03-VibeCoding/personal-website`  
+Last updated: 2026-08-03 CST
+Project path: `/Users/netjoy/Library/Mobile Documents/com~apple~CloudDocs/04 By-Work/自媒体视频/jiojiojoy-personal-web`
 Main file: `index.html` (single-file, Tailwind CDN + GSAP + ScrollTrigger)
 
 ---
@@ -29,7 +29,7 @@ Main file: `index.html` (single-file, Tailwind CDN + GSAP + ScrollTrigger)
 Python's SimpleHTTP does not support HTTP Range requests → video seeking fails → scroll scrub breaks.
 
 ```bash
-cd "03-VibeCoding/personal-website" && npx serve . --listen 8765
+cd "/Users/netjoy/Library/Mobile Documents/com~apple~CloudDocs/04 By-Work/自媒体视频/jiojiojoy-personal-web" && npx serve . --listen 8765
 ```
 
 ### Section Structure (9 pages)
@@ -86,12 +86,22 @@ cd "03-VibeCoding/personal-website" && npx serve . --listen 8765
 - User will add video content inside `.phone-screen-v2` divs
 
 #### P7 · AI Lab (`#lab`)
-- Subtitle: "Self-built AI projects and open-source skills."
-- Two ticket-shaped cards (cinema ticket aesthetic, circular notches, dashed divider)
-  - Ticket 1: AI Sharing (Web App, 2025.10)
-  - Ticket 2: Joyce Ware (Vibe Coded, 2025.10)
-- Preview area: placeholder gradients (user to add real screenshots)
-- Bottom links: Claude Skills / GitHub / Open Source Tools (all `#`, pending)
+- Featured cinema showcase with two interactive projects:
+  - AI Playground (live iframe)
+  - SpongeBob Workspace (static preview + GitHub link)
+- Vibe Coding Project Archive synced on 2026-08-03 with 10 entries:
+  - Video Cards Studio
+  - Social Video Workflow
+  - SpongeBob Workspace
+  - Video Explainer Panel Studio
+  - Joy Cover Studio
+  - Social Media Picture Playground
+  - Animation Slides
+  - Video Card
+  - Shengqian Skill
+  - AI Playground
+- Archive links public GitHub repositories and labels local-only work as `Preview Only`.
+- Responsive layout: 3 columns on desktop, 2 on tablet, 1 on mobile.
 
 #### P8 · Influencer (`#influencer`)
 - Subtitle: "Sharing what I build and learn, in public."
@@ -149,9 +159,7 @@ Any new background video must be:
 - [ ] TVC video links (all 7 currently `#`)
 - [ ] iPad/phone mockup real screenshots
 - [ ] Film strip (Influencer) real video frames
-- [ ] AI Lab ticket preview screenshots
 - [ ] Social media links (小红书/哔哩哔哩/抖音)
-- [ ] AI Lab external links (Claude Skills, GitHub, Open Source Tools)
 - [ ] Film section poster-5 label: fix "Production Crew" → "制片助理"
 
 ---

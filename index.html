@@ -799,7 +799,7 @@ button { font: inherit; }
 /* Phone mockups for Global section */
 
 
-    
+
     /* Influencer portrait: dark by default, original on hover */
     .influencer-photo {
       filter: grayscale(30%) brightness(0.45);
@@ -818,7 +818,7 @@ button { font: inherit; }
       filter: grayscale(0%) brightness(1) drop-shadow(0 20px 35px rgba(0,0,0,0.4));
     }
 
-    /* ── AI Lab ticket cards ── */
+    /* ── AI Tools ticket cards ── */
 .ticket-stack { display:flex; flex-direction:column; gap:0; }
 .ai-ticket {
   position: relative;
@@ -1177,6 +1177,7 @@ button { font: inherit; }
   .flow-card { width: 100%; max-width: 280px; }
 }
 </style>
+<link rel="stylesheet" href="preview-global.css?v=20261014">
 </head>
 <body>
 <div class="ambient" aria-hidden="true">
@@ -1187,21 +1188,10 @@ button { font: inherit; }
 <div class="grain" aria-hidden="true"></div>
 
 <header class="fixed inset-x-0 top-0 z-30 px-5 py-4 md:px-8">
-  <nav class="mx-auto grid max-w-[1480px] grid-cols-[1fr_auto] items-center gap-4 text-[10px] uppercase tracking-[.22em] text-white/70 md:grid-cols-[1fr_auto_1fr]">
-    <a href="#top" class="font-semibold">JioJioJoy</a>
-    <div class="hidden items-center gap-7 md:flex">
-      <a href="#overview" class="hover:text-[var(--gold)]">Overview</a>
-      <a href="#film" class="hover:text-[var(--gold)]">Film</a>
-      <a href="#commercial" class="hover:text-[var(--gold)]">Commercial Reel</a>
-      <a href="#feeds" class="hover:text-[var(--gold)]">Global</a>
-      <a href="#lab" class="hover:text-[var(--gold)]">AI Lab</a>
-      <a href="#influencer" class="hover:text-[var(--gold)]">Influencer</a>
-    </div>
-    <div class="justify-self-end flex items-center gap-2">
-      <button id="language-toggle" class="border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] uppercase tracking-[.18em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;" type="button" aria-label="切换语言">中文</button>
-      <button id="contact-btn" class="hidden border border-white/20 px-3 py-2 hover:border-[var(--gold)] hover:text-[var(--gold)] md:inline-flex uppercase tracking-[.22em] text-[10px]" style="background:transparent;color:rgba(248,239,227,.7);cursor:pointer;">Contact</button>
-    </div>
-  </nav>
+  <nav class="cinema-header" aria-label="Main navigation"><a class="cinema-wordmark" href="#top">JIOJIOJOY</a><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button><div class="nav-ticket" id="nav-ticket" hidden>
+<div class="ticket-main"><button type="button" class="ticket-current" id="chapter-picker" aria-expanded="false" aria-controls="chapter-popover"><span id="chapter-icon" class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><span><small>NOW SHOWING</small><strong id="chapter-current-label">INTRO</strong></span><span class="ticket-chevron" aria-hidden="true">⌄</span></button><button type="button" id="ticket-menu" class="ticket-menu" aria-label="Open chapter menu" aria-expanded="false" aria-controls="chapter-popover"><span></span><span></span><span></span></button></div>
+<div class="ticket-meta"><span id="chapter-position">01 / 09</span><button type="button" id="contact-btn">CONTACT ↗</button></div>
+<div id="chapter-popover" class="chapter-popover" hidden><p class="ticket-menu-label">SELECT A CHAPTER</p><a href="#top" class="chapter-option" data-chapter="top"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 11 8-7 8 7v9h-6v-6h-4v6H4z"/></svg></span><span class="chapter-label">Intro</span><small>01</small></a><a href="#origin" class="chapter-option" data-chapter="origin"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5zM6 11v6c4 3 8 3 12 0v-6M22 9v8"/></svg></span><span class="chapter-label">Beijing Film Academy</span><small>02</small></a><a href="#overview" class="chapter-option" data-chapter="overview"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></span><span class="chapter-label">Overview</span><small>03</small></a><a href="#influencer" class="chapter-option" data-chapter="influencer"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><span class="chapter-label">Personal IP</span><small>04</small></a><a href="#lab" class="chapter-option" data-chapter="lab"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/></svg></span><span class="chapter-label">AI Tools</span><small>05</small></a><a href="#feeds" class="chapter-option" data-chapter="feeds"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><span class="chapter-label">Global</span><small>06</small></a><a href="#commercial" class="chapter-option" data-chapter="commercial"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 16-4v15L4 14zM4 7H2v7h2m3 1 2 6h4l-2-5M20 8h2v5h-2"/></svg></span><span class="chapter-label">TVC</span><small>07</small></a><a href="#film" class="chapter-option" data-chapter="film"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4m-4 8h4M17 8h4m-4 8h4"/></svg></span><span class="chapter-label">Film</span><small>08</small></a><a href="#contact" class="chapter-option" data-chapter="contact"><span class="chapter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="chapter-label">Contact</span><small>09</small></a><div class="ticket-project-links"><p class="ticket-menu-label">GLOBAL / PROJECTS</p><a href="#global-social" data-open-project="global-social">01 · Social Channel <span>↗</span></a><a href="#global-smb" data-open-project="global-smb">02 · Performance Creative <span>↗</span></a></div></div></div></div></nav>
 
   <!-- ── Contact Drop Popup ── -->
   <div id="contact-popup" style="
@@ -1272,27 +1262,7 @@ button { font: inherit; }
           <img src="assets/jiojoy-logo-white.png?v=1" alt="JioJoy logo"
             style="width:min(260px,36vw);"
             data-reveal style="--d:.05" />
-          <a href="#overview" class="inline-flex border-b border-[var(--gold)] pb-2 text-[10px] uppercase tracking-[.24em] text-[var(--gold)]" data-reveal style="--d:.18">Enter ↓</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="overview" class="section">
-    <div class="section-inner">
-      <div class="overview-stmt" data-reveal>
-        <p>Trained in cinema. Tested in global operations.</p>
-        <p>Now building content systems for markets that don't slow down.</p>
-        <p class="accent">Film school instinct, platform signals, AI as the accelerant.</p>
-      </div>
-      <div class="overview-bottom" data-reveal style="--d:.1">
-        <div><!-- empty left column --></div>
-        <div>
-          <a href="#film" class="dir-row"><span class="dir-num">01</span><span class="dir-label">Film</span></a>
-          <a href="#commercial" class="dir-row"><span class="dir-num">02</span><span class="dir-label">Commercial Reel</span></a>
-          <a href="#feeds" class="dir-row"><span class="dir-num">03</span><span class="dir-label">Global</span></a>
-          <a href="#lab" class="dir-row"><span class="dir-num">04</span><span class="dir-label">AI Lab</span></a>
-          <a href="#influencer" class="dir-row"><span class="dir-num">05</span><span class="dir-label">Influencer</span></a>
+          <a href="#origin" class="inline-flex border-b border-[var(--gold)] pb-2 text-[10px] uppercase tracking-[.24em] text-[var(--gold)]" data-reveal style="--d:.18">Enter ↓</a>
         </div>
       </div>
     </div>
@@ -1316,349 +1286,443 @@ button { font: inherit; }
     </div>
   </section>
 
-  <section id="film" class="section">
-    <div class="section-inner" style="position:relative;">
-      <div class="rule mb-12 pt-5" data-reveal>
-        <p class="eyebrow">Film</p>
-        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Short films, series, and festival credits — production from set to screen.</p>
+  <section id="overview" class="section">
+    <div class="section-inner">
+      <div class="overview-stmt" data-reveal>
+        <p>Trained in cinema. Tested in global operations.</p>
+        <p>Now building content systems for markets that don't slow down.</p>
+        <p class="accent">Film school instinct, platform signals, AI as the accelerant.</p>
       </div>
-
-      <div class="film-carousel-wrap" data-reveal>
-        <!-- Carousel -->
-        <div class="film-carousel" id="film-carousel">
-
-          <div class="poster-card"
-            data-year="2021"
-            data-role="Short Film · 制片助理"
-            data-title="Cinema by the Sea《海边电影》"
-            data-recognition='[]'
-            data-awards='["Beijing Film Academy"]'>
-            <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
-          </div>
-
-          <div class="poster-card"
-            data-year="2021"
-            data-role="Documentary · Production Manager"
-            data-title="Xu Ziran Biography《徐自然传》"
-            data-link="https://www.xinpianchang.com/a12646082?searchKw=%E5%BE%90%E8%87%AA%E7%84%B6%E4%BC%A0&amp;from=search_post"
-            data-recognition='["Official Selection · Zhejiang Golden Roc Film Festival"]'
-            data-awards='["Beijing Film Academy"]'>
-            <img src="assets/posters/poster-4.png" alt="Xu Ziran Biography" />
-          </div>
-
-          <div class="poster-card"
-            data-year="2022"
-            data-role="Short Film · Production Manager"
-            data-title="My Long Hair《我的长发》"
-            data-link="https://cathayplay.com/films/a-haircut/"
-            data-recognition='["30th Beijing College Student Film Festival · International Student Original Film Selection","17th Cyprus International Film Festival “Golden Aphrodite” · Official Selection","2nd Youality International Short Film Festival · World Peace Award","3rd Uruvatti International Film Festival · Best International Short Film","2022 Shanghai International Short Film Week · SHISW Short Awards Official Selection"]'
-            data-awards='["Beijing Film Academy"]'>
-            <img src="assets/posters/poster-1.png" alt="My Long Hair" />
-          </div>
-
-          <div class="poster-card"
-            data-year="2023"
-            data-role="Short Film · Production Manager"
-            data-title="Bitter Buckwheat《苦荞麦》"
-            data-recognition='[]'
-            data-awards='["Beijing Film Academy"]'>
-            <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
-          </div>
-
-          <div class="poster-card"
-            data-year="2023"
-            data-role="Web Series · Executive Producer"
-            data-title="Dear Passenger《亲爱的乘客》"
-            data-link="https://v.qq.com/x/cover/mzc00200kai0xqf/i0045yubg8r.html"
-            data-recognition='[]'
-            data-awards='["Tencent Video · 19 episodes"]'>
-            <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
-          </div>
-
-        </div>
-
-        <!-- Info panel -->
-        <div class="film-carousel-info" id="film-carousel-info">
-          <p class="fci-year" id="fci-year"></p>
-          <p class="fci-role" id="fci-role"></p>
-          <h3 class="fci-title" id="fci-title"></h3>
-          <div class="fci-meta-line">
-            <div class="fci-awards" id="fci-awards"></div>
-            <a class="fci-link" id="fci-link" href="#" target="_blank" rel="noopener">Watch Video ↗</a>
-          </div>
-        </div>
-
-        <!-- Nav -->
-        <div class="film-carousel-nav">
-          <button class="carousel-btn" id="carousel-prev">←</button>
-          <button class="carousel-btn" id="carousel-next">→</button>
+      <div class="overview-bottom" data-reveal style="--d:.1">
+        <div><!-- empty left column --></div>
+        <div>
+<a href="#influencer" class="dir-row"><span class="dir-num">01</span><span class="dir-label">Personal IP</span></a><a href="#lab" class="dir-row"><span class="dir-num">02</span><span class="dir-label">AI Tools</span></a><a href="#feeds" class="dir-row"><span class="dir-num">03</span><span class="dir-label">Global</span></a><a href="#commercial" class="dir-row"><span class="dir-num">04</span><span class="dir-label">TVC</span></a><a href="#film" class="dir-row"><span class="dir-num">05</span><span class="dir-label">Film</span></a>
         </div>
       </div>
-
-      <aside class="film-awards-panel" aria-label="Awards for selected film" data-reveal style="--d:.16">
-        <p class="film-awards-kicker">Award</p>
-        <div class="film-awards-list" id="film-awards-list"></div>
-      </aside>
-
     </div>
   </section>
 
-  <section id="commercial" class="section overflow-hidden">
+<section id="influencer" class="section">
     <div class="section-inner">
 
-      <!-- Header: same format as Film page -->
+      <!-- Header -->
       <div class="rule mb-12 pt-5" data-reveal>
-        <p class="eyebrow">Commercial Reel</p>
-        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">A selection of commercial TVC productions with top brands and artists.</p>
+        <p class="eyebrow">Personal IP</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7;">Personal content creation — knowledge management, AI workflows &amp; second brain.</p>
       </div>
 
-      <!-- Film machine: canister at TOP, strip below -->
-      <div data-reveal>
-        <div class="tvc-reel-container" style="overflow:hidden;">
-          <div class="tvc-marquee-wrap">
-            <div class="tvc-marquee">
-              <!-- Set A -->
-              <div class="tvc-photo-set">
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="Meituan × Liu Yifei" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
-                </div>
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="Meituan Hotpot" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
-                </div>
-                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="Alipay+ × Zheng Qinwen" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
-                </div>
-                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="COGI" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
-                </div>
-                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="KFC × Lu Han" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
-                </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="优酸乳 × 吴镇宇" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
-                </div>
-                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="神州租车 × 张颂文" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
-                </div>
-                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="BYD Yangwang U7" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
-                </div>
-                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="JD Fashion" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
-                </div>
-                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="League of Legends Wild Rift × Zhao Lusi" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
-                </div>
-                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="Nutrilite × Jike Junyi" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
-                </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="Yili YouSuanRu × Teens in Times" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
-                </div>
-                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="CF Mobile × Louis Koo and Lin Gengxin" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
-                </div>
-                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="GUCCI × He Sui" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
-                </div>
-                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="GUCCI × Song Jia" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
-                </div>
-              </div>
-              <!-- Set B: duplicate for seamless loop -->
-              <div class="tvc-photo-set" aria-hidden="true">
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
-                </div>
-                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
-                </div>
-                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
-                </div>
-                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
-                </div>
-                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
-                </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
-                </div>
-                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
-                </div>
-                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
-                </div>
-                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
-                </div>
-                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
-                </div>
-                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
-                </div>
-                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
-                </div>
-                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
-                </div>
-                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
-                </div>
-                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="" /></div>
-                  <div class="tvc-sprocket-bar"></div>
-                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
-                </div>
-              </div>
+      <!-- 2-Column Grid -->
+      <div style="display:grid; grid-template-columns: 240px 1fr; gap: 64px; align-items: start; margin-top: 48px; margin-left: auto; margin-right: auto; max-width: 960px;" data-reveal class="max-lg:grid-cols-1">
+
+        <!-- ── LEFT: Photo & Links ── -->
+        <div style="display:flex; flex-direction:column; gap:28px; align-items:center;">
+
+          <!-- Portrait Photo -->
+          <div style="width:100%; border-radius:6px;">
+            <img src="assets/cover.png" alt="Joy" class="influencer-photo" style="width:100%; display:block; border-radius:6px;">
+          </div>
+
+          <!-- Platform Links — 一排 + @handle -->
+          <div style="width:90%; font-family:var(--font-sans); text-align:center;">
+            <div style="font-size:13px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.75);">
+              <a href="https://www.xiaohongshu.com/user/profile/5e54a7480000000001009d28" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Xiaohongshu</a>&nbsp;/&nbsp;<a href="https://space.bilibili.com/179368823?spm_id_from=333.1007.0.0" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Bilibili</a>&nbsp;/&nbsp;<a href="https://www.douyin.com/user/self?from_tab_name=main&amp;showTab=like" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Douyin</a>
+            </div>
+            <div style="margin-top:8px; font-size:16px; font-weight:600; color:rgba(255,255,255,0.6); letter-spacing:0.06em;">
+              @JioJioJoy
             </div>
           </div>
         </div>
 
+        <!-- ── RIGHT: 3 Vertical Tickets ── -->
+        <div style="display:flex; flex-wrap:nowrap; gap:48px; overflow-x:visible; padding: 12px 0 24px 0;">
 
-      </div>
+          <!-- Ticket 1 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1Er2CBTENV/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
 
-      <div class="mt-10 flex justify-center" data-reveal>
-        <button id="open-credits" class="border border-white/25 px-5 py-4 text-[10px] uppercase tracking-[.24em] text-white/72 transition hover:border-[var(--gold)] hover:text-[var(--gold)]" type="button">View all commercial credits</button>
-      </div>
-    </div>
-  </section>
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-1">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-1" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-1)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-1)" />
+            </svg>
 
-  <section id="feeds" class="section">
-    <div class="section-inner">
-      <div class="rule mb-12 pt-5" data-reveal>
-        <p class="eyebrow">Global</p>
-        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Selected works from overseas content operations.</p>
-      </div>
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
 
-      <div class="creative-flow" data-reveal>
-        <div class="flow-card">
-          <div class="phone-v2"><div class="phone-screen-v2 phone-player">
-            <div class="dynamic-island"></div>
-            <iframe src="https://www.youtube.com/embed/i1BdPs9yRIw?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div></div>
-          <div class="flow-label">Wish Queue Mode<br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=i1BdPs9yRIw" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
-        </div>
-        <div class="flow-card">
-          <div class="phone-v2"><div class="phone-screen-v2 phone-player">
-            <div class="dynamic-island"></div>
-            <iframe src="https://www.youtube.com/embed/uu6jF_wKwFE?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div></div>
-          <div class="flow-label">League Match<br><span>Language: KR</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=uu6jF_wKwFE" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
-        </div>
-        <div class="flow-card">
-          <div class="phone-v2"><div class="phone-screen-v2 phone-player">
-            <div class="dynamic-island"></div>
-            <iframe src="https://www.youtube.com/embed/hzBnMHjZ7Kg?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div></div>
-          <div class="flow-label" style="position:relative;z-index:10;"><a href="https://www.tiktok.com/@tiktok_promote_official?_t=ZN-8zvd2DG31aI&amp;_r=1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);">@tiktok_promote_official</a><br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=hzBnMHjZ7Kg" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
-        </div>
-        <div class="flow-card">
-          <div class="phone-v2"><div class="phone-screen-v2 phone-player">
-            <div class="dynamic-island"></div>
-            <iframe src="https://www.youtube.com/embed/mrJ3VB9u0II?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div></div>
-          <div class="flow-label">TikTok AIGC<br><span>Language: BR</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=mrJ3VB9u0II" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
-        </div>
-        <div class="flow-card">
-          <div class="phone-v2"><div class="phone-screen-v2 phone-player">
-            <div class="dynamic-island"></div>
-            <iframe src="https://www.youtube.com/embed/BJGieLTN9SU?autoplay=0&controls=1&rel=0&modestbranding=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block;pointer-events:auto;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div></div>
-          <div class="flow-label">Promote Social Channel<br><span>Language: EN</span><a class="flow-watch-link" href="https://www.youtube.com/watch?v=BJGieLTN9SU" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
-        </div>
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202601</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    01
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">当知识遇上 AI，知识管理进入自动化时代 ⚡</h3>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-1.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-1.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        WATCH VIDEO<br>ON BILIBILI
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+
+
+
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
+            </div>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">01</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-1">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-1" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-1)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-1)" />
+            </svg>
+          </div>
+
+
+          <!-- Ticket 2 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1WWQKBQENH/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
+
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-2">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-2" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-2)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-2)" />
+            </svg>
+
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
+
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202602</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    02
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">我如何用 Obsidian+AI<br>复刻 Karpathy 笔记法</h3>
+                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-2.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-2.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        WATCH VIDEO<br>ON BILIBILI
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+
+
+
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
+            </div>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">02</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-2">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-2" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-2)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-2)" />
+            </svg>
+          </div>
+
+
+          <!-- Ticket 3 -->
+          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1NeXrBdEGr/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
+
+            <!-- TOP SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-top-3">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-top-3" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="0" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-top-3)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-3)" />
+            </svg>
+
+            <!-- TICKET BODY -->
+            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
+              <!-- Outer border -->
+              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
+                <!-- Inner thin border using outline or box-shadow -->
+                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
+
+                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
+                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
+
+                  <!-- Top Row -->
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
+                    <span style="letter-spacing:0.05em;">NO. 202603</span>
+                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
+                  </div>
+
+                  <!-- Number -->
+                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
+                    03
+                  </div>
+
+                  <!-- Titles -->
+                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
+                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">AI 主题研究<br>自动化工作流<br>【省 Token 版】</h3>
+                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
+                  </div>
+
+                  <!-- Image Placeholder (Cover) -->
+                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    <img src="assets/ticket-cover-3.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
+                  </div>
+
+                  <!-- Scan Section -->
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <!-- Fake QR Code -->
+                      <img src="assets/qr-3.png" alt="QR" style="width:36px;height:36px;">
+                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                        WATCH VIDEO<br>ON BILIBILI
+                      </div>
+                    </div>
+                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
+                      STORIES<br>SYSTEMS<br>SIGNALS
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PERFORATION BAND -->
+            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
+               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
+                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
+               </div>
+               <!-- Half circle cutouts on left/right edges of the red band -->
+
+
+
+               <!-- A very thin perforated line above the band -->
+               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
+            </div>
+
+            <!-- BOTTOM STUB -->
+            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
+              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
+                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
+
+                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
+                   <!-- Barcode -->
+                   <div style="height:36px; display:flex;">
+                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
+                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
+                     </svg>
+                   </div>
+
+                   <!-- Dotted divider -->
+                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
+
+                   <!-- TICKET NO & 01 -->
+                   <div style="display:flex; align-items:flex-end; gap:8px;">
+                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
+                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">03</span>
+                   </div>
+
+                   <!-- CONTENT PASS -->
+                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
+                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
+                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                       <span>JIOJIOJOY</span>
+                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM SCALLOP EDGE -->
+            <svg width="100%" height="6" style="display:block;">
+              <defs>
+                <mask id="mask-bot-3">
+                  <rect width="100%" height="6" fill="white" />
+                  <pattern id="holes-bot-3" width="12" height="6" patternUnits="userSpaceOnUse">
+                    <circle cx="6" cy="6" r="3" fill="black" />
+                  </pattern>
+                  <rect width="100%" height="6" fill="url(#holes-bot-3)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-3)" />
+            </svg>
+          </div>
+
+        </div></div>
+
       </div>
 
     </div>
@@ -1667,11 +1731,11 @@ button { font: inherit; }
   <section id="lab" class="section" style="display:flex; flex-direction:column;">
     <div class="section-inner" style="max-width: 1200px; margin: 0 auto; width:100%;">
       <div class="rule mb-12 pt-5" data-reveal>
-        <p class="eyebrow">AI Lab</p>
+        <p class="eyebrow">AI Tools</p>
         <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,0.5); line-height:1.7;">Creative experiments and vibe-coded projects.</p>
       </div>
 
-      <div class="cinema-paradise" data-reveal>
+<div class="cinema-paradise" data-reveal>
         <div class="lab-project-brief">
           <div class="lab-project-kicker">
             <span>SHOWCASE</span>
@@ -1761,7 +1825,7 @@ button { font: inherit; }
 
       </div>
 
-      <div class="lab-archive" data-reveal>
+      <details class="archive-disclosure"><summary><span class="copy-en">Explore the project archive</span><span class="copy-zh">展开更多 AI 项目</span> <span>10 PROJECTS ＋</span></summary><div class="lab-archive" data-reveal>
         <div class="lab-archive-header">
           <div>
             <p class="lab-archive-kicker">Project Archive</p>
@@ -1854,7 +1918,7 @@ button { font: inherit; }
             <div class="lab-card-footer"><span>Knowledge Hub</span><span class="lab-card-link">Open project ↗</span></div>
           </a>
         </div>
-      </div>
+      </div></details>
     </div>
 
     <div style="margin-top:auto; padding: 0 clamp(20px,4vw,56px) clamp(40px,5vh,60px); width:100%; max-width:calc(1200px + clamp(40px,8vw,112px)); margin-left:auto; margin-right:auto; box-sizing:border-box;">
@@ -2171,6 +2235,7 @@ button { font: inherit; }
       }
     </style>
 
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Scale iframe to fit viewport container
@@ -2261,434 +2326,317 @@ button { font: inherit; }
     </script>
   </section>
 
+  <section id="feeds" class="section global-section">
+<div class="section-inner">
+<div class="global-chapter-line"><p class="eyebrow">GLOBAL / SELECTED PROJECTS</p><span>NETJOY × TIKTOK PROMOTE</span></div><div class="global-brief"><p><span class="copy-en">Overseas Operations Case Studies</span><span class="copy-zh">海外运营案例</span></p><span><span class="copy-en">SELECT A PROJECT TO EXPLORE ↓</span><span class="copy-zh">点击项目，展开作品与成果 ↓</span></span></div><details id="global-social" class="project-shell"><summary class="project-cover"><div class="project-heading"><div><p class="eyebrow">TIKTOK PROMOTE · SOCIAL CHANNEL</p><h3><span class="copy-en">Official Social Channels<br><em>Content & Audience Growth</em></span><span class="copy-zh">海外官方账号<br><em>内容与用户增长</em></span></h3></div><div class="project-summary"><p><span class="copy-en">Promote is TikTok’s in-app paid promotion tool for creators and small businesses. This project operates four official channels, using localized tutorials and customer stories to build product awareness, grow followers and help people get started.</span><span class="copy-zh">Promote 是 TikTok 内的付费推广工具，帮助创作者和中小商家推广内容。这个项目运营四个海外官方账号，用本地化教学和案例讲清产品价值，吸引目标用户关注，并引导他们开始使用。</span></p></div></div><div class="project-cover-bottom"><div class="cover-proof"><div><strong>+5.60M</strong><span><span class="copy-en">Followers gained</span><span class="copy-zh">项目总涨粉</span></span></div><div><strong>+3.05pp</strong><span><span class="copy-en">Paid follower share increase</span><span class="copy-zh">付费粉丝占比提升</span></span></div></div><div class="expand-cta"><span class="when-closed"><span class="copy-en">Explore the case</span><span class="copy-zh">展开项目</span></span><span class="when-open"><span class="copy-en">Close project</span><span class="copy-zh">收起项目详情</span></span><b aria-hidden="true">＋</b></div></div></summary><div class="project-expanded"><div class="social-context"><div class="social-background"><h4><span class="copy-en">Project Results</span><span class="copy-zh">项目成果</span></h4><p><span class="copy-en">The four-channel portfolio reached <strong>9.65 million followers</strong>, gaining <strong>5.60 million</strong> overall, including <strong>4.29 million on the English-language channel</strong> (November 6, 2025–September 18, 2026). Paid follower share increased from <strong>15.32%</strong> to <strong>18.37%</strong>, up <strong>3.05 percentage points</strong> (January 3–June 29, 2026).</span><span class="copy-zh">四个官方账号总粉丝达 <strong>964.85 万</strong>，累计净增 <strong>559.85 万</strong>，其中英语主账号净增 <strong>429.05 万</strong>（2025.11.06—2026.09.18）。付费粉丝占比从 <strong>15.32%</strong> 提升至 <strong>18.37%</strong>，增长 <strong>3.05 个百分点</strong>（2026.01.03—06.29）。</span></p><h5 class="project-process-title"><span class="copy-en">Content Strategy & Operations</span><span class="copy-zh">内容策略与运营体系</span></h5><p class="social-role"><span class="copy-en">Built around localized content strategy, audience segmentation and coordinated distribution, the project connects product education, brand communication and practical use cases. Performance analysis and multilingual audience feedback inform ongoing content planning and optimization across markets.</span><span class="copy-zh">围绕本地化内容策略、用户分层与协同分发，构建涵盖产品教育、品牌传播和实操案例的内容体系；结合数据分析与多语言用户反馈，形成从内容规划、制作发布到效果复盘的跨市场运营闭环。</span></p></div><div class="social-profile-strip"><div class="profile-snapshots"><a class="profile-snapshot" href="https://www.tiktok.com/@tiktok_promote_official" target="_blank" rel="noopener noreferrer"><img src="assets/global/account-en.png" loading="lazy" alt="TikTok Promote EN official profile — archived screenshot"><span>EN <b>↗</b></span></a><a class="profile-snapshot" href="https://www.tiktok.com/@tiktok_promote_id" target="_blank" rel="noopener noreferrer"><img src="assets/global/account-id.png" loading="lazy" alt="TikTok Promote ID official profile — archived screenshot"><span>ID <b>↗</b></span></a><a class="profile-snapshot" href="https://www.tiktok.com/@tiktok_promote_ph" target="_blank" rel="noopener noreferrer"><img src="assets/global/account-ph.png" loading="lazy" alt="TikTok Promote PH official profile — archived screenshot"><span>PH <b>↗</b></span></a><a class="profile-snapshot" href="https://www.tiktok.com/@tiktok_promote_th" target="_blank" rel="noopener noreferrer"><img src="assets/global/account-th.png" loading="lazy" alt="TikTok Promote TH official profile — archived screenshot"><span>TH <b>↗</b></span></a></div></div></div>
 
-  <section id="influencer" class="section">
+<details class="project-details" open><summary><span class="copy-en">Content Mix</span><span class="copy-zh">内容组合</span> <span>＋</span></summary><div class="content-mix"><div><span>01 / EDUCATION</span><h4><span class="copy-en">Product Education</span><span class="copy-zh">产品科普与教学</span></h4><p><span class="copy-en">Product explainers and tutorials. The EN theme analysis recorded the lowest CPA for Education.</span><span class="copy-zh">产品科普与使用教学。述职中的 EN 主题分析显示，Education 的 CPA 表现最优。</span></p></div><div><span>02 / BRANDING</span><h4><span class="copy-en">Brand Awareness</span><span class="copy-zh">品牌认知</span></h4><p><span class="copy-en">Brand-led stories and relatable situations. Branding recorded the most paid followers in the same analysis.</span><span class="copy-zh">品牌表达与用户情境。在同一主题分析中，Branding 的付费粉丝数量最高。</span></p></div><div><span>03 / BEST PRACTICE</span><h4><span class="copy-en">Practical Use Cases</span><span class="copy-zh">实操应用案例</span></h4><p><span class="copy-en">Applied examples and growth lessons, with efficiency between the other two themes in the review.</span><span class="copy-zh">以案例与实操经验补充内容组合；述职中其效率介于前两类之间。</span></p></div></div></details>
+<button type="button" class="close-project"><span class="copy-en">Close project ↑</span><span class="copy-zh">收起项目 ↑</span></button></div></details>
+<details id="global-smb" class="project-shell"><summary class="project-cover"><div class="project-heading"><div><p class="eyebrow">PROJECT 02 / PERFORMANCE CREATIVE</p><h3><span class="copy-en">Performance Advertising<br><em>Multi-market Creative</em></span><span class="copy-zh">海外效果广告<br><em>多市场创意与转化</em></span></h3></div><div class="project-summary"><p><span class="copy-en">Advertising creative for TikTok Promote across 19 countries, reaching local creators and merchants. Live-action, animation, AI and repurposed footage are refined through campaign feedback to connect local relevance with conversion performance.</span><span class="copy-zh">为 TikTok Promote 制作面向 19 个国家的推广广告，吸引当地创作者与商家了解和使用产品。项目结合真人短视频、动画、AI 与二创素材，持续根据投放反馈调整创意，兼顾本地表达与转化效果。</span></p></div></div><div class="project-cover-bottom"><p class="smb-cover-focus"><span class="copy-en">19 markets · Localized creative, AIGC production and performance-led iteration</span><span class="copy-zh">覆盖 19 个市场，结合本地化创意、AIGC 制作与投放数据持续优化。</span></p><div class="expand-cta"><span class="when-closed"><span class="copy-en">Explore the case</span><span class="copy-zh">展开项目</span></span><span class="when-open"><span class="copy-en">Close project</span><span class="copy-zh">收起项目详情</span></span><b aria-hidden="true">＋</b></div></div></summary><div class="project-expanded">
+<div class="smb-case-intro"><div class="smb-case-copy"><h4><span class="copy-en">Project Overview & Results</span><span class="copy-zh">项目内容与成果</span></h4><p><span class="copy-en">TikTok Promote is an in-app advertising tool for creators and small businesses. This project develops localized video ads that explain when to promote, show how the product works and encourage viewers to try it. Creative is adapted to the language, content preferences and usage scenarios of 19 markets across Asia-Pacific, Europe, the Middle East, Latin America and the US.</span><span class="copy-zh">TikTok Promote 是面向创作者和中小商家的站内推广工具。本项目为其制作海外效果广告，把产品功能转化为用户能理解的使用场景，引导目标人群了解并尝试推广。内容覆盖亚太、欧洲、中东、拉美及美国等 19 个市场，结合当地语言、内容偏好和商家需求进行创意适配。</span></p><p><span class="copy-en">The project delivered <strong>3,610 creative assets</strong> with a <strong>weighted average CPA of $12.91</strong> (Q2–Q4 2025). Live-action, animation, AI-generated creative and repurposed footage provide different ways to test the product message across audiences.</span><span class="copy-zh">项目累计交付 <strong>3,610 条创意素材</strong>，加权平均单次转化成本（CPA）为 <strong>$12.91</strong>（2025 Q2–Q4）。通过真人短视频、动画、AIGC 与二创等多种形式，持续测试适合不同市场的产品表达。</span></p></div><figure class="smb-case-map"><img src="assets/global/smb-19-market-map-v1.svg" loading="lazy" alt="TikTok Promote project coverage across 19 markets"></figure></div><div class="smb-capabilities"><h4><span class="copy-en">Strategy &amp; Execution</span><span class="copy-zh">策略与执行</span></h4><div class="smb-capability-grid"><article><h5><span class="copy-en">Creative Strategy</span><span class="copy-zh">内容创意</span></h5><p><span class="copy-en">Localized concepts, compelling hooks and conversion-focused scripts.</span><span class="copy-zh">本地化创意、开场钩子与转化脚本，连接产品卖点与用户需求。</span></p></article><article><h5><span class="copy-en">Production & AIGC</span><span class="copy-zh">素材制作</span></h5><p><span class="copy-en">Live-action, animation and AIGC production, from brief to delivery.</span><span class="copy-zh">统筹实拍、动画与 AIGC，贯通 Brief、制作与交付。</span></p></article><article><h5><span class="copy-en">Paid Media Optimization</span><span class="copy-zh">投放优化</span></h5><p><span class="copy-en">CTR, CVR and CPA analysis to guide creative testing and scaling.</span><span class="copy-zh">基于 CTR、CVR 与 CPA，协同素材测试、筛选与放量。</span></p></article><article><h5><span class="copy-en">Performance Insights</span><span class="copy-zh">数据复盘</span></h5><p><span class="copy-en">Cross-market performance insights translated into creative and resource priorities.</span><span class="copy-zh">跨市场、多维度分析，将投放表现转化为创意与资源决策。</span></p></article></div></div><div class="smb-media"><div class="smb-media-heading"><h4><span class="copy-en">Creative Examples</span><span class="copy-zh">创意素材展示</span></h4><button type="button" class="smb-motion-toggle" aria-pressed="false"><span class="copy-en">Pause</span><span class="copy-zh">暂停滚动</span></button></div><div class="smb-marquee"><div class="smb-marquee-track"><div class="smb-marquee-group"><figure class="smb-video-card"><button type="button" data-video="i1BdPs9yRIw" data-title="Wish Queue Mode · EN" aria-label="Play Wish Queue Mode · EN"><img src="https://i.ytimg.com/vi/i1BdPs9yRIw/hqdefault.jpg" loading="lazy" alt="Wish Queue Mode · EN"><span class="smb-play-icon" aria-hidden="true">▶</span><span class="smb-video-title">Wish Queue Mode · EN</span></button><figcaption class="smb-language"><span class="copy-en">English</span><span class="copy-zh">英语</span></figcaption></figure><figure class="smb-video-card"><button type="button" data-video="uu6jF_wKwFE" data-title="League Match · KR" aria-label="Play League Match · KR"><img src="https://i.ytimg.com/vi/uu6jF_wKwFE/hqdefault.jpg" loading="lazy" alt="League Match · KR"><span class="smb-play-icon" aria-hidden="true">▶</span><span class="smb-video-title">League Match · KR</span></button><figcaption class="smb-language"><span class="copy-en">Korean</span><span class="copy-zh">韩语</span></figcaption></figure><figure class="smb-video-card"><button type="button" data-video="mrJ3VB9u0II" data-title="TikTok AIGC · BR" aria-label="Play TikTok AIGC · BR"><img src="https://i.ytimg.com/vi/mrJ3VB9u0II/hqdefault.jpg" loading="lazy" alt="TikTok AIGC · BR"><span class="smb-play-icon" aria-hidden="true">▶</span><span class="smb-video-title">TikTok AIGC · BR</span></button><figcaption class="smb-language"><span class="copy-en">Portuguese (BR)</span><span class="copy-zh">葡萄牙语（巴西）</span></figcaption></figure><figure><img src="assets/global/creative-promote-01.png" loading="lazy" alt="Promote creative 1"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-02.png" loading="lazy" alt="Promote creative 2"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-03.png" loading="lazy" alt="Promote creative 3"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-04.png" loading="lazy" alt="Promote creative 4"><figcaption class="smb-language"><span class="copy-en">English</span><span class="copy-zh">英语</span></figcaption></figure><figure><img src="assets/global/creative-promote-05.png" loading="lazy" alt="Promote creative 5"><figcaption class="smb-language"><span class="copy-en">English</span><span class="copy-zh">英语</span></figcaption></figure><figure><img src="assets/global/creative-promote-06.png" loading="lazy" alt="Promote creative 6"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-07.png" loading="lazy" alt="Promote creative 7"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure></div><div class="smb-marquee-group" aria-hidden="true"><figure><img src="assets/global/creative-promote-01.png" loading="lazy" alt="Promote creative 1"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-02.png" loading="lazy" alt="Promote creative 2"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-03.png" loading="lazy" alt="Promote creative 3"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-04.png" loading="lazy" alt="Promote creative 4"><figcaption class="smb-language"><span class="copy-en">English</span><span class="copy-zh">英语</span></figcaption></figure><figure><img src="assets/global/creative-promote-05.png" loading="lazy" alt="Promote creative 5"><figcaption class="smb-language"><span class="copy-en">English</span><span class="copy-zh">英语</span></figcaption></figure><figure><img src="assets/global/creative-promote-06.png" loading="lazy" alt="Promote creative 6"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure><figure><img src="assets/global/creative-promote-07.png" loading="lazy" alt="Promote creative 7"><figcaption class="smb-language"><span class="copy-en">Indonesian</span><span class="copy-zh">印尼语</span></figcaption></figure></div></div></div><div class="smb-inline-player" hidden><div class="smb-player-heading"><span class="smb-player-title"></span><button type="button" class="smb-player-close" aria-label="Close video">×</button></div><div class="smb-player-screen"></div></div>
+</div><button type="button" class="close-project"><span class="copy-en">Close project ↑</span><span class="copy-zh">收起项目 ↑</span></button></div></details>
+<div class="global-outro"><p><span class="copy-en">Commercial Productions</span><span class="copy-zh">商业广告作品</span></p><a href="#commercial"><span class="copy-en">EXPLORE TVC</span><span class="copy-zh">继续浏览 TVC</span> ↗</a></div>
+</div></section>
+
+  <section id="commercial" class="section overflow-hidden">
     <div class="section-inner">
 
-      <!-- Header -->
+      <!-- Header: same format as Film page -->
       <div class="rule mb-12 pt-5" data-reveal>
-        <p class="eyebrow">Influencer</p>
-        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7;">Personal content creation — knowledge management, AI workflows &amp; second brain.</p>
+        <p class="eyebrow">TVC / Commercial Reel</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">A selection of commercial TVC productions with top brands and artists.</p>
       </div>
 
-      <!-- 2-Column Grid -->
-      <div style="display:grid; grid-template-columns: 240px 1fr; gap: 64px; align-items: start; margin-top: 48px; margin-left: auto; margin-right: auto; max-width: 960px;" data-reveal class="max-lg:grid-cols-1">
-
-        <!-- ── LEFT: Photo & Links ── -->
-        <div style="display:flex; flex-direction:column; gap:28px; align-items:center;">
-
-          <!-- Portrait Photo -->
-          <div style="width:100%; border-radius:6px;">
-            <img src="assets/cover.png" alt="Joy" class="influencer-photo" style="width:100%; display:block; border-radius:6px;">
-          </div>
-
-          <!-- Platform Links — 一排 + @handle -->
-          <div style="width:90%; font-family:var(--font-sans); text-align:center;">
-            <div style="font-size:13px; font-weight:700; letter-spacing:0.08em; color:rgba(255,255,255,0.75);">
-              <a href="https://www.xiaohongshu.com/user/profile/5e54a7480000000001009d28" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Xiaohongshu</a>&nbsp;/&nbsp;<a href="https://space.bilibili.com/179368823?spm_id_from=333.1007.0.0" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Bilibili</a>&nbsp;/&nbsp;<a href="https://www.douyin.com/user/self?from_tab_name=main&amp;showTab=like" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" class="hover:text-[var(--gold)]">Douyin</a>
-            </div>
-            <div style="margin-top:8px; font-size:16px; font-weight:600; color:rgba(255,255,255,0.6); letter-spacing:0.06em;">
-              @JioJioJoy
+      <!-- Film machine: canister at TOP, strip below -->
+      <div data-reveal>
+        <div class="tvc-reel-container" style="overflow:hidden;">
+          <div class="tvc-marquee-wrap">
+            <div class="tvc-marquee">
+              <!-- Set A -->
+              <div class="tvc-photo-set">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="Meituan × Liu Yifei" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="Meituan Hotpot" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="Alipay+ × Zheng Qinwen" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="COGI" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="KFC × Lu Han" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="优酸乳 × 吴镇宇" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
+                </div>
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="神州租车 × 张颂文" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="BYD Yangwang U7" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
+                </div>
+                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="JD Fashion" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
+                </div>
+                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="League of Legends Wild Rift × Zhao Lusi" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
+                </div>
+                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="Nutrilite × Jike Junyi" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="Yili YouSuanRu × Teens in Times" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
+                </div>
+                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="CF Mobile × Louis Koo and Lin Gengxin" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="GUCCI × He Sui" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="GUCCI × Song Jia" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
+                </div>
+              </div>
+              <!-- Set B: duplicate for seamless loop -->
+              <div class="tvc-photo-set" aria-hidden="true">
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907509?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-ny.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-ny.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="美团外卖" data-artist="刘亦菲" data-director="林哲乐" data-duration="15s" data-link="https://www.xinpianchang.com/a12907504?searchKw=%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96%E5%88%98%E4%BA%A6%E8%8F%B2&amp;from=search_post" data-img="assets/tvc/tvc-meituan-hg.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-meituan-hg.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">美团外卖</p><p class="tvc-x">×</p><p class="tvc-artist">刘亦菲</p></div>
+                </div>
+                <div class="tvc-item" data-brand="Alipay+" data-artist="郑钦文" data-director="陈拴拴" data-duration="50s" data-link="https://www.xinpianchang.com/a12880164?searchKw=%E6%8C%A5%E6%89%8B%E8%A7%81%E4%B8%96%E7%95%8C&amp;from=search_post" data-img="assets/tvc/tvc-alipay.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-alipay.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">Alipay+</p><p class="tvc-x">×</p><p class="tvc-artist">郑钦文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="高姿 COGI" data-artist="成毅" data-director="江唯顺" data-duration="53s" data-link="https://www.xinpianchang.com/a12936802?searchKw=%E9%AB%98%E5%A7%BF%E6%88%90%E6%AF%85&amp;from=search_post" data-img="assets/tvc/tvc-cogi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cogi.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">COGI</p><p class="tvc-x">×</p><p class="tvc-artist">成毅</p></div>
+                </div>
+                <div class="tvc-item" data-brand="KFC" data-artist="鹿晗" data-director="许超" data-duration="30s" data-link="#" data-img="assets/tvc/tvc-kfc.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-kfc.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">KFC</p><p class="tvc-x">×</p><p class="tvc-artist">鹿晗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="吴镇宇" data-director="林哲乐" data-duration="1min 4s" data-link="https://www.xinpianchang.com/a13042998?searchKw=%E4%BC%98%E9%85%B8%E4%B9%B3%E5%90%B4%E9%95%87%E5%AE%87&amp;from=search_post" data-img="assets/tvc/tvc-ysl.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">吴镇宇</p></div>
+                </div>
+                <div class="tvc-item" data-brand="神州租车" data-artist="张颂文" data-director="王晓丰" data-duration="1min 54s" data-link="https://www.xinpianchang.com/a12769606?searchKw=%E7%A5%9E%E5%B7%9E%E7%A7%9F%E8%BD%A6%E5%BC%A0%E9%A2%82%E6%96%87&amp;from=search_post" data-img="assets/tvc/tvc-shenzhou.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-shenzhou.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">神州租车</p><p class="tvc-x">×</p><p class="tvc-artist">张颂文</p></div>
+                </div>
+                <div class="tvc-item" data-brand="比亚迪仰望U7" data-artist="" data-director="马林" data-duration="2m48s" data-link="https://www.xinpianchang.com/a13536242?searchKw=%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9Bu7&amp;from=search_post" data-img="assets/tvc/tvc-byd-yangwang-u7.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-byd-yangwang-u7.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">比亚迪仰望U7</p></div>
+                </div>
+                <div class="tvc-item" data-brand="京东服饰" data-artist="" data-director="Zika" data-duration="42s" data-link="https://www.xinpianchang.com/a13272806?searchKw=%E4%BA%AC%E4%B8%9C%E6%9C%8D%E9%A5%B0&amp;from=search_post" data-img="assets/tvc/tvc-jd-fashion.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-jd-fashion.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit brand-only"><p class="tvc-brand">京东服饰</p></div>
+                </div>
+                <div class="tvc-item" data-brand="英雄联盟手游" data-artist="赵露思" data-director="齐天佐" data-duration="1min 43s" data-link="https://www.xinpianchang.com/a12909480?searchKw=%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9F%E6%98%A5%E8%8A%82%E8%B5%B5%E9%9C%B2%E6%80%9D&amp;from=search_post" data-img="assets/tvc/tvc-lol-zhao-lusi.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-lol-zhao-lusi.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">英雄联盟手游</p><p class="tvc-x">×</p><p class="tvc-artist">赵露思</p></div>
+                </div>
+                <div class="tvc-item" data-brand="纽崔莱" data-artist="吉克隽逸" data-director="田思聪" data-duration="4min 24s" data-link="https://www.xinpianchang.com/a13171098?searchKw=%E6%88%91%E6%9D%A5%E8%87%AA%E4%BA%8E%E4%BD%A0&amp;from=search_post" data-img="assets/tvc/tvc-nutrilite-jike-junyi.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-nutrilite-jike-junyi.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">纽崔莱</p><p class="tvc-x">×</p><p class="tvc-artist">吉克隽逸</p></div>
+                </div>
+                <div class="tvc-item" data-brand="伊利优酸乳" data-artist="时代少年团" data-director="林哲乐" data-duration="38s" data-link="https://www.bilibili.com/video/BV1or421L7GC/?spm_id_from=333.337.search-card.all.click" data-img="assets/tvc/tvc-ysl-teens-in-times.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-ysl-teens-in-times.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">优酸乳</p><p class="tvc-x">×</p><p class="tvc-artist">时代少年团</p></div>
+                </div>
+                <div class="tvc-item" data-brand="CF手游" data-artist="古天乐 · 林更新" data-director="耿浩" data-duration="10min" data-link="https://www.xinpianchang.com/a13165902?searchKw=%E6%83%8A%E5%9F%8E%E8%B0%9C%E5%8F%98&amp;from=search_post" data-img="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-cfm-louis-koo-lin-gengxin.jpg" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">CF手游</p><p class="tvc-x">×</p><p class="tvc-artist">古天乐 · 林更新</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="何穗" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85%E4%BD%95%E7%A9%97?aid=48b9da9e-a365-469c-a059-2470ebef0a0f&amp;modal_id=7087806643370511651&amp;type=general" data-img="assets/tvc/tvc-gucci-he-sui.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-he-sui.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">何穗</p></div>
+                </div>
+                <div class="tvc-item" data-brand="GUCCI" data-artist="宋佳" data-director="麦子" data-duration="30s" data-link="https://www.douyin.com/user/self/search/GUCCI%E7%AB%B9%E8%8A%82%E5%8C%85?aid=7815d4a0-cef9-40f9-a87e-3cdc230c0bd2&amp;modal_id=7087760669675670784&amp;type=general" data-img="assets/tvc/tvc-gucci-song-jia.png" style="cursor:pointer;">
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-photo"><img src="assets/tvc/tvc-gucci-song-jia.png" alt="" /></div>
+                  <div class="tvc-sprocket-bar"></div>
+                  <div class="tvc-credit"><p class="tvc-brand">GUCCI</p><p class="tvc-x">×</p><p class="tvc-artist">宋佳</p></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- ── RIGHT: 3 Vertical Tickets ── -->
-        <div style="display:flex; flex-wrap:nowrap; gap:48px; overflow-x:visible; padding: 12px 0 24px 0;">
-
-          <!-- Ticket 1 -->
-          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1Er2CBTENV/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
-            
-            <!-- TOP SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-top-1">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-top-1" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="0" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-top-1)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-1)" />
-            </svg>
-
-            <!-- TICKET BODY -->
-            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
-              <!-- Outer border -->
-              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
-                <!-- Inner thin border using outline or box-shadow -->
-                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
-                
-                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
-                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
-                  
-                  <!-- Top Row -->
-                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
-                    <span style="letter-spacing:0.05em;">NO. 202601</span>
-                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
-                  </div>
-
-                  <!-- Number -->
-                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
-                    01
-                  </div>
-
-                  <!-- Titles -->
-                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
-                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">当知识遇上 AI，知识管理进入自动化时代 ⚡</h3>
-                  </div>
-
-                  <!-- Image Placeholder (Cover) -->
-                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                    <img src="assets/ticket-cover-1.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
-                  </div>
-
-                  <!-- Scan Section -->
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                      <!-- Fake QR Code -->
-                      <img src="assets/qr-1.png" alt="QR" style="width:36px;height:36px;">
-                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                        WATCH VIDEO<br>ON BILIBILI
-                      </div>
-                    </div>
-                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                      STORIES<br>SYSTEMS<br>SIGNALS
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PERFORATION BAND -->
-            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
-               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
-                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
-               </div>
-               <!-- Half circle cutouts on left/right edges of the red band -->
-               
-               
-               
-               <!-- A very thin perforated line above the band -->
-               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
-            </div>
-
-            <!-- BOTTOM STUB -->
-            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
-              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
-                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
-                 
-                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
-                   <!-- Barcode -->
-                   <div style="height:36px; display:flex;">
-                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
-                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
-                     </svg>
-                   </div>
-
-                   <!-- Dotted divider -->
-                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
-
-                   <!-- TICKET NO & 01 -->
-                   <div style="display:flex; align-items:flex-end; gap:8px;">
-                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
-                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">01</span>
-                   </div>
-
-                   <!-- CONTENT PASS -->
-                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
-                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
-                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
-                       <span>JIOJIOJOY</span>
-                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
-
-            <!-- BOTTOM SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-bot-1">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-bot-1" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="6" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-bot-1)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-1)" />
-            </svg>
-          </div>
-  
-
-          <!-- Ticket 2 -->
-          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1WWQKBQENH/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
-            
-            <!-- TOP SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-top-2">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-top-2" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="0" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-top-2)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-2)" />
-            </svg>
-
-            <!-- TICKET BODY -->
-            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
-              <!-- Outer border -->
-              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
-                <!-- Inner thin border using outline or box-shadow -->
-                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
-                
-                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
-                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
-                  
-                  <!-- Top Row -->
-                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
-                    <span style="letter-spacing:0.05em;">NO. 202602</span>
-                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
-                  </div>
-
-                  <!-- Number -->
-                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
-                    02
-                  </div>
-
-                  <!-- Titles -->
-                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
-                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">我如何用 Obsidian+AI<br>复刻 Karpathy 笔记法</h3>
-                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
-                  </div>
-
-                  <!-- Image Placeholder (Cover) -->
-                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                    <img src="assets/ticket-cover-2.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
-                  </div>
-
-                  <!-- Scan Section -->
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                      <!-- Fake QR Code -->
-                      <img src="assets/qr-2.png" alt="QR" style="width:36px;height:36px;">
-                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                        WATCH VIDEO<br>ON BILIBILI
-                      </div>
-                    </div>
-                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                      STORIES<br>SYSTEMS<br>SIGNALS
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PERFORATION BAND -->
-            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
-               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
-                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
-               </div>
-               <!-- Half circle cutouts on left/right edges of the red band -->
-               
-               
-               
-               <!-- A very thin perforated line above the band -->
-               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
-            </div>
-
-            <!-- BOTTOM STUB -->
-            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
-              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
-                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
-                 
-                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
-                   <!-- Barcode -->
-                   <div style="height:36px; display:flex;">
-                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
-                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
-                     </svg>
-                   </div>
-
-                   <!-- Dotted divider -->
-                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
-
-                   <!-- TICKET NO & 01 -->
-                   <div style="display:flex; align-items:flex-end; gap:8px;">
-                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
-                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">02</span>
-                   </div>
-
-                   <!-- CONTENT PASS -->
-                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
-                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
-                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
-                       <span>JIOJIOJOY</span>
-                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
-
-            <!-- BOTTOM SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-bot-2">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-bot-2" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="6" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-bot-2)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-2)" />
-            </svg>
-          </div>
-  
-
-          <!-- Ticket 3 -->
-          <div class="hover:-translate-y-2 transition-transform cursor-pointer flex-shrink-0 xhs-ticket-card" onclick="window.open('https://www.bilibili.com/video/BV1NeXrBdEGr/?spm_id_from=333.1387.homepage.video_card.click','_blank')" style="width:227px; position:relative; display:flex; flex-direction:column; color: #551717;">
-            
-            <!-- TOP SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-top-3">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-top-3" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="0" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-top-3)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-top-3)" />
-            </svg>
-
-            <!-- TICKET BODY -->
-            <div style="background:#ece5d8; flex:1; display:flex; flex-direction:column; padding: 0 12px;">
-              <!-- Outer border -->
-              <div style="border: 1.5px solid #551717; flex:1; display:flex; flex-direction:column; position:relative;">
-                <!-- Inner thin border using outline or box-shadow -->
-                <div style="position:absolute; inset: 3px; border: 0.5px solid #551717; pointer-events:none; z-index:10;"></div>
-                
-                <!-- CONTENT INSIDE BORDERS (Add padding to avoid overlapping the borders) -->
-                <div style="padding: 11px; flex:1; display:flex; flex-direction:column; z-index:1;">
-                  
-                  <!-- Top Row -->
-                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:700; align-items:center; border-bottom: 0.5px solid #551717; padding-bottom:5px; margin-bottom: 10px; font-family:var(--font-sans);">
-                    <span style="letter-spacing:0.05em;">NO. 202603</span>
-                    <span style="letter-spacing:0.05em;">JioJioJoy</span>
-                  </div>
-
-                  <!-- Number -->
-                  <div style="font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; transform:scaleY(1.1); transform-origin:left bottom;">
-                    03
-                  </div>
-
-                  <!-- Titles -->
-                  <div style="margin-top:8px; min-height:80px; max-height:80px; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start;">
-                    <h3 style="font-size:18px; font-weight:800; font-family: Manrope, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; line-height:1.45;">AI 主题研究<br>自动化工作流<br>【省 Token 版】</h3>
-                    <p style="font-size:13px; font-weight:800; line-height:1.4; white-space: pre-wrap; opacity: 0.85;"></p>
-                  </div>
-
-                  <!-- Image Placeholder (Cover) -->
-                  <div class="ticket-cover-wrap" style="margin: 8px 0; width:100%; aspect-ratio: 4/3; background:#d4cfc1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                    <img src="assets/ticket-cover-3.png" alt="" style="width:100%;height:100%;object-fit:contain;object-position:top;">
-                  </div>
-
-                  <!-- Scan Section -->
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top: auto; padding-top:10px;">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                      <!-- Fake QR Code -->
-                      <img src="assets/qr-3.png" alt="QR" style="width:36px;height:36px;">
-                      <div style="font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                        WATCH VIDEO<br>ON BILIBILI
-                      </div>
-                    </div>
-                    <div style="text-align:right; font-size:8px; font-weight:800; line-height:1.4; font-family:var(--font-sans);">
-                      STORIES<br>SYSTEMS<br>SIGNALS
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PERFORATION BAND -->
-            <div style="width:100%; position:relative; background:#ece5d8; -webkit-mask-image: radial-gradient(circle at -1px 50%, transparent 12px, black 12.5px), radial-gradient(circle at calc(100% + 1px) 50%, transparent 12px, black 12.5px); -webkit-mask-size: 51% 100%; -webkit-mask-position: left, right; -webkit-mask-repeat: no-repeat;">
-               <div style="width:100%; padding: 4px 0; background:#551717; color:#ece5d8; border-left: 12px solid #ece5d8; border-right: 12px solid #ece5d8; display:flex; justify-content:center; align-items:center;">
-                  <span style="font-family:var(--font-sans); font-size:8px; font-weight:500; font-style:italic; letter-spacing:0.05em; margin-top:2px;">Stories, Systems, Signals</span>
-               </div>
-               <!-- Half circle cutouts on left/right edges of the red band -->
-               
-               
-               
-               <!-- A very thin perforated line above the band -->
-               <div style="position:absolute; top:0; left:12px; right:12px; border-top: 1.5px dashed #551717;"></div>
-            </div>
-
-            <!-- BOTTOM STUB -->
-            <div style="background:#ece5d8; height:60px; padding: 0 12px;">
-              <div style="border: 1.5px solid #551717; border-top: none; height:100%; display:flex; position:relative;">
-                 <div style="position:absolute; bottom: 3px; left: 3px; right: 3px; top: 0; border: 0.5px solid #551717; border-top:none; pointer-events:none; z-index:10;"></div>
-                 
-                 <div style="flex:1; padding:12px 14px; display:flex; align-items:center; z-index:1;">
-                   <!-- Barcode -->
-                   <div style="height:36px; display:flex;">
-                     <svg width="40" height="36" viewBox="0 0 40 36" fill="#551717">
-                       <rect x="0" y="0" width="2" height="36"/><rect x="4" y="0" width="4" height="36"/><rect x="10" y="0" width="1" height="36"/><rect x="13" y="0" width="3" height="36"/><rect x="18" y="0" width="2" height="36"/><rect x="22" y="0" width="1" height="36"/><rect x="25" y="0" width="3" height="36"/><rect x="30" y="0" width="4" height="36"/><rect x="36" y="0" width="2" height="36"/>
-                     </svg>
-                   </div>
-
-                   <!-- Dotted divider -->
-                   <div style="border-left:1px dashed #551717; height:36px; margin: 0 12px; opacity:0.8;"></div>
-
-                   <!-- TICKET NO & 01 -->
-                   <div style="display:flex; align-items:flex-end; gap:8px;">
-                     <span style="writing-mode: vertical-rl; transform:rotate(180deg); font-size:7px; font-weight:800; letter-spacing:0.1em; font-family:var(--font-sans);">TICKET NO.</span>
-                     <span style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1; margin-top:-4px; transform:scaleY(1.1); transform-origin:bottom;">03</span>
-                   </div>
-
-                   <!-- CONTENT PASS -->
-                   <div style="margin-left:auto; display:flex; flex-direction:column; justify-content:center; font-size:8px; font-weight:800; letter-spacing:0.05em; height:36px; font-family:var(--font-sans);">
-                     <div style="border-bottom:0.5px solid #551717; padding-bottom:4px; margin-bottom:4px; opacity:0.8;">CONTENT PASS</div>
-                     <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
-                       <span>JIOJIOJOY</span>
-                       <svg width="6" height="6" viewBox="0 0 24 24" fill="#551717"><path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.8-6.3 4.8 2.3-7.4-6-4.6h7.6z"/></svg>
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
-
-            <!-- BOTTOM SCALLOP EDGE -->
-            <svg width="100%" height="6" style="display:block;">
-              <defs>
-                <mask id="mask-bot-3">
-                  <rect width="100%" height="6" fill="white" />
-                  <pattern id="holes-bot-3" width="12" height="6" patternUnits="userSpaceOnUse">
-                    <circle cx="6" cy="6" r="3" fill="black" />
-                  </pattern>
-                  <rect width="100%" height="6" fill="url(#holes-bot-3)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="6" fill="#ece5d8" mask="url(#mask-bot-3)" />
-            </svg>
-          </div>
-  
-        </div></div>
 
       </div>
 
+      <div class="mt-10 flex justify-center" data-reveal>
+        <button id="open-credits" class="border border-white/25 px-5 py-4 text-[10px] uppercase tracking-[.24em] text-white/72 transition hover:border-[var(--gold)] hover:text-[var(--gold)]" type="button">View all commercial credits</button>
+      </div>
     </div>
   </section>
 
-  </div>
+  <section id="film" class="section">
+    <div class="section-inner" style="position:relative;">
+      <div class="rule mb-12 pt-5" data-reveal>
+        <p class="eyebrow">Film</p>
+        <p style="margin-top:14px; font-size:clamp(13px,1.15vw,16px); color:rgba(248,239,227,.45); line-height:1.7; white-space:nowrap;">Short films, series, and festival credits — production from set to screen.</p>
+      </div>
+
+      <div class="film-carousel-wrap" data-reveal>
+        <!-- Carousel -->
+        <div class="film-carousel" id="film-carousel">
+
+          <div class="poster-card"
+            data-year="2021"
+            data-role="Short Film · 制片助理"
+            data-title="Cinema by the Sea《海边电影》"
+            data-recognition='[]'
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-5.png" alt="Cinema by the Sea" />
+          </div>
+
+          <div class="poster-card"
+            data-year="2021"
+            data-role="Documentary · Production Manager"
+            data-title="Xu Ziran Biography《徐自然传》"
+            data-link="https://www.xinpianchang.com/a12646082?searchKw=%E5%BE%90%E8%87%AA%E7%84%B6%E4%BC%A0&amp;from=search_post"
+            data-recognition='["Official Selection · Zhejiang Golden Roc Film Festival"]'
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-4.png" alt="Xu Ziran Biography" />
+          </div>
+
+          <div class="poster-card"
+            data-year="2022"
+            data-role="Short Film · Production Manager"
+            data-title="My Long Hair《我的长发》"
+            data-link="https://cathayplay.com/films/a-haircut/"
+            data-recognition='["30th Beijing College Student Film Festival · International Student Original Film Selection","17th Cyprus International Film Festival “Golden Aphrodite” · Official Selection","2nd Youality International Short Film Festival · World Peace Award","3rd Uruvatti International Film Festival · Best International Short Film","2022 Shanghai International Short Film Week · SHISW Short Awards Official Selection"]'
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-1.png" alt="My Long Hair" />
+          </div>
+
+          <div class="poster-card"
+            data-year="2023"
+            data-role="Short Film · Production Manager"
+            data-title="Bitter Buckwheat《苦荞麦》"
+            data-recognition='[]'
+            data-awards='["Beijing Film Academy"]'>
+            <img src="assets/posters/poster-3.png" alt="Bitter Buckwheat" />
+          </div>
+
+          <div class="poster-card"
+            data-year="2023"
+            data-role="Web Series · Executive Producer"
+            data-title="Dear Passenger《亲爱的乘客》"
+            data-link="https://v.qq.com/x/cover/mzc00200kai0xqf/i0045yubg8r.html"
+            data-recognition='[]'
+            data-awards='["Tencent Video · 19 episodes"]'>
+            <img src="assets/posters/poster-2.png" alt="Dear Passenger" />
+          </div>
+
+        </div>
+
+        <!-- Info panel -->
+        <div class="film-carousel-info" id="film-carousel-info">
+          <p class="fci-year" id="fci-year"></p>
+          <p class="fci-role" id="fci-role"></p>
+          <h3 class="fci-title" id="fci-title"></h3>
+          <div class="fci-meta-line">
+            <div class="fci-awards" id="fci-awards"></div>
+            <a class="fci-link" id="fci-link" href="#" target="_blank" rel="noopener">Watch Video ↗</a>
+          </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="film-carousel-nav">
+          <button class="carousel-btn" id="carousel-prev">←</button>
+          <button class="carousel-btn" id="carousel-next">→</button>
+        </div>
+      </div>
+
+      <aside class="film-awards-panel" aria-label="Awards for selected film" data-reveal style="--d:.16">
+        <p class="film-awards-kicker">Award</p>
+        <div class="film-awards-list" id="film-awards-list"></div>
+      </aside>
+
+    </div>
+  </section>
 
   <section id="contact" class="section flex items-end">
     <div class="section-inner">
@@ -2701,11 +2649,7 @@ button { font: inherit; }
           <div class="mt-12 pt-8 border-t border-white/15">
             <p class="eyebrow text-white/30 mb-5">Index</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(248,239,227,.4);">
-              <a href="#film" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Film</a>
-              <a href="#commercial" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Commercial Reel</a>
-              <a href="#feeds" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Global</a>
-              <a href="#lab" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">AI Lab</a>
-              <a href="#influencer" style="text-decoration:none;color:inherit;" class="hover:text-[var(--gold)]">Influencer</a>
+<a href="#influencer" style="color:inherit;text-decoration:none">Personal IP</a><a href="#lab" style="color:inherit;text-decoration:none">AI Tools</a><a href="#feeds" style="color:inherit;text-decoration:none">Global</a><a href="#commercial" style="color:inherit;text-decoration:none">TVC</a><a href="#film" style="color:inherit;text-decoration:none">Film</a>
             </div>
             <p class="mt-8 text-[10px] uppercase tracking-[.18em] text-white/20">© 2026 JioJioJoy</p>
           </div>
@@ -2788,6 +2732,7 @@ if (video) {
     if (video.readyState >= 1) initScrollVideo();
     else video.addEventListener('loadedmetadata', initScrollVideo, { once: true });
 
+    document.querySelectorAll('details').forEach(el => el.addEventListener('toggle', () => { updateScrollBounds(); updateTargetTime(); }));
     window.addEventListener('scroll', updateTargetTime, { passive: true });
     window.addEventListener('resize', function () {
       updateScrollBounds();
@@ -3166,7 +3111,7 @@ var players = document.querySelectorAll('.phone-player');
     'Film': '影视作品',
     'Commercial Reel': '商业广告',
     'Global': '全球内容',
-    'AI Lab': 'AI 实验室',
+    'AI Tools': 'AI 工具',
     'Influencer': '自媒体',
     'Contact': '联系我',
     'Content maker.': '内容创作者。',
@@ -3296,14 +3241,14 @@ var players = document.querySelectorAll('.phone-player');
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         const parent = node.parentElement;
-        if (!parent || skipTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        if (!parent || parent.closest('.copy-en, .copy-zh, .language-switch') || skipTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
     let node;
     while ((node = walker.nextNode())) translateNode(node, language);
 
-    toggle.textContent = language === 'zh' ? 'EN' : '中文';
+    toggle.querySelectorAll('[data-lang]').forEach(label => label.classList.toggle('active', label.dataset.lang === language));
     toggle.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
   }
 
@@ -3322,5 +3267,99 @@ var players = document.querySelectorAll('.phone-player');
   applyLanguage(currentLanguage);
 })();
 </script>
-</body>
+<script>
+document.querySelectorAll('.close-project').forEach(button => button.addEventListener('click', () => {
+ const project = button.closest('.project-shell'); project.open = false;
+ project.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}));
+document.querySelectorAll('.project-shell').forEach(project => project.addEventListener('toggle', () => {
+ if (!project.open) project.querySelectorAll('iframe').forEach(frame => { if(frame.src.includes('youtube.com/embed/')) frame.src=frame.src; });
+}));
+</script>
+<script>
+(() => {
+ const ticket=document.getElementById('nav-ticket'), panel=document.getElementById('chapter-popover');
+ const triggers=[document.getElementById('chapter-picker'),document.getElementById('ticket-menu')];
+ function setOpen(open){panel.hidden=!open;triggers.forEach(b=>b.setAttribute('aria-expanded',String(open)));ticket.classList.toggle('is-open',open);}
+ triggers.forEach(b=>b.addEventListener('click',()=>setOpen(panel.hidden)));
+ document.addEventListener('click',e=>{if(!ticket.contains(e.target))setOpen(false)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){setOpen(false);triggers[0].focus();}});
+ panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  if(a.dataset.openProject){document.getElementById(a.dataset.openProject).open=true;}
+  setOpen(false);
+ }));
+ const sections=[...document.querySelectorAll('main>section')];
+ const options=[...panel.querySelectorAll('[data-chapter]')];
+ let pending=false;
+ function update(){pending=false;let section=sections[0];for(const candidate of sections){if(candidate.getBoundingClientRect().top<=innerHeight*.35)section=candidate;}
+ const showTicket=document.getElementById('influencer').getBoundingClientRect().top<=100;
+ ticket.hidden=!showTicket;if(!showTicket)setOpen(false);
+ const option=options.find(a=>a.dataset.chapter===section.id);if(!option)return;
+ document.getElementById('chapter-current-label').textContent=option.querySelector('.chapter-label').textContent;
+ document.getElementById('chapter-icon').replaceChildren(option.querySelector('.chapter-icon svg').cloneNode(true));
+ document.getElementById('chapter-position').textContent=String(sections.indexOf(section)+1).padStart(2,'0')+' / '+String(sections.length).padStart(2,'0');
+ options.forEach(a=>{if(a===option)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
+ window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);
+ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',schedule));
+ document.getElementById('language-toggle').addEventListener('click',schedule);update();
+})();
+</script>
+<script>
+document.querySelectorAll('.smb-motion-toggle').forEach(button=>button.addEventListener('click',()=>{
+ const paused=button.getAttribute('aria-pressed')!=='true';
+ button.setAttribute('aria-pressed',String(paused));
+ button.closest('.smb-media').classList.toggle('paused',paused);
+ button.querySelector('.copy-en').textContent=paused?'Resume':'Pause';
+ button.querySelector('.copy-zh').textContent=paused?'继续滚动':'暂停滚动';
+}));
+</script><script>
+(() => {
+ const viewport=document.querySelector('.smb-marquee');
+ const track=viewport.querySelector('.smb-marquee-track');
+ const groups=[...track.children];
+ const originals=[...groups[0].children].map(node=>node.cloneNode(true));
+ let previousCopies=0;
+ const fill=()=>{
+  if(!viewport.clientWidth)return;
+  const copies=Math.max(1,Math.ceil(viewport.clientWidth/(originals.length*130)));
+  if(copies===previousCopies)return;
+  previousCopies=copies;
+  groups.forEach((group,index)=>{
+   group.replaceChildren();
+   for(let copy=0;copy<copies;copy++) originals.forEach(node=>{
+    const clone=node.cloneNode(true);
+    if(index||copy){clone.setAttribute('aria-hidden','true');clone.querySelector('img').alt='';clone.querySelectorAll('button').forEach(button=>button.tabIndex=-1);}
+    group.append(clone);
+   });
+  });
+  track.style.animationDuration=(copies*originals.length*130/26)+'s';
+ };
+ new ResizeObserver(fill).observe(viewport);
+ fill();
+})();
+</script><script>
+(() => {
+ const media=document.querySelector('.smb-media');
+ const player=media.querySelector('.smb-inline-player');
+ const screen=player.querySelector('.smb-player-screen');
+ function close(){screen.replaceChildren();player.hidden=true;media.classList.remove('video-active');}
+ media.addEventListener('click',event=>{
+  const button=event.target.closest('[data-video]');
+  if(!button)return;
+  screen.replaceChildren();
+  const frame=document.createElement('iframe');
+  frame.src='https://www.youtube.com/embed/'+button.dataset.video+'?autoplay=1&rel=0';
+  frame.title=button.dataset.title;
+  frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+  frame.allowFullscreen=true;
+  player.querySelector('.smb-player-title').textContent=button.dataset.title;
+  screen.append(frame);player.hidden=false;media.classList.add('video-active');
+  player.scrollIntoView({behavior:'smooth',block:'center'});
+ });
+ player.querySelector('.smb-player-close').addEventListener('click',close);
+ document.getElementById('global-smb').addEventListener('toggle',event=>{if(!event.target.open)close();});
+})();
+</script></body>
 </html>

@@ -268,3 +268,8 @@ header{padding:20px 28px!important;background:none!important;backdrop-filter:non
 .smb-player-screen iframe{display:block;width:100%;height:100%;border:0}
 
 .smb-marquee-group .smb-language{margin-top:9px;font-size:10px;font-weight:400;line-height:1.5;letter-spacing:.025em;text-align:center;color:#e6d7c6;}
+
+/* Film programme chapter numbering */
+.chapter-icon{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;font-style:italic;font-weight:400;font-variant-numeric:lining-nums;letter-spacing:-.04em}
+.chapter-option .chapter-icon{width:26px;font-size:20px;opacity:.7}
+.chapter-option[aria-current] .chapter-icon{opacity:1;color:#55422b}

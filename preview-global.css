@@ -273,3 +273,8 @@ header{padding:20px 28px!important;background:none!important;backdrop-filter:non
 .chapter-icon{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;font-style:italic;font-weight:400;font-variant-numeric:lining-nums;letter-spacing:-.04em}
 .chapter-option .chapter-icon{width:26px;font-size:20px;opacity:.7}
 .chapter-option[aria-current] .chapter-icon{opacity:1;color:#55422b}
+
+/* Restrained monochrome cinema symbols */
+.chapter-option .chapter-icon{width:26px;opacity:.85}
+.chapter-option .chapter-icon svg{width:19px;height:19px}
+.ticket-current .chapter-icon svg{width:25px;height:25px}

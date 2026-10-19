@@ -278,3 +278,83 @@ header{padding:20px 28px!important;background:none!important;backdrop-filter:non
 .chapter-option .chapter-icon{width:26px;opacity:.85}
 .chapter-option .chapter-icon svg{width:19px;height:19px}
 .ticket-current .chapter-icon svg{width:25px;height:25px}
+
+.social-intro{max-width:960px;margin-top:18px;font-size:clamp(15px,1.25vw,18px);line-height:1.85;color:rgba(248,239,227,.78)}
+
+/* Interactive stamp collection */
+.social-showcase{display:grid;grid-template-columns:220px minmax(0,1fr);gap:64px;align-items:start;margin:48px auto 0;max-width:1100px}
+.stamp-collection{min-width:0;padding-top:12px}
+.stamp-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:30px}
+.stamp-collection-label{font-size:10px;letter-spacing:.14em;color:var(--gold)}
+.stamp-toggle{font:inherit;font-size:12px;color:var(--paper);background:none;border:0;border-bottom:1px solid var(--line);padding:8px 0;cursor:pointer}
+.stamp-stage{position:relative;min-height:420px}
+.stamp-wall{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 20px;position:relative;min-height:390px}
+.work-stamp{box-sizing:border-box;display:block;text-decoration:none;color:#4b3029;padding:10px;background:#e9dfcd;box-shadow:0 10px 20px #0003;position:relative;transform:rotate(var(--tilt));transition:transform .6s cubic-bezier(.2,.75,.2,1),box-shadow .25s,filter .25s;isolation:isolate}
+.work-stamp:before{content:'';position:absolute;inset:-4px;z-index:-1;background:radial-gradient(circle at 5px 0,transparent 3px,#e9dfcd 3.5px) top left/10px 50% repeat-x,radial-gradient(circle at 5px 100%,transparent 3px,#e9dfcd 3.5px) bottom left/10px 50% repeat-x;pointer-events:none}
+.stamp-inner{border:1px solid #76564b66;padding:7px}
+.stamp-cover{position:relative;aspect-ratio:4/3;overflow:hidden;background:#d5cbb8}
+.stamp-cover img{width:100%;height:100%;object-fit:contain;display:block}
+.stamp-caption{display:flex;align-items:baseline;gap:10px;padding:14px 1px 7px}
+.stamp-number{font-family:Georgia,serif;font-size:12px;opacity:.65}
+.stamp-caption h3{font-size:12px;line-height:1.5;font-weight:500;margin:0}
+.stamp-play{position:absolute;inset:auto 0 0;background:#30231de6;color:#fff5e6;text-align:center;padding:10px 4px;font-size:11px;opacity:0;transform:translateY(100%);transition:transform .2s,opacity .2s}
+.stamp-collection:not(.is-open) .work-stamp{position:absolute;left:calc(50% - 110px + (var(--i) - 2.5)*27px);top:calc(38px + var(--i)*14px);width:220px;z-index:calc(9 - var(--i));pointer-events:none}
+.stamp-stack-trigger{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;cursor:pointer;z-index:10}
+.stamp-stack-trigger[hidden]{display:none}
+.stamp-collection.is-open .work-stamp{transform:rotate(calc(var(--tilt)*.15))}
+.stamp-collection.is-open .work-stamp:hover,.work-stamp:focus-visible{transform:translateY(-6px) rotate(0);box-shadow:0 16px 25px #0005;z-index:8}
+.work-stamp:hover .stamp-play,.work-stamp:focus-visible .stamp-play{opacity:1;transform:translateY(0)}
+.stamp-toggle:focus-visible,.stamp-stack-trigger:focus-visible,.work-stamp:focus-visible{outline:2px solid var(--gold);outline-offset:7px}
+@media(max-width:900px){.social-showcase{grid-template-columns:180px minmax(0,1fr);gap:36px}.stamp-wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.stamp-collection:not(.is-open) .work-stamp{width:180px;left:calc(50% - 90px + (var(--i) - 2.5)*14px)}}
+@media(max-width:620px){.social-showcase{grid-template-columns:minmax(0,1fr);gap:32px}.social-showcase>div:first-child{max-width:240px;justify-self:center}.stamp-controls{margin-bottom:24px}.stamp-stage{min-height:360px}.stamp-caption{gap:7px}.stamp-caption h3{font-size:11px}}
+@media(hover:none){.stamp-play{opacity:1;transform:none;font-size:10px;padding:6px}}
+@media(prefers-reduced-motion:reduce){.work-stamp,.stamp-play{transition:none}}
+
+/* Restore the original tall cinema-ticket silhouette. */
+.work-stamp{color:#551717;padding:10px;background:#efe5d2}
+.work-stamp:before{background:radial-gradient(circle at 5px 0,transparent 3px,#efe5d2 3.5px) top left/10px 50% repeat-x,radial-gradient(circle at 5px 100%,transparent 3px,#efe5d2 3.5px) bottom left/10px 50% repeat-x}
+.stamp-inner{padding:10px;border:1px solid #551717;min-height:390px;display:flex;flex-direction:column}
+.ticket-heading{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #55171788;padding-bottom:10px;font-size:10px;font-weight:700;letter-spacing:.04em}
+.ticket-title{font-family:Manrope,'PingFang SC','Microsoft YaHei',sans-serif;font-size:18px;font-weight:800;line-height:1.5;margin:22px 0 18px;min-height:108px}
+.stamp-cover{aspect-ratio:4/3;flex-shrink:0}
+.ticket-stub{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px -10px -10px;padding:17px 10px 13px;border-top:1px dashed #55171788;font-size:9px;font-weight:700}
+.ticket-stub:before,.ticket-stub:after{content:'';position:absolute;top:-9px;width:16px;height:16px;border-radius:50%;background:#392820}
+.ticket-stub:before{left:-19px}.ticket-stub:after{right:-19px}
+.ticket-barcode{height:28px;width:54px;background:repeating-linear-gradient(90deg,#551717 0 2px,transparent 2px 4px,#551717 4px 5px,transparent 5px 8px)}
+.stamp-stage,.stamp-wall{min-height:550px}
+@media(max-width:900px){.ticket-title{font-size:16px;min-height:120px}.stamp-inner{min-height:365px}}
+@media(max-width:620px){.ticket-title{font-size:15px;min-height:135px}.stamp-inner{padding:8px;min-height:350px}.ticket-heading{font-size:9px}.ticket-stub{gap:5px;font-size:8px}.ticket-barcode{width:32px}}
+
+/* Compact content-height ticket; isolate title from legacy ticket typography. */
+#social-stamps .ticket-title{color:#551717;font-style:normal;letter-spacing:0;min-height:0;margin:16px 0 14px;padding:0;border:0}
+#social-stamps .stamp-inner{min-height:0}
+#social-stamps .stamp-wall{align-items:start}
+#social-stamps.is-open .stamp-wall,#social-stamps.is-open .stamp-stage{min-height:0}
+#social-stamps .ticket-stub{margin-top:16px;padding-top:13px;padding-bottom:10px}
+
+#influencer .social-showcase{background:none;border:0;box-shadow:none}
+
+/* Align portrait and collection on the same horizontal band. */
+#influencer .social-showcase{max-width:none;margin:40px 0 0;padding:0;grid-template-columns:220px minmax(0,1fr);gap:64px;align-items:start}
+#social-stamps{padding-top:0}
+#social-stamps .stamp-controls{margin-bottom:16px}
+#social-stamps:not(.is-open) .work-stamp{top:calc(8px + var(--i)*5px)}
+#social-stamps .stamp-stage,#social-stamps .stamp-wall{min-height:440px}
+#social-stamps.is-open .stamp-stage,#social-stamps.is-open .stamp-wall{min-height:0}
+@media(max-width:900px){#influencer .social-showcase{grid-template-columns:180px minmax(0,1fr);gap:36px}}
+@media(max-width:620px){#influencer .social-showcase{grid-template-columns:minmax(0,1fr);gap:32px}}
+
+/* Center the closed composition; make room for the expanded collection. */
+@media(min-width:901px){
+ #influencer .social-showcase{max-width:1000px;margin-left:auto;margin-right:auto;grid-template-columns:220px minmax(0,1fr);gap:56px;transition:max-width .65s cubic-bezier(.2,.75,.2,1),gap .65s cubic-bezier(.2,.75,.2,1)}
+ #influencer .social-showcase:has(.stamp-collection.is-open){max-width:100%;gap:64px}
+}
+@media(prefers-reduced-motion:reduce){#influencer .social-showcase{transition:none}}
+
+/* Keep each ticket at its stacked size when the collection unfolds. */
+#social-stamps.is-open .stamp-wall{grid-template-columns:repeat(auto-fit,220px);justify-content:center;gap:28px 24px}
+#social-stamps.is-open .work-stamp{width:220px}
+@media(max-width:900px){
+  #social-stamps.is-open .stamp-wall{grid-template-columns:repeat(auto-fit,180px);gap:24px 18px}
+  #social-stamps.is-open .work-stamp{width:180px}
+}

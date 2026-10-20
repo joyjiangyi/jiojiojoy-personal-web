@@ -1426,11 +1426,11 @@ button { font: inherit; }
                     <div class="seat has-letter">W</div><div class="seat has-letter">O</div><div class="seat has-letter">R</div><div class="seat has-letter">K</div><div class="seat has-letter">S</div><div class="seat has-letter">P</div><div class="seat has-letter">A</div><div class="seat has-letter">C</div><div class="seat has-letter">E</div>
                   </div>
                 </div>
-                <!-- Row E -->
+                <!-- Row E: BLUE HOUR -->
                 <div class="seat-row" style="width:100%; display:flex; justify-content:center; gap:20px; height:22px; align-items:center;">
-                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
-                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
-                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
+                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div></div>
+                  <div class="seat-group project-group blue-hour cursor-pointer" data-project="blue-hour" role="button" tabindex="0" aria-label="Blue Hour"><div class="seat has-letter">B</div><div class="seat has-letter">L</div><div class="seat has-letter">U</div><div class="seat has-letter">E</div><div class="seat empty-space"></div><div class="seat has-letter">H</div><div class="seat has-letter">O</div><div class="seat has-letter">U</div><div class="seat has-letter">R</div></div>
+                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div></div>
                 </div>
                 <!-- Row F: MEDIA ARCHIVE -->
                 <div class="seat-row" style="width:100%; display:flex; justify-content:center; gap:20px; height:22px; align-items:center;">
@@ -1653,6 +1653,7 @@ button { font: inherit; }
         const projectName = document.getElementById('current-project-name');
         const projectDesc = document.getElementById('current-project-desc');
         const projects = {
+          'blue-hour': {name:'Blue Hour · 蓝调时刻', url:'https://joyjiangyi.github.io/blue-hour/', image:'assets/blue-hour-preview.png', experience:true, label:'joyjiangyi.github.io/blue-hour', en:'A cinematic blue-hour experience with glass silhouettes and gesture-driven star rain. Open the experience and allow camera access to step into the scene.', zh:'以蓝调时刻为背景的电影感交互体验，通过摄像头呈现玻璃人物与手势星雨。打开体验并允许摄像头访问，即可进入画面。'},
           'media-archive': {name:'Media archive', url:'https://gkhjmvgg45.feishu.cn/wiki/PdA1wRcWaih9IzkVzaxcTD1Nnvf', image:'assets/media-archive-github.png', label:'github.com/joyjiangyi/media-archive-notebooklm', en:'A video and podcast archive workflow that turns source material into Markdown notes ready for NotebookLM analysis, with Xiaoyuzhou audio extraction.', zh:'将视频与播客素材整理成可供 NotebookLM 分析的 Markdown 笔记，支持小宇宙音频提取，让内容收藏衔接到学习与归档。'},
           'ai-sharing': {name:'AI Playground', url:'https://jiojiojoy.info', embed:'https://jiojiojoy.info', label:'jiojiojoy.info', en:'A curated hub for AI resources, tools, learning notes and practical workflows. Built to share useful references and discoveries for anyone exploring AI.', zh:'汇集 AI 资源、工具、学习笔记与实用工作流，分享探索 AI 过程中的参考资料与发现。'},
           'bloom-note': {name:'Bloom Note · 花笺', url:'https://joyjiangyi.github.io/bloom-note/', embed:'https://joyjiangyi.github.io/bloom-note/', label:'joyjiangyi.github.io/bloom-note', en:'A vibe-coded floral inspiration website with bouquet references, seasonal flowers and care notes. Image uploads offer local previews; AI bouquet generation is not yet available.', zh:'用 Vibe Coding 构建的花艺灵感网站，收录花束灵感、当季花材与养护手记。支持图片本地预览，AI 花束生成尚未开放。'},
@@ -1674,7 +1675,7 @@ button { font: inherit; }
           projectName.textContent = project.name;
           projectDesc.innerHTML = '<span class="copy-en">' + project.en + '</span><span class="copy-zh">' + project.zh + '</span>';
           enterLabBtn.href = project.url;
-          enterLabBtn.innerHTML = '<span class="copy-en">' + (project.embed ? 'Open Project ↗' : 'View Project ↗') + '</span><span class="copy-zh">' + (project.embed ? '体验项目 ↗' : '查看项目 ↗') + '</span>';
+          enterLabBtn.innerHTML = '<span class="copy-en">' + (project.experience ? 'Try Experience ↗' : project.embed ? 'Open Project ↗' : 'View Project ↗') + '</span><span class="copy-zh">' + (project.embed || project.experience ? '体验项目 ↗' : '查看项目 ↗') + '</span>';
           document.querySelector('.browser-url').textContent = project.label;
           cinemaIframe.hidden = !project.embed;
           if (project.embed && cinemaIframe.getAttribute('src') !== project.embed) cinemaIframe.src = project.embed;

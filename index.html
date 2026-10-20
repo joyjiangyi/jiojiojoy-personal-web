@@ -1432,10 +1432,11 @@ button { font: inherit; }
                   <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
                   <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
                 </div>
-                <!-- Row F -->
+                <!-- Row F: MEDIA ARCHIVE -->
                 <div class="seat-row" style="width:100%; display:flex; justify-content:center; gap:20px; height:22px; align-items:center;">
-                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
-                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div></div>
+                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div></div>
+                  <div class="seat-group project-group media-archive cursor-pointer" data-project="media-archive" role="button" tabindex="0" aria-label="Media archive"><div class="seat has-letter">M</div><div class="seat has-letter">E</div><div class="seat has-letter">D</div><div class="seat has-letter">I</div><div class="seat has-letter">A</div><div class="seat empty-space"></div><div class="seat has-letter">A</div><div class="seat has-letter">R</div><div class="seat has-letter">C</div><div class="seat has-letter">H</div><div class="seat has-letter">I</div><div class="seat has-letter">V</div><div class="seat has-letter">E</div></div>
+                  <div class="seat-group normal-group"><div class="seat"></div><div class="seat"></div></div>
                 </div>
               </div>
             </div>
@@ -1561,6 +1562,7 @@ button { font: inherit; }
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: top;
         z-index: 2;
         opacity: 0;
         pointer-events: none;
@@ -1651,6 +1653,7 @@ button { font: inherit; }
         const projectName = document.getElementById('current-project-name');
         const projectDesc = document.getElementById('current-project-desc');
         const projects = {
+          'media-archive': {name:'Media archive', url:'https://gkhjmvgg45.feishu.cn/wiki/PdA1wRcWaih9IzkVzaxcTD1Nnvf', image:'assets/media-archive-github.png', label:'github.com/joyjiangyi/media-archive-notebooklm', en:'A video and podcast archive workflow that turns source material into Markdown notes ready for NotebookLM analysis, with Xiaoyuzhou audio extraction.', zh:'将视频与播客素材整理成可供 NotebookLM 分析的 Markdown 笔记，支持小宇宙音频提取，让内容收藏衔接到学习与归档。'},
           'ai-sharing': {name:'AI Playground', url:'https://jiojiojoy.info', embed:'https://jiojiojoy.info', label:'jiojiojoy.info', en:'A curated hub for AI resources, tools, learning notes and practical workflows. Built to share useful references and discoveries for anyone exploring AI.', zh:'汇集 AI 资源、工具、学习笔记与实用工作流，分享探索 AI 过程中的参考资料与发现。'},
           'bloom-note': {name:'Bloom Note · 花笺', url:'https://joyjiangyi.github.io/bloom-note/', embed:'https://joyjiangyi.github.io/bloom-note/', label:'joyjiangyi.github.io/bloom-note', en:'A vibe-coded floral inspiration website with bouquet references, seasonal flowers and care notes. Image uploads offer local previews; AI bouquet generation is not yet available.', zh:'用 Vibe Coding 构建的花艺灵感网站，收录花束灵感、当季花材与养护手记。支持图片本地预览，AI 花束生成尚未开放。'},
           'spongebob-workspace': {name:'SpongeBob Workspace', url:'https://gkhjmvgg45.feishu.cn/wiki/NoniwwS8UikxTekltyMc2d3GnMc?from=from_copylink', image:'assets/spongebob-workspace-preview.jpg', label:'SpongeBob Workspace · Visual AI Workspace', en:'A local-first visual AI workspace that maps projects, skills and resources. Privacy-aware scanning keeps every scan private and user-approved.', zh:'本地优先的可视化 AI 工作台，将项目、技能与资源整合为可浏览的地图。扫描过程保护隐私，并由用户授权。'},

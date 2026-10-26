@@ -1185,8 +1185,11 @@ button { font: inherit; }
 }
 </style>
 <link rel="stylesheet" href="preview-global.css?v=20261019-subtitles">
+<link rel="stylesheet" href="products/home-products.css">
+<link rel="stylesheet" href="/site-design.css?v=20261026" />
+<script src="/analytics.js" defer></script>
 </head>
-<body>
+<body class="portfolio-home">
 <div class="ambient" aria-hidden="true">
   <video id="hero-video" muted playsinline webkit-playsinline preload="auto" poster="assets/bg-mobile-poster.jpg">
     <source src="assets/bg-15s.mp4" type="video/mp4" />
@@ -1195,10 +1198,7 @@ button { font: inherit; }
 <div class="grain" aria-hidden="true"></div>
 
 <header class="fixed inset-x-0 top-0 z-30 px-5 py-4 md:px-8">
-  <nav class="cinema-header" aria-label="Main navigation"><a class="cinema-wordmark" href="#top">JIOJIOJOY</a><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button><div class="nav-ticket" id="nav-ticket" hidden>
-<div class="ticket-main"><button type="button" class="ticket-current" id="chapter-picker" aria-expanded="false" aria-controls="chapter-popover"><span id="chapter-icon" class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span><small>NOW SHOWING</small><strong id="chapter-current-label">INTRO</strong></span><span class="ticket-chevron" aria-hidden="true">⌄</span></button><button type="button" id="ticket-menu" class="ticket-menu" aria-label="Open chapter menu" aria-expanded="false" aria-controls="chapter-popover"><span></span><span></span><span></span></button></div>
-<div class="ticket-meta"><span id="chapter-position">01 / 09</span><button type="button" id="contact-btn">CONTACT ↗</button></div>
-<div id="chapter-popover" class="chapter-popover" hidden><p class="ticket-menu-label">SELECT A CHAPTER</p><a href="#top" class="chapter-option" data-chapter="top"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span class="chapter-label">Intro</span></a><a href="#origin" class="chapter-option" data-chapter="origin"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 9h16M6 9v9m6-9v9m6-9v9M4 20h16M3 6l9-3 9 3"/></svg></span><span class="chapter-label">Beijing Film Academy</span></a><a href="#overview" class="chapter-option" data-chapter="overview"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span class="chapter-label">Overview</span></a><a href="#influencer" class="chapter-option" data-chapter="influencer"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8M10 7h4M10 10h4"/></svg></span><span class="chapter-label">Social Media</span></a><a href="#lab" class="chapter-option" data-chapter="lab"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 4h16v13H4zM8 21h8M12 17v4M8 8l3 3-3 3M13 14h3"/></svg></span><span class="chapter-label">AI Tools</span></a><a href="#feeds" class="chapter-option" data-chapter="feeds"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="7"/><ellipse cx="12" cy="12" rx="4" ry="7"/><path d="M2 12h20"/></svg></span><span class="chapter-label">Global</span></a><a href="#commercial" class="chapter-option" data-chapter="commercial"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 9h18v11H3zM3 9V4h18v5M7 4l-3 5M13 4l-3 5M19 4l-3 5"/></svg></span><span class="chapter-label">TVC</span></a><a href="#film" class="chapter-option" data-chapter="film"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="8" cy="6" r="3"/><circle cx="16" cy="6" r="3"/><path d="M4 11h13v9H4zM17 14l4-2v7l-4-2"/></svg></span><span class="chapter-label">Film</span></a><a href="#contact" class="chapter-option" data-chapter="contact"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg></span><span class="chapter-label">Contact</span></a><div class="ticket-project-links"><p class="ticket-menu-label">GLOBAL / PROJECTS</p><a href="#global-social" data-open-project="global-social">01 · Social Channel <span>↗</span></a><a href="#global-smb" data-open-project="global-smb">02 · Performance Creative <span>↗</span></a></div></div></div></div></nav>
+  <nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="#top">JIOJIOJOY</a><div class="site-links"><a href="/" aria-current="page"><span class="copy-en">Home</span><span class="copy-zh">首页</span></a><a href="/products/"><span class="copy-en">Tools &amp; Templates</span><span class="copy-zh">工具与模板</span></a><a href="/developers/"><span class="copy-en">Projects</span><span class="copy-zh">开发者与项目</span></a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav>
 
   <!-- ── Contact Drop Popup ── -->
   <div id="contact-popup" style="
@@ -1254,6 +1254,11 @@ button { font: inherit; }
     });
   </script>
 </header>
+<div class="nav-ticket" id="nav-ticket" hidden>
+<div class="ticket-main"><button type="button" class="ticket-current" id="chapter-picker" aria-expanded="false" aria-controls="chapter-popover"><span id="chapter-icon" class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span><small>NOW SHOWING</small><strong id="chapter-current-label">INTRO</strong></span><span class="ticket-chevron" aria-hidden="true">⌄</span></button><button type="button" id="ticket-menu" class="ticket-menu" aria-label="Open chapter menu" aria-expanded="false" aria-controls="chapter-popover"><span></span><span></span><span></span></button></div>
+<div class="ticket-meta"><span id="chapter-position">01 / 09</span><button type="button" id="contact-btn">CONTACT ↗</button></div>
+<div id="chapter-popover" class="chapter-popover" hidden><p class="ticket-menu-label">SELECT A CHAPTER</p><a href="#top" class="chapter-option" data-chapter="top"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span class="chapter-label">Intro</span></a><a href="#products" class="chapter-option" data-chapter="products"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M4 4h7v16H4zM14 4h6v16h-6z"/></svg></span><span class="chapter-label">Tools & Templates</span></a><a href="#origin" class="chapter-option" data-chapter="origin"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 9h16M6 9v9m6-9v9m6-9v9M4 20h16M3 6l9-3 9 3"/></svg></span><span class="chapter-label">Beijing Film Academy</span></a><a href="#overview" class="chapter-option" data-chapter="overview"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span class="chapter-label">Overview</span></a><a href="#influencer" class="chapter-option" data-chapter="influencer"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8M10 7h4M10 10h4"/></svg></span><span class="chapter-label">Social Media</span></a><a href="#lab" class="chapter-option" data-chapter="lab"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 4h16v13H4zM8 21h8M12 17v4M8 8l3 3-3 3M13 14h3"/></svg></span><span class="chapter-label">AI Tools</span></a><a href="#feeds" class="chapter-option" data-chapter="feeds"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="7"/><ellipse cx="12" cy="12" rx="4" ry="7"/><path d="M2 12h20"/></svg></span><span class="chapter-label">Global</span></a><a href="#commercial" class="chapter-option" data-chapter="commercial"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 9h18v11H3zM3 9V4h18v5M7 4l-3 5M13 4l-3 5M19 4l-3 5"/></svg></span><span class="chapter-label">TVC</span></a><a href="#film" class="chapter-option" data-chapter="film"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="8" cy="6" r="3"/><circle cx="16" cy="6" r="3"/><path d="M4 11h13v9H4zM17 14l4-2v7l-4-2"/></svg></span><span class="chapter-label">Film</span></a><a href="#contact" class="chapter-option" data-chapter="contact"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg></span><span class="chapter-label">Contact</span></a><div class="ticket-project-links"><p class="ticket-menu-label">GLOBAL / PROJECTS</p><a href="#global-social" data-open-project="global-social">01 · Social Channel <span>↗</span></a><a href="#global-smb" data-open-project="global-smb">02 · Performance Creative <span>↗</span></a></div></div></div>
+
 
 <main class="page">
   <section id="top" class="section flex items-end">
@@ -1262,7 +1267,7 @@ button { font: inherit; }
         <!-- Left: title + tagline, bottom aligned -->
         <div style="display:flex; flex-direction:column; justify-content:flex-end;">
           <h1 class="display max-w-[720px] text-[clamp(38px,6.2vw,88px)]" data-reveal style="--d:.08">Content maker.<br />Data reader.<br />AI builder.</h1>
-          <p style="margin-top:24px; font-size:clamp(13px,1.4vw,18px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.5);" data-reveal style="--d:.14">Here for global markets.</p>
+          <p style="margin-top:24px; font-size:clamp(13px,1.4vw,18px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.5);" data-reveal style="--d:.14">Here for global markets.</p><div class="home-hero-actions"><a href="products/index.html">探索工具与模板 ↗</a><a href="#feeds">查看实战案例 ↓</a></div>
         </div>
         <!-- Right: logo at top-third, enter at bottom -->
         <div style="display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; padding-top:8vh;">
@@ -1274,6 +1279,8 @@ button { font: inherit; }
       </div>
     </div>
   </section>
+
+<section id="products" class="shop-feature"><div class="shop-feature-inner"><div class="shop-feature-head"><div><small>TOOLS & TEMPLATES / BY JOY</small><h2>A home for<br><em>your curiosity.</em></h2><p>把收藏过的内容，变成可以再次使用的知识。<br>从一段播客开始，建立自己的知识库。</p></div><a href="products/index.html">探索工具与模板 ↗</a></div><div class="shop-feature-grid"><a class="shop-feature-card" href="products/knowledge-library.html"><div class="shop-feature-art merchandise"><img src="assets/products/knowledge-gallery/notion-cover.png" alt="Notion 知识库正式商品封面" width="1242" height="1660" loading="lazy"></div><div class="shop-feature-caption"><h3>Knowledge Library</h3><strong>¥99</strong></div><div class="shop-feature-meta">NOTION / FLOWUS · 知识库模板</div><p>将书籍、播客、视频与笔记，整理到同一套知识系统。<br>探索知识库 ↗</p></a><a class="shop-feature-card" href="products/podcast-notes.html"><div class="shop-feature-art merchandise"><img src="assets/products/podcast-gallery/01.jpg" alt="Notion 播客笔记正式商品封面" width="1440" height="1926" loading="lazy"></div><div class="shop-feature-caption"><h3>Podcast Notes</h3><strong>¥9.9</strong></div><div class="shop-feature-meta">NOTION · 中文 / 英文 / 中英双语</div><p>整理听过的节目、重点与想法，让下一次回看更容易。<br>查看播客模板 ↗</p></a></div><div class="shop-feature-bottom">模板之外，也在探索 AI 与创作的更多可能。<a href="/developers/">查看开发者项目与指南 ↗</a></div></div></section>
 
   <section id="origin" class="section" style="min-height:100svh; padding: clamp(60px,8vh,120px) clamp(24px,5vw,72px);">
     <div style="display:grid; grid-template-columns:1fr 1fr; min-height:calc(100svh - clamp(160px,20vw,256px));">
@@ -1358,7 +1365,7 @@ button { font: inherit; }
     <div class="section-inner" style="max-width: 1200px; margin: 0 auto; width:100%;">
       <div class="rule mb-12 pt-5" data-reveal>
         <p class="eyebrow">AI Tools</p>
-        <p class="section-subtitle"><span class="copy-en">Selected projects and tools, built to share.</span><span class="copy-zh">已公开分享的产品与工具。</span></p>
+        <p class="section-subtitle"><span class="copy-en">Selected projects and tools, built to share.</span><span class="copy-zh">已公开分享的产品与工具。</span></p><a href="/developers/" style="display:inline-block;margin-top:20px;color:var(--gold);font-size:13px;border-bottom:1px solid;padding-bottom:6px"><span class="copy-en">Project guides & source code ↗</span><span class="copy-zh">项目上手指南与源码 ↗</span></a>
       </div>
 
 <div class="cinema-paradise" data-reveal>
@@ -1654,7 +1661,7 @@ button { font: inherit; }
         const projectDesc = document.getElementById('current-project-desc');
         const projects = {
           'blue-hour': {name:'Blue Hour · 蓝调时刻', url:'https://joyjiangyi.github.io/blue-hour/', image:'assets/blue-hour-preview.png', experience:true, label:'joyjiangyi.github.io/blue-hour', en:'A cinematic blue-hour experience with glass silhouettes and gesture-driven star rain. Open the experience and allow camera access to step into the scene.', zh:'以蓝调时刻为背景的电影感交互体验，通过摄像头呈现玻璃人物与手势星雨。打开体验并允许摄像头访问，即可进入画面。'},
-          'media-archive': {name:'Media archive', url:'https://gkhjmvgg45.feishu.cn/wiki/PdA1wRcWaih9IzkVzaxcTD1Nnvf', image:'assets/media-archive-github.png', label:'github.com/joyjiangyi/media-archive-notebooklm', en:'A video and podcast archive workflow that turns source material into Markdown notes ready for NotebookLM analysis, with Xiaoyuzhou audio extraction.', zh:'将视频与播客素材整理成可供 NotebookLM 分析的 Markdown 笔记，支持小宇宙音频提取，让内容收藏衔接到学习与归档。'},
+          'media-archive': {name:'Media archive', url:'https://gkhjmvgg45.feishu.cn/wiki/PdA1wRcWaih9IzkVzaxcTD1Nnvf', image:'assets/media-archive-github.png', label:'Feishu · Usage guide', en:'A video and podcast archive workflow that turns source material into Markdown notes ready for NotebookLM analysis, with Xiaoyuzhou audio extraction.', zh:'将视频与播客素材整理成可供 NotebookLM 分析的 Markdown 笔记，支持小宇宙音频提取，让内容收藏衔接到学习与归档。'},
           'ai-sharing': {name:'AI Playground', url:'https://jiojiojoy.info', image:'assets/ai/playground.jpg', experience:true, label:'jiojiojoy.info', en:'A curated hub for AI resources, tools, learning notes and practical workflows. Built to share useful references and discoveries for anyone exploring AI.', zh:'汇集 AI 资源、工具、学习笔记与实用工作流，分享探索 AI 过程中的参考资料与发现。'},
           'bloom-note': {name:'Bloom Note · 花笺', url:'https://joyjiangyi.github.io/bloom-note/', embed:'https://joyjiangyi.github.io/bloom-note/', label:'joyjiangyi.github.io/bloom-note', en:'A vibe-coded floral inspiration website with bouquet references, seasonal flowers and care notes. Image uploads offer local previews; AI bouquet generation is not yet available.', zh:'用 Vibe Coding 构建的花艺灵感网站，收录花束灵感、当季花材与养护手记。支持图片本地预览，AI 花束生成尚未开放。'},
           'spongebob-workspace': {name:'SpongeBob Workspace', url:'https://gkhjmvgg45.feishu.cn/wiki/NoniwwS8UikxTekltyMc2d3GnMc?from=from_copylink', image:'assets/spongebob-workspace-preview.jpg', label:'SpongeBob Workspace · Visual AI Workspace', en:'A local-first visual AI workspace that maps projects, skills and resources. Privacy-aware scanning keeps every scan private and user-approved.', zh:'本地优先的可视化 AI 工作台，将项目、技能与资源整合为可浏览的地图。扫描过程保护隐私，并由用户授权。'},
@@ -2495,6 +2502,7 @@ var players = document.querySelectorAll('.phone-player');
     'Global': '全球内容',
     'AI Tools': 'AI 工具',
     'Social Media': '社交媒体',
+    'Tools & Templates': '工具与模板',
     'Influencer': '自媒体',
     'Contact': '联系我',
     'Content maker.': '内容创作者。',
@@ -2777,6 +2785,15 @@ document.querySelectorAll('.smb-motion-toggle').forEach(button=>button.addEventL
  });
  collection.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse')setOpen(false);});
  collection.addEventListener('keydown',event=>{if(event.key==='Escape'){setOpen(false);toggle.focus();}});
+})();
+</script>
+<script>
+(() => {
+  const header = document.querySelector('body > header');
+  let pending = false;
+  const update = () => { header.classList.toggle('is-scrolled', window.scrollY > 64); pending = false; };
+  window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
 })();
 </script>
 </body>

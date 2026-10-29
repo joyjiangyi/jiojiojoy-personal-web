@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
+<script>try{document.documentElement.lang=localStorage.getItem("joy-language")==="zh"?"zh-CN":"en"}catch(_){document.documentElement.lang="en"}</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>工具与模板 · JioJioJoy</title>
+    <title>模板 · JioJioJoy</title>
     <meta
       name="description"
-      content="Joy 的原创知识管理模板与实用工具。从播客笔记开始，建立自己的知识库。"
+      content="Joy 的原创知识管理模板。从播客笔记开始，建立自己的知识库。"
     />
     <link rel="icon" href="/assets/icons/web-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,9 +19,17 @@
     <link rel="stylesheet" href="/products/products.css" />
   <link rel="stylesheet" href="/site-design.css?v=20261026" />
 <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/account-entry.css">
+<script src="/account-config.js" defer></script>
+<script src="/account-client.js" defer></script>
+<script src="/account-entry.js" defer></script>
+<link rel="stylesheet" href="/cinema-pages.css">
+<link rel="stylesheet" href="/site-header.css">
+<script src="/site-language.js" defer></script>
+<script src="/cinema-background.js" defer></script>
 </head>
-  <body class="product-site">
-    <header class="site-navigation"><a class="site-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/" aria-current="page">工具与模板</a><a href="/developers/">开发者与项目</a></div><a class="site-contact" href="/#contact">联系 ↗</a></header>
+  <body class="product-site cinema-page">
+    <header class="shared-site-header" id="top"><nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/" aria-current="page">模板</a><a href="/developers/">开发者与项目</a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav></header>
     <main class="p-wrap">
       <section class="p-intro">
         <p class="p-kicker">THE JOY COLLECTION</p>
@@ -99,48 +108,7 @@
           </p>
         </div>
       </section>
-      <section class="p-section">
-        <div class="p-section-heading">
-          <div>
-            <p class="p-kicker">TOOLS & EXPERIMENTS</p>
-            <h2>也做一些，有意思的小工具。</h2>
-          </div>
-          <p>在线体验、原型与本地工作流。<br />每个项目都有自己的使用方式。</p>
-        </div>
-        <div class="p-tool-list">
-          <a
-            href="https://joyjiangyi.github.io/blue-hour/"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span class="p-tool-number">01</span>
-            <div>
-              <h3>Blue Hour</h3>
-              <p>用手势与星光互动的网页作品。</p>
-            </div>
-            <span class="p-tool-type">在线体验 ↗</span></a
-          ><a
-            href="https://joyjiangyi.github.io/bloom-note/"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span class="p-tool-number">02</span>
-            <div>
-              <h3>Bloom Note</h3>
-              <p>花艺灵感与图片预览原型，AI 生成功能尚未接入。</p>
-            </div>
-            <span class="p-tool-type">原型体验 ↗</span></a
-          ><a
-            href="https://gkhjmvgg45.feishu.cn/wiki/PdA1wRcWaih9IzkVzaxcTD1Nnvf"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span class="p-tool-number">03</span>
-            <div>
-              <h3>Media Archive</h3>
-              <p>将视频与播客整理为学习笔记的归档工作流。</p>
-            </div>
-            <span class="p-tool-type">使用指南 ↗</span></a
-          >
-        </div>
-      </section>
+
     </main>
     <footer class="p-footer">
       <span>© 2026 JioJioJoy · Made with curiosity.</span

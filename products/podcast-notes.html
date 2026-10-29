@@ -18,16 +18,24 @@
     <link rel="stylesheet" href="/products/products.css" />
   <link rel="stylesheet" href="/site-design.css?v=20261026" />
 <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/account-entry.css">
+<script src="/account-config.js" defer></script>
+<script src="/account-client.js" defer></script>
+<script src="/account-entry.js" defer></script>
+<link rel="stylesheet" href="/cinema-pages.css">
+<link rel="stylesheet" href="/site-header.css">
+<script src="/site-language.js" defer></script>
+<script src="/cinema-background.js" defer></script>
 </head>
-  <body class="product-site product-detail">
-    <header class="site-navigation"><a class="site-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/" aria-current="page">工具与模板</a><a href="/developers/">开发者与项目</a></div><a class="site-contact" href="/#contact">联系 ↗</a></header>
+  <body class="product-site product-detail cinema-page">
+    <header class="shared-site-header" id="top"><nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/" aria-current="page">模板</a><a href="/developers/">开发者与项目</a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav></header>
     <main
       class="p-wrap"
       data-product="Podcast Notes 播客学习笔记"
       data-price="9.9"
     >
       <div class="p-breadcrumb">
-        <a href="/products/">工具与模板</a> / Podcast Notes
+        <a href="/products/">模板</a> / Podcast Notes
       </div>
       <section class="p-product-hero">
         <div class="p-gallery" data-gallery="podcast">
@@ -238,7 +246,7 @@
         复制邮箱地址
       </button>
     </dialog>
-    <script src="/products/contact-config.js"></script>
-    <script src="/products/products.js"></script>
+    <script src="/products/contact-config.js" defer></script>
+    <script src="/products/products.js" defer></script>
   </body>
 </html>

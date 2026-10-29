@@ -1,0 +1,20 @@
+/* One opening-credits navigation shared by the three main pages. */
+body>.shared-site-header{position:fixed;inset:0 0 auto;z-index:50;box-sizing:border-box;margin:0;padding:16px var(--site-gutter)!important;background:transparent!important;border:0;border-bottom:1px solid transparent;transition:background .3s,border-color .3s;backdrop-filter:none!important;pointer-events:none}
+body>.shared-site-header.is-scrolled{background:transparent!important;border-bottom-color:transparent;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.shared-site-header .cinema-header.site-navigation{box-sizing:border-box;display:flex!important;align-items:center;justify-content:space-between;gap:24px;min-height:66px;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;font-family:var(--site-sans);pointer-events:auto}
+.shared-site-header .cinema-wordmark{font-size:13px;font-weight:800;letter-spacing:.14em;line-height:normal;padding:0;color:#fff9ec;text-shadow:0 1px 12px #0008;text-decoration:none;white-space:nowrap}
+.shared-site-header .site-links{display:flex;align-items:center;gap:8px}
+.shared-site-header .site-links>a{position:relative;display:block;margin:0 16px;padding:12px 0;font-size:11px;font-weight:400;line-height:normal;letter-spacing:.02em;color:#e1d9cd!important;text-shadow:0 1px 12px #0008;white-space:nowrap;text-decoration:none;border:0;border-radius:0;background:none!important}
+.shared-site-header .site-links>a[aria-current=page],.shared-site-header .site-links>a:hover{color:#fff9ec!important}
+.shared-site-header .site-links>a[aria-current=page]::after{content:'';position:absolute;bottom:5px;left:0;right:0;height:1px;background:currentColor;opacity:.55}
+.shared-site-header .header-controls{position:relative;display:block;width:80px;min-height:34px;flex-shrink:0}
+.shared-site-header .language-switch{position:static;display:flex;align-items:center;justify-content:center;gap:10px;min-width:80px;min-height:34px;margin:0;padding:0 10px;border:0;border-radius:4px;background:none;box-shadow:none;backdrop-filter:none;color:#d3cdc3;font-family:inherit;cursor:pointer;pointer-events:auto}
+.shared-site-header .language-switch span{font-size:13px;letter-spacing:.03em}.shared-site-header .language-switch i{font-size:12px;font-style:normal;opacity:.45}.shared-site-header .language-switch span.active{color:#fff9ec;font-weight:700;border-bottom:1px solid #d8b46d;padding-bottom:3px}
+.cinema-page:has(>.shared-site-header){padding-top:99px}
+html[lang=en] .copy-zh,html[lang=zh-CN] .copy-en{display:none!important}
+@media(max-width:620px){body>.shared-site-header{padding:12px 20px!important}.shared-site-header .cinema-header.site-navigation{flex-wrap:wrap;gap:7px;min-height:61px}.shared-site-header .cinema-wordmark{font-size:10px;letter-spacing:.07em}.shared-site-header .site-links{order:3;width:100%;justify-content:space-between;gap:0;border:0;padding:0}.shared-site-header .site-links>a{flex:none;font-size:10px;margin:0;padding:9px 0;min-height:30px;box-sizing:border-box}.shared-site-header .site-links>a[aria-current=page]::after{bottom:3px}.shared-site-header .header-controls{width:65px;min-height:25px}.shared-site-header .language-switch{min-width:65px;min-height:24px}.cinema-page:has(>.shared-site-header){padding-top:94px}}
+@media(prefers-reduced-motion:reduce){body>.shared-site-header{transition:none}}
+
+:root{--site-theatre-shade:radial-gradient(ellipse at center,transparent 20%,rgba(23,3,8,.24) 90%),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.24))}
+.portfolio-home .ambient::after{background:var(--site-theatre-shade)}
+.cinema-page::before{background:var(--site-theatre-shade),linear-gradient(#0501010d,#0501010d),url("/assets/bg-mobile-poster.jpg") center/cover no-repeat}

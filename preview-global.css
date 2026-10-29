@@ -1,5 +1,5 @@
 /* Local portfolio preview · October 2026. No deployment. */
-html {scroll-snap-type:none!important;scroll-padding-top:84px}
+html {scroll-snap-type:y mandatory;scroll-padding-top:0}
 html[lang="en"] .copy-zh, html[lang="zh-CN"] .copy-en {display:none!important}
 header {background:linear-gradient(#100305f2,#100305d9,transparent);backdrop-filter:blur(8px)}
 header nav {max-width:none!important}

@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
+<script>try{document.documentElement.lang=localStorage.getItem("joy-language")==="zh"?"zh-CN":"en"}catch(_){document.documentElement.lang="en"}</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>开发者与项目 · JioJioJoy</title>
@@ -21,10 +22,14 @@
     </script>
   <link rel="stylesheet" href="/site-design.css?v=20261026" />
 <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/cinema-pages.css">
+<link rel="stylesheet" href="/site-header.css">
+<script src="/site-language.js" defer></script>
+<script src="/cinema-background.js" defer></script>
 </head>
-<body class="gallery-page"><a class="skip" href="#main">跳至作品</a>
-<header class="site-navigation" id="top"><a class="site-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/">工具与模板</a><a href="/developers/" aria-current="page">开发者与项目</a></div><a class="site-contact" href="/#contact">联系 ↗</a></header>
-<main id="main"><section class="developer-intro"><div class="intro"><p class="eyebrow">THE INDEPENDENT LAB</p><h1>让好奇心，<br>有个形状。</h1><p>我是 Joy。做内容，也把创作与日常里的小问题，做成可以体验的工具。</p></div><span class="edition">Built with curiosity.</span></section><header class="gallery-heading"><span>SELECTED PROJECTS / 项目选集</span><span>探索、尝试，然后做出来。 ↙</span></header><div class="project-grid"><article class="project" id="blue-hour"><details class="project-disclosure"><summary aria-label="查看 Blue Hour 项目详情"><div class="project-screen"><img src="/assets/blue-hour-preview.png" alt="blue-hour 原始项目界面" loading="lazy" /></div><div class="card-caption"><div><h2>Blue Hour</h2><p>让人物走进蓝调时刻</p></div><span class="open-icon" aria-hidden="true">+</span></div><div class="card-meta"><span>交互实验 · 在线体验</span><span class="detail-label">项目详情</span></div></summary><div class="project-info"><div class="lab-proj-body">
+<body class="gallery-page cinema-page"><a class="skip" href="#main">跳至作品</a>
+<header class="shared-site-header" id="top"><nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="/">JIOJIOJOY</a><div class="site-links"><a href="/">首页</a><a href="/products/">模板</a><a href="/developers/" aria-current="page">开发者与项目</a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav></header>
+<main id="main"><section class="developer-intro"><div class="intro"><h1>让好奇心，<br>有个形状。</h1></div><span class="edition">Built with curiosity.</span></section><header class="gallery-heading"><span>SELECTED PROJECTS / 项目选集</span></header><div class="project-grid"><article class="project" id="blue-hour"><details class="project-disclosure"><summary aria-label="查看 Blue Hour 项目详情"><div class="project-screen"><img src="/assets/blue-hour-preview.png" alt="blue-hour 原始项目界面" loading="lazy" /></div><div class="card-caption"><div><h2>Blue Hour</h2><p>让人物走进蓝调时刻</p></div><span class="open-icon" aria-hidden="true">+</span></div><div class="card-meta"><span>交互实验 · 在线体验</span><span class="detail-label">项目详情</span></div></summary><div class="project-info"><div class="lab-proj-body">
             <p class="lab-proj-meta">
               <span class="lab-proj-no">01</span>
               <span class="lab-proj-kind">在线交互作品</span>
@@ -275,4 +280,4 @@
                 </p>
               </div>
             </details>
-          </div></div></details></article></div><footer class="gallery-footer"><p>从一个小小的「如果」，到一个真实的作品。</p><div><a href="https://jiojiojoy.info" target="_blank" rel="noopener noreferrer">AI Playground ↗</a><a href="/#feeds">实战案例 ↗</a><a href="#top">回到顶部 ↑</a></div></footer></main><script src="/developers/developers.js" defer></script></body></html>
+          </div></div></details></article></div><footer class="gallery-footer"><div><a href="#top">回到顶部 ↑</a></div></footer></main><script src="/developers/developers.js" defer></script></body></html>

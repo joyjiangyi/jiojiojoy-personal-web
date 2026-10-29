@@ -47,6 +47,7 @@
     gtag('js', new Date());
     gtag('config', ID, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false, page_location: safePage.href, page_referrer: referrer });
     track('page_view', { page_location: safePage.href, page_referrer: referrer, page_title: document.title });
+    trackProductView();
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
@@ -121,7 +122,7 @@
       if (targetProduct && (el.closest('.p-card') || el.closest('.shop-feature-card'))) {
         track('product_click', { product_name: targetProduct, placement: where }); return;
       }
-      const target = url.pathname.startsWith('/products') ? 'products' : url.pathname.startsWith('/developers') ? 'developers' : url.hash ? url.hash.slice(1) : 'home';
+      const target = url.pathname.startsWith('/products') ? 'products' : url.pathname.startsWith('/developers') ? 'developers' : url.hash && ['origin','about','social','feeds','contact','lab','tvc','film','background'].includes(url.hash.slice(1)) ? url.hash.slice(1) : 'home';
       track('navigation_click', { target, placement: where });
     }
   }
@@ -135,7 +136,21 @@
     if (!debug && choice !== 'granted') return;
     played.add(event.target); track('product_demo_start', { product_name: product, placement: 'product_demo' });
   }, true);
-  window.JOY_ANALYTICS = Object.freeze({ measurementId: ID, mode: debug ? 'dry-run' : production ? 'consent' : 'disabled', events });
+  // Public events accept only enumerated, non-identifying values.
+  const publicEvents = new Set(['login_open','login_code_sent','login_error','login','sign_up','logout','inquiry_saved','inquiry_save_error']);
+  function publicTrack(name, params = {}) {
+    if (!publicEvents.has(name)) return;
+    const clean = {};
+    const allowed = {method:['email_otp'], step:['send_code','verify_code'], placement:['product_detail','products_catalog','purchase_dialog'], product_name:['knowledge_library','podcast_notes'], template_platform:['Notion','FlowUs']};
+    for (const [key, values] of Object.entries(allowed)) if(values.includes(params[key])) clean[key] = params[key];
+    track(name, clean);
+  }
+  window.JOY_ANALYTICS = Object.freeze({ track: publicTrack, measurementId: ID, mode: debug ? 'dry-run' : production ? 'consent' : 'disabled', events });
+  function trackProductView() {
+    if(product) track('view_item', {product_name:product, template_platform:platform()});
+    else if(path.startsWith('/products')) track('view_item_list', {item_list_name:'templates'});
+  }
+  if (debug) trackProductView();
   if (debug) track('page_view', { page_location: safePage.href, page_referrer: referrer, page_title: document.title });
   if (production) { consentUI(); start(); }
 })();

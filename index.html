@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>try{document.documentElement.lang=localStorage.getItem("joy-language")==="zh"?"zh-CN":"en"}catch(_){document.documentElement.lang="en"}</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JioJioJoy</title>
@@ -1188,6 +1189,8 @@ button { font: inherit; }
 <link rel="stylesheet" href="products/home-products.css">
 <link rel="stylesheet" href="/site-design.css?v=20261026" />
 <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/site-footer.css">
+<link rel="stylesheet" href="/site-header.css">
 </head>
 <body class="portfolio-home">
 <div class="ambient" aria-hidden="true">
@@ -1197,8 +1200,8 @@ button { font: inherit; }
 </div>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="fixed inset-x-0 top-0 z-30 px-5 py-4 md:px-8">
-  <nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="#top">JIOJIOJOY</a><div class="site-links"><a href="/" aria-current="page"><span class="copy-en">Home</span><span class="copy-zh">首页</span></a><a href="/products/"><span class="copy-en">Tools &amp; Templates</span><span class="copy-zh">工具与模板</span></a><a href="/developers/"><span class="copy-en">Projects</span><span class="copy-zh">开发者与项目</span></a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav>
+<header class="shared-site-header fixed inset-x-0 top-0 z-30 px-5 py-4 md:px-8">
+  <nav class="cinema-header site-navigation" aria-label="Main navigation"><a class="cinema-wordmark" href="#top">JIOJIOJOY</a><div class="site-links"><a href="/" aria-current="page">首页</a><a href="/products/">模板</a><a href="/developers/">开发者与项目</a></div><div class="header-controls"><button type="button" id="language-toggle" class="language-switch" aria-label="切换为中文"><span data-lang="zh">中</span><i aria-hidden="true">/</i><span data-lang="en">EN</span></button></div></nav>
 
   <!-- ── Contact Drop Popup ── -->
   <div id="contact-popup" style="
@@ -1254,12 +1257,6 @@ button { font: inherit; }
     });
   </script>
 </header>
-<div class="nav-ticket" id="nav-ticket" hidden>
-<div class="ticket-main"><button type="button" class="ticket-current" id="chapter-picker" aria-expanded="false" aria-controls="chapter-popover"><span id="chapter-icon" class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span><small>NOW SHOWING</small><strong id="chapter-current-label">INTRO</strong></span><span class="ticket-chevron" aria-hidden="true">⌄</span></button><button type="button" id="ticket-menu" class="ticket-menu" aria-label="Open chapter menu" aria-expanded="false" aria-controls="chapter-popover"><span></span><span></span><span></span></button></div>
-<div class="ticket-meta"><span id="chapter-position">01 / 09</span><button type="button" id="contact-btn">CONTACT ↗</button></div>
-<div id="chapter-popover" class="chapter-popover" hidden><p class="ticket-menu-label">SELECT A CHAPTER</p><a href="#top" class="chapter-option" data-chapter="top"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 18V6h14v12M9 18V9h6v9M3 20h18"/><path d="M5 4h14"/></svg></span><span class="chapter-label">Intro</span></a><a href="#products" class="chapter-option" data-chapter="products"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M4 4h7v16H4zM14 4h6v16h-6z"/></svg></span><span class="chapter-label">Tools & Templates</span></a><a href="#origin" class="chapter-option" data-chapter="origin"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 9h16M6 9v9m6-9v9m6-9v9M4 20h16M3 6l9-3 9 3"/></svg></span><span class="chapter-label">Beijing Film Academy</span></a><a href="#overview" class="chapter-option" data-chapter="overview"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg></span><span class="chapter-label">Overview</span></a><a href="#influencer" class="chapter-option" data-chapter="influencer"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8M10 7h4M10 10h4"/></svg></span><span class="chapter-label">Social Media</span></a><a href="#lab" class="chapter-option" data-chapter="lab"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 4h16v13H4zM8 21h8M12 17v4M8 8l3 3-3 3M13 14h3"/></svg></span><span class="chapter-label">AI Tools</span></a><a href="#feeds" class="chapter-option" data-chapter="feeds"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="7"/><ellipse cx="12" cy="12" rx="4" ry="7"/><path d="M2 12h20"/></svg></span><span class="chapter-label">Global</span></a><a href="#commercial" class="chapter-option" data-chapter="commercial"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 9h18v11H3zM3 9V4h18v5M7 4l-3 5M13 4l-3 5M19 4l-3 5"/></svg></span><span class="chapter-label">TVC</span></a><a href="#film" class="chapter-option" data-chapter="film"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="8" cy="6" r="3"/><circle cx="16" cy="6" r="3"/><path d="M4 11h13v9H4zM17 14l4-2v7l-4-2"/></svg></span><span class="chapter-label">Film</span></a><a href="#contact" class="chapter-option" data-chapter="contact"><span class="chapter-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg></span><span class="chapter-label">Contact</span></a><div class="ticket-project-links"><p class="ticket-menu-label">GLOBAL / PROJECTS</p><a href="#global-social" data-open-project="global-social">01 · Social Channel <span>↗</span></a><a href="#global-smb" data-open-project="global-smb">02 · Performance Creative <span>↗</span></a></div></div></div>
-
-
 <main class="page">
   <section id="top" class="section flex items-end">
     <div class="section-inner">
@@ -1267,22 +1264,20 @@ button { font: inherit; }
         <!-- Left: title + tagline, bottom aligned -->
         <div style="display:flex; flex-direction:column; justify-content:flex-end;">
           <h1 class="display max-w-[720px] text-[clamp(38px,6.2vw,88px)]" data-reveal style="--d:.08">Content maker.<br />Data reader.<br />AI builder.</h1>
-          <p style="margin-top:24px; font-size:clamp(13px,1.4vw,18px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.5);" data-reveal style="--d:.14">Here for global markets.</p><div class="home-hero-actions"><a href="products/index.html">探索工具与模板 ↗</a><a href="#feeds">查看实战案例 ↓</a></div>
+          <p style="margin-top:24px; font-size:clamp(13px,1.4vw,18px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.5);" data-reveal style="--d:.14">Here for global markets.</p>
         </div>
         <!-- Right: logo at top-third, enter at bottom -->
         <div style="display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; padding-top:8vh;">
           <img src="assets/jiojoy-logo-white.png?v=1" alt="JioJoy logo"
             style="width:min(260px,36vw);"
             data-reveal style="--d:.05" />
-          <a href="#origin" class="inline-flex border-b border-[var(--gold)] pb-2 text-[10px] uppercase tracking-[.24em] text-[var(--gold)]" data-reveal style="--d:.18">Enter ↓</a>
+          <a href="#origin" class="inline-flex border-b border-[var(--gold)] pb-2 text-[10px] uppercase tracking-[.24em] text-[var(--gold)]" data-reveal style="--d:.18">About Me ↓</a>
         </div>
       </div>
     </div>
   </section>
 
-<section id="products" class="shop-feature"><div class="shop-feature-inner"><div class="shop-feature-head"><div><small>TOOLS & TEMPLATES / BY JOY</small><h2>A home for<br><em>your curiosity.</em></h2><p>把收藏过的内容，变成可以再次使用的知识。<br>从一段播客开始，建立自己的知识库。</p></div><a href="products/index.html">探索工具与模板 ↗</a></div><div class="shop-feature-grid"><a class="shop-feature-card" href="products/knowledge-library.html"><div class="shop-feature-art merchandise"><img src="assets/products/knowledge-gallery/notion-cover.png" alt="Notion 知识库正式商品封面" width="1242" height="1660" loading="lazy"></div><div class="shop-feature-caption"><h3>Knowledge Library</h3><strong>¥99</strong></div><div class="shop-feature-meta">NOTION / FLOWUS · 知识库模板</div><p>将书籍、播客、视频与笔记，整理到同一套知识系统。<br>探索知识库 ↗</p></a><a class="shop-feature-card" href="products/podcast-notes.html"><div class="shop-feature-art merchandise"><img src="assets/products/podcast-gallery/01.jpg" alt="Notion 播客笔记正式商品封面" width="1440" height="1926" loading="lazy"></div><div class="shop-feature-caption"><h3>Podcast Notes</h3><strong>¥9.9</strong></div><div class="shop-feature-meta">NOTION · 中文 / 英文 / 中英双语</div><p>整理听过的节目、重点与想法，让下一次回看更容易。<br>查看播客模板 ↗</p></a></div><div class="shop-feature-bottom">模板之外，也在探索 AI 与创作的更多可能。<a href="/developers/">查看开发者项目与指南 ↗</a></div></div></section>
-
-  <section id="origin" class="section" style="min-height:100svh; padding: clamp(60px,8vh,120px) clamp(24px,5vw,72px);">
+<section id="origin" class="section" style="min-height:100svh; padding: clamp(60px,8vh,120px) clamp(24px,5vw,72px);">
     <div style="display:grid; grid-template-columns:1fr 1fr; min-height:calc(100svh - clamp(160px,20vw,256px));">
       <!-- Left column: chapter label top, sentence bottom -->
       <div style="display:flex; flex-direction:column; justify-content:space-between;">
@@ -1295,7 +1290,7 @@ button { font: inherit; }
       <div style="display:flex; flex-direction:column; justify-content:center; gap:clamp(32px,5vh,60px); align-items:flex-end; text-align:right;">
         <p style="font-size:clamp(28px,4vw,62px); font-weight:800; letter-spacing:-.04em; line-height:1;" data-reveal>2019 — 2023</p>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-weight:600; font-size:clamp(56px,8.5vw,118px); letter-spacing:-.02em; line-height:.9; color:var(--paper);" data-reveal style="--d:.08">Beijing Film<br/>Academy</h2>
-        <p style="font-size:clamp(15px,1.4vw,21px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.55);" data-reveal style="--d:.12">北京电影学院 · Beijing, China</p>
+        <p style="font-size:clamp(15px,1.4vw,21px); letter-spacing:.2em; text-transform:uppercase; color:rgba(248,239,227,.55);" data-reveal style="--d:.12"><span class="copy-en">Beijing, China</span><span class="copy-zh">中国 · 北京</span></p>
       </div>
     </div>
   </section>
@@ -1303,9 +1298,9 @@ button { font: inherit; }
   <section id="overview" class="section">
     <div class="section-inner">
       <div class="overview-stmt" data-reveal>
-        <p>Connecting content creativity, hands-on AI practice and global growth.</p>
-        <p>A Beijing Film Academy graduate with experience on TVC productions for leading brands and across content strategy, creative production, ad campaigns and performance analysis for TikTok overseas projects. I also integrate AI into content production and workflow automation.</p>
-        <p>Alongside this work, I run AI-focused social media channels and build my own digital products, with hands-on experience spanning user insights, product development, content marketing and monetization.</p>
+        <p><span class="copy-en">Content, AI &amp; global growth.</span><span class="copy-zh">连接内容、AI 与全球增长。</span></p>
+        <p><span class="copy-en">From Beijing Film Academy to brand TVCs and TikTok overseas projects — I bring together creative production, content strategy and performance analysis.</span><span class="copy-zh">从北京电影学院到品牌 TVC 与 TikTok 海外项目，串联创意制作、内容策略与效果分析。</span></p>
+        <p><span class="copy-en">I also create AI-focused content and digital products, turning user insights into practical tools and automated workflows.</span><span class="copy-zh">同时创作 AI 主题内容与数字产品，将用户洞察转化为实用工具和自动化工作流。</span></p>
       </div>
       <div class="overview-bottom" data-reveal style="--d:.1">
         <div><!-- empty left column --></div>
@@ -2046,6 +2041,30 @@ button { font: inherit; }
   </section>
 </main>
 
+<footer class="site-map-footer" id="site-map" aria-label="全站导航">
+  <div class="site-map-inner">
+    <div class="site-map-brand">
+      <a href="#top">JioJioJoy</a>
+      <p>内容创作、海外增长与 AI 实践。<br>从一个想法，到一个真实的作品。</p>
+      <div class="site-map-social"><a href="https://www.xiaohongshu.com/user/profile/5e54a7480000000001009d28" target="_blank" rel="noopener noreferrer">小红书 ↗</a><a href="https://space.bilibili.com/179368823" target="_blank" rel="noopener noreferrer">B站 ↗</a><a href="mailto:joyjiangyi852@gmail.com">邮箱 ↗</a></div>
+    </div>
+    <nav class="site-map-column" aria-label="认识 Joy"><h3>认识 JOY</h3><ul>
+      <li><a href="#top">首页</a></li><li><a href="#origin">教育背景</a></li><li><a href="#overview">经历与能力</a></li><li><a href="#influencer">个人内容与社媒</a></li><li><a href="#contact">联系与合作</a></li>
+    </ul></nav>
+    <nav class="site-map-column" aria-label="作品与案例"><h3>作品与案例</h3><ul>
+      <li><a href="#feeds">海外运营案例</a></li><li><a href="#lab">AI 工具展示</a></li><li><a href="#commercial">TVC 商业制作</a></li><li><a href="#film">电影作品</a></li>
+    </ul></nav>
+    <nav class="site-map-column" aria-label="模板"><h3>模板</h3><ul>
+      <li><a href="/products/">浏览全部</a></li><li><a href="/products/knowledge-library.html">Knowledge Library</a></li><li><a href="/products/podcast-notes.html">Podcast Notes</a></li>
+    </ul></nav>
+    <nav class="site-map-column" aria-label="开发者与项目"><h3>开发者与项目</h3><ul>
+      <li><a href="/developers/">项目与使用指南</a></li><li><a href="/developers/#blue-hour">Blue Hour</a></li><li><a href="/developers/#media-archive">Media Archive</a></li><li><a href="/developers/#spongebob-workspace">SpongeBob Workspace</a></li><li><a href="/developers/#bloom-note">Bloom Note</a></li>
+    </ul></nav>
+  </div>
+  <div class="site-map-bottom"><span>© 2026 JioJioJoy · Made with curiosity.</span><a href="#top">回到顶部 ↑</a></div>
+</footer>
+
+
 <div id="all-credits" class="fixed inset-0 z-50 bg-black/90 p-5 opacity-0 backdrop-blur-xl transition duration-300 md:p-8" aria-hidden="true">
   <div class="mx-auto flex h-full max-w-[1280px] flex-col">
     <div class="mb-8 flex items-center justify-between border-b border-white/20 pb-5">
@@ -2491,173 +2510,7 @@ var players = document.querySelectorAll('.phone-player');
   else v.addEventListener('loadedmetadata', seek);
 });
 </script>
-<script>
-(function () {
-  const translations = {
-    "Click a platform link to visit my profile.": "点击平台链接，查看账号主页。",
-    "Creating content around AI tools, knowledge management and workflows, with 6K+ followers across platforms. Built and commercialized original Notion products, and collaborated with AI brands including Qwen, GLM and Doubao.": "围绕 AI 工具、知识管理与工作流持续创作，全网积累 6K+ 粉丝；打造并商业化原创 Notion 产品，与千问、GLM、豆包等 AI 品牌开展内容合作。",
-    'Overview': '概览',
-    'Film': '影视作品',
-    'Commercial Reel': '商业广告',
-    'Global': '全球内容',
-    'AI Tools': 'AI 工具',
-    'Social Media': '社交媒体',
-    'Tools & Templates': '工具与模板',
-    'Influencer': '自媒体',
-    'Contact': '联系我',
-    'Content maker.': '内容创作者。',
-    'Data reader.': '数据洞察者。',
-    'AI builder.': 'AI 构建者。',
-    'Here for global markets.': '面向全球市场。',
-    'Enter ↓': '进入 ↓',
-    'Connecting content creativity, hands-on AI practice and global growth.': '连接内容创意、AI 实践与海外增长。',
-    "A Beijing Film Academy graduate with experience on TVC productions for leading brands and across content strategy, creative production, ad campaigns and performance analysis for TikTok overseas projects. I also integrate AI into content production and workflow automation.": '北京电影学院毕业，参与过头部品牌 TVC 制作，在 TikTok 海外业务中积累了从内容策略、创意制作到广告投放与数据优化的全流程经验，并将 AI 融入内容生产与工作流自动化。',
-    'Alongside this work, I run AI-focused social media channels and build my own digital products, with hands-on experience spanning user insights, product development, content marketing and monetization.': '同时运营 AI 赛道自媒体，打造自己的数字产品，开展从需求洞察、产品搭建到内容推广与商业化的完整实践。',
-    'Background': '背景',
-    'Where I learned to build content, end to end.': '我在这里学习如何从头到尾完成内容创作。',
-    'Beijing Film': '北京电影',
-    'Academy': '学院',
-    'Beijing, China': '中国，北京',
-    'Short films, series, and festival credits — production from set to screen.': '短片、剧集与电影节履历，从片场到银幕的完整制作经验。',
-    'Award': '奖项',
-    'A selection of commercial TVC productions with top brands and artists.': '精选商业广告作品，与头部品牌及艺人合作。',
-    'View all commercial credits': '查看全部商业项目',
-    'Selected works from overseas content operations.': '精选海外内容运营作品。',
-    'Wish Queue Mode': '愿望队列模式',
-    'League Match': '联赛对战',
-    'TikTok AIGC': 'TikTok AI 内容',
-    'Promote Social Channel': 'Promote 社交频道',
-    'Language: EN': '语言：英语',
-    'Language: KR': '语言：韩语',
-    'Language: BR': '语言：葡萄牙语',
-    'Watch on YouTube ↗': '在 YouTube 观看 ↗',
-    'Watch Video ↗': '观看视频 ↗',
-    '<span class="copy-en">Selected projects and tools, built to share.</span><span class="copy-zh">已公开分享的产品与工具。</span>': '创意实验与氛围编程项目。',
-    'SHOWCASE': '项目展示',
-    'Project Archive': '项目档案',
-    'Vibe Coding, built in public.': '公开构建的 Vibe Coding 项目。',
-    '10 builds tracked': '已收录 10 个项目',
-    'Synced 2026.08.03': '同步于 2026.08.03',
-    'Open Source': '开源项目',
-    'Open Source Skill': '开源 Skill',
-    'Live Web App': '在线 Web 应用',
-    'AI Workflow': 'AI 工作流',
-    'Visual Workspace': '可视化工作台',
-    'Visual Tooling': '视觉工具',
-    'Image Workflow': '图像工作流',
-    'Reference System': '参考系统',
-    'Codex Skill': 'Codex Skill',
-    'Agent Toolkit': 'Agent 工具包',
-    'Workflow Router': '工作流路由',
-    'Knowledge Hub': '知识中心',
-    'Open GitHub ↗': '打开 GitHub ↗',
-    'Open project ↗': '打开项目 ↗',
-    'A channel-level AI video workspace connecting project setup, scripts, shot lists, visual cards, covers, publishing copy, and reviews.': '一套频道级 AI 视频工作台，串联项目创建、脚本、镜头清单、视觉卡片、封面、发布文案与复盘。',
-    'A single-entry Codex workflow that routes a video from script and visual planning through review, card production, and export.': '单入口 Codex 视频工作流，将脚本与视觉规划一路路由到审核、卡片制作和导出。',
-    'A local-first visual AI workspace that maps projects, skills, and resources while keeping every scan private and user-approved.': '本地优先的可视化 AI 工作台，把项目、Skills 与资源绘制成地图，并确保扫描保持私密、由用户授权。',
-    'A React studio for organizing, composing, and testing reusable explainer panels for tutorial and social video production.': '用于教程与自媒体视频制作的 React 工作台，可组织、组合并测试可复用的讲解面板。',
-    'A local visual cover generator that turns one title and selected references into independent 3:4, 4:3, and 16:9 compositions.': '本地可视化封面生成器，将一个标题与所选参考扩展成独立的 3:4、4:3 与 16:9 构图。',
-    'A searchable visual reference playground for covers, explainer panels, motion graphics, subtitles, comparisons, and B-roll.': '可检索的视觉参考游乐场，收纳封面、讲解面板、动态图形、字幕、对比画面与 B-roll。',
-    'An editable 4:3 HTML animation-slide system for narration videos, explainers, social inserts, and approved card-copy decks.': '可编辑的 4:3 HTML 动画幻灯系统，用于口播视频、讲解内容、自媒体插入画面与定稿卡片文案。',
-    'A reusable animated HTML card-video toolkit with editable typography, annotations, layout controls, and local video export.': '可复用的 HTML 动画卡片视频工具，支持字体编辑、标注、布局控制与本地视频导出。',
-    'A one-command starter kit for three token-saving Agent skills: Ponytail, NotebookLM, and Skill Creator.': '一条命令安装三款节省 Token 的 Agent Skills：Ponytail、NotebookLM 与 Skill Creator。',
-    'A curated hub for useful AI resources, tools, learning notes, practical workflows, and discoveries gathered along the way.': '一个持续整理 AI 资源、工具、学习笔记、实用工作流与探索发现的知识中心。',
-    'A curated hub for AI resources, tools, and learning notes.': '一个整理 AI 资源、工具与学习笔记的分享空间。',
-    'Built to share useful references, workflows, and discoveries for anyone exploring AI.': '分享实用参考、工作流，以及我在探索 AI 过程中的发现。',
-    'A local-first visual AI workspace that turns projects, skills, and resources into one navigable map.': '一个本地优先的可视化 AI 工作台，把项目、Skills 与资源整合成一张可探索的工作地图。',
-    'Designed with privacy-aware scanning and explicit user approval at every step.': '以隐私为前提进行扫描，每一步都由用户明确授权。',
-    'Projects': '项目',
-    'Developing': '开发中',
-    'Enter Lab': '进入实验室',
-    'View Project': '查看项目',
-    'Preview Only': '仅预览',
-    'Content creation and sharing around AI tools, knowledge management and workflows.': '围绕 AI 工具、知识管理与工作流的内容创作与分享。',
-    'To be': '未完',
-    'continued.': '待续。',
-    'Index': '导航',
-    'Commercial credits / selected archive': '商业项目 / 精选档案',
-    'Close': '关闭',
-    'Short Film · 制片助理': '短片 · 制片助理',
-    'Documentary · Production Manager': '纪录片 · 制片主任',
-    'Short Film · Production Manager': '短片 · 制片主任',
-    'Web Series · Executive Producer': '网络剧 · 执行制片人',
-    'Beijing Film Academy': '北京电影学院',
-    'Tencent Video · 19 episodes': '腾讯视频 · 19 集',
-    'Official Selection · Zhejiang Golden Roc Film Festival': '浙江青年电影周金鹏奖 · 入选作品',
-    '30th Beijing College Student Film Festival · International Student Original Film Selection': '第30届北京大学生电影节 · 国际大学生原创影片推选入选作品',
-    '17th Cyprus International Film Festival “Golden Aphrodite” · Official Selection': '第17届塞浦路斯国际电影节“金色阿芙洛狄忒” · 入围',
-    '2nd Youality International Short Film Festival · World Peace Award': '第2届 Youality 国际短片电影节 · 世界和平奖',
-    '3rd Uruvatti International Film Festival · Best International Short Film': '第3届乌鲁瓦蒂国际电影节 · 最佳国际短片',
-    '2022 Shanghai International Short Film Week · SHISW Short Awards Official Selection': '2022 上海国际短片周 · SHISW 短片奖入围',
-    'New Year Goods': '年货节',
-    'Hotpot': '火锅篇',
-    'Old New Driver': '新老司机',
-    'U7 Launch': '仰望 U7 发布',
-    'Wave to the World': '挥手见世界',
-    'Brand Announcement': '品牌官宣',
-    'Christmas Special': '圣诞特别篇',
-    'CNY': '春节项目',
-    'Mystery City Horror': '迷城惊变',
-    'I Come From You': '我来自于你',
-    'Commercial': '商业广告',
-    'A Clean Mother': '一个干净的妈妈'
-  };
-
-  const originalText = new WeakMap();
-  const reverseTranslations = Object.fromEntries(
-    Object.entries(translations).map(([english, chinese]) => [chinese, english])
-  );
-  const skipTags = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'IFRAME', 'SVG']);
-  const toggle = document.getElementById('language-toggle');
-  let currentLanguage = 'en';
-
-  function translateNode(node, language) {
-    if (!originalText.has(node)) {
-      const trimmed = node.nodeValue.trim();
-      const english = reverseTranslations[trimmed];
-      originalText.set(node, english ? node.nodeValue.replace(trimmed, english) : node.nodeValue);
-    }
-    const original = originalText.get(node);
-    const trimmed = original.trim();
-    if (!trimmed) return;
-    const translated = language === 'zh' ? translations[trimmed] : null;
-    node.nodeValue = translated ? original.replace(trimmed, translated) : original;
-  }
-
-  function applyLanguage(language) {
-    currentLanguage = language;
-    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-    document.title = 'JioJioJoy';
-
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-      acceptNode(node) {
-        const parent = node.parentElement;
-        if (!parent || parent.closest('.copy-en, .copy-zh, .language-switch') || skipTags.has(parent.tagName)) return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    let node;
-    while ((node = walker.nextNode())) translateNode(node, language);
-
-    toggle.querySelectorAll('[data-lang]').forEach(label => label.classList.toggle('active', label.dataset.lang === language));
-    toggle.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
-  }
-
-  window.translateSiteText = function (text) {
-    return currentLanguage === 'zh' ? (translations[text] || text) : text;
-  };
-
-  toggle.addEventListener('click', function () {
-    applyLanguage(currentLanguage === 'zh' ? 'en' : 'zh');
-  });
-
-  window.refreshSiteLanguage = function () {
-    applyLanguage(currentLanguage);
-  };
-
-  applyLanguage(currentLanguage);
-})();
-</script>
+<script src="/site-language.js"></script>
 <script>
 document.querySelectorAll('.close-project').forEach(button => button.addEventListener('click', () => {
  const project = button.closest('.project-shell'); project.open = false;
@@ -2667,36 +2520,7 @@ document.querySelectorAll('.project-shell').forEach(project => project.addEventL
  if (!project.open) project.querySelectorAll('iframe').forEach(frame => { if(frame.src.includes('youtube.com/embed/')) frame.src=frame.src; });
 }));
 </script>
-<script>
-(() => {
- const ticket=document.getElementById('nav-ticket'), panel=document.getElementById('chapter-popover');
- const triggers=[document.getElementById('chapter-picker'),document.getElementById('ticket-menu')];
- function setOpen(open){panel.hidden=!open;triggers.forEach(b=>b.setAttribute('aria-expanded',String(open)));ticket.classList.toggle('is-open',open);}
- triggers.forEach(b=>b.addEventListener('click',()=>setOpen(panel.hidden)));
- document.addEventListener('click',e=>{if(!ticket.contains(e.target))setOpen(false)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){setOpen(false);triggers[0].focus();}});
- panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-  if(a.dataset.openProject){document.getElementById(a.dataset.openProject).open=true;}
-  setOpen(false);
- }));
- const sections=[...document.querySelectorAll('main>section')];
- const options=[...panel.querySelectorAll('[data-chapter]')];
- let pending=false;
- function update(){pending=false;let section=sections[0];for(const candidate of sections){if(candidate.getBoundingClientRect().top<=innerHeight*.35)section=candidate;}
- const showTicket=document.getElementById('influencer').getBoundingClientRect().top<=100;
- ticket.hidden=!showTicket;if(!showTicket)setOpen(false);
- const option=options.find(a=>a.dataset.chapter===section.id);if(!option)return;
- document.getElementById('chapter-current-label').textContent=option.querySelector('.chapter-label').textContent;
- document.getElementById('chapter-icon').replaceChildren(option.querySelector('.chapter-icon svg').cloneNode(true));
- document.getElementById('chapter-position').textContent=String(sections.indexOf(section)+1).padStart(2,'0')+' / '+String(sections.length).padStart(2,'0');
- options.forEach(a=>{if(a===option)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
- }
- function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
- window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);
- document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',schedule));
- document.getElementById('language-toggle').addEventListener('click',schedule);update();
-})();
-</script>
+
 <script>
 document.querySelectorAll('.smb-motion-toggle').forEach(button=>button.addEventListener('click',()=>{
  const paused=button.getAttribute('aria-pressed')!=='true';
